@@ -329,10 +329,18 @@
         </div>
     </div>
 
-    <!-- Script Navigasi & Logika -->
+    <!-- Script Navigasi & Logika LocalStorage -->
     <script>
-        let userPoints = 120;
-        let totalBooks = 12;
+        let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
+        let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('user-points').innerText = userPoints;
+            document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
+            loadJournals();
+            loadMateri();
+            loadBookmarks();
+        });
 
         function switchTab(tabId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
@@ -379,22 +387,43 @@
             const author = document.getElementById('book-author').value;
             const review = document.getElementById('book-review').value;
 
-            const tableBody = document.getElementById('journal-table-body');
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td class="p-3 font-semibold text-gray-800">${title}</td>
-                <td class="p-3">${author}</td>
-                <td class="p-3">${review}</td>
-            `;
-            tableBody.prepend(newRow);
+            let journals = JSON.parse(localStorage.getItem('journals')) || [];
+            journals.unshift({ title, author, review });
+            localStorage.setItem('journals', JSON.stringify(journals));
 
             userPoints += 10;
             totalBooks += 1;
+            localStorage.setItem('userPoints', userPoints);
+            localStorage.setItem('totalBooks', totalBooks);
+
             document.getElementById('user-points').innerText = userPoints;
             document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
 
+            loadJournals();
             document.getElementById('journal-form').reset();
             alert('Berhasil menyimpan Reading Journal! Anda mendapatkan +10 Poin.');
+        }
+
+        function loadJournals() {
+            const tableBody = document.getElementById('journal-table-body');
+            let journals = JSON.parse(localStorage.getItem('journals')) || [];
+            let html = `
+                <tr>
+                    <td class="p-3 font-semibold text-gray-800">Sejarah Peradaban Islam</td>
+                    <td class="p-3">Dr. Badri Yatim</td>
+                    <td class="p-3">Sangat menambah wawasan tentang kejayaan Islam masa lampau.</td>
+                </tr>
+            `;
+            journals.forEach(j => {
+                html += `
+                    <tr>
+                        <td class="p-3 font-semibold text-gray-800">${j.title}</td>
+                        <td class="p-3">${j.author}</td>
+                        <td class="p-3">${j.review}</td>
+                    </tr>
+                `;
+            });
+            tableBody.innerHTML = html;
         }
 
         function addMateri(event) {
@@ -402,27 +431,47 @@
             const title = document.getElementById('materi-title').value;
             const author = document.getElementById('materi-author').value;
 
-            const materiList = document.getElementById('materi-list');
-            const newCard = document.createElement('div');
-            newCard.className = 'p-4 border rounded-xl bg-gray-50 flex items-center justify-between';
-            newCard.innerHTML = `
-                <div>
-                    <h4 class="font-bold text-gray-800 text-sm">${title}</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Pengunggah: ${author}</p>
-                </div>
-                <button onclick="alert('Mengunduh materi...')" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Unduh Materi</button>
-            `;
-            materiList.prepend(newCard);
+            let materis = JSON.parse(localStorage.getItem('materis')) || [];
+            materis.unshift({ title, author });
+            localStorage.setItem('materis', JSON.stringify(materis));
 
+            loadMateri();
             document.getElementById('teacher-form').reset();
             alert('Modul ajar berhasil dipublikasikan ke Sumber Belajar!');
             switchTab('sumber');
+        }
+
+        function loadMateri() {
+            const materiList = document.getElementById('materi-list');
+            let materis = JSON.parse(localStorage.getItem('materis')) || [];
+            let html = `
+                <div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-gray-800 text-sm">Modul Ajar Bahasa Arab Fase E</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Pengunggah: Tim Kurikulum</p>
+                    </div>
+                    <button onclick="alert('Mengunduh materi...')" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Unduh Materi</button>
+                </div>
+            `;
+            materis.forEach(m => {
+                html += `
+                    <div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">${m.title}</h4>
+                            <p class="text-xs text-gray-500 mt-0.5">Pengunggah: ${m.author}</p>
+                        </div>
+                        <button onclick="alert('Mengunduh materi...')" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Unduh Materi</button>
+                    </div>
+                `;
+            });
+            materiList.innerHTML = html;
         }
 
         function submitQuiz() {
             const correctRadio = document.getElementById('quiz-correct');
             if (correctRadio.checked) {
                 userPoints += 15;
+                localStorage.setItem('userPoints', userPoints);
                 document.getElementById('user-points').innerText = userPoints;
                 alert('Jawaban Anda BENAR! Anda mendapatkan +15 Poin.');
             } else {
@@ -431,16 +480,37 @@
         }
 
         function saveBookmark(bookName) {
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            if(!bookmarks.includes(bookName)) {
+                bookmarks.push(bookName);
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                loadBookmarks();
+                alert(`"${bookName}" berhasil ditambahkan ke Bookmark Profil Anda!`);
+            } else {
+                alert('Buku ini sudah ada di dalam bookmark Anda.');
+            }
+        }
+
+        function loadBookmarks() {
             const bookmarkList = document.getElementById('bookmark-list');
-            const newItem = document.createElement('li');
-            newItem.className = 'p-3 bg-gray-50 border rounded-lg flex justify-between items-center';
-            newItem.innerHTML = `
-                <span>${bookName}</span>
-                <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+            let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            let html = `
+                <li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center">
+                    <span>Akhlakul Karimah di Era Digital</span>
+                    <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+                </li>
             `;
-            bookmarkList.prepend(newItem);
-            alert(`"${bookName}" berhasil ditambahkan ke Bookmark Profil Anda!`);
+            bookmarks.forEach(b => {
+                html += `
+                    <li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center">
+                        <span>${b}</span>
+                        <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+                    </li>
+                `;
+            });
+            bookmarkList.innerHTML = html;
         }
     </script>
 </body>
 </html>
+
