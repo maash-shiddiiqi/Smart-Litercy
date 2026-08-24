@@ -13,7 +13,7 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-emerald-800 text-white flex flex-col hidden md:flex shadow-lg">
             <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center gap-3">
-                <div id="sidebar-logo-container" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center overflow-hidden">
+                <div id="sidebar-logo-container" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center overflow-hidden shadow">
                     <i id="sidebar-logo-icon" class="fa-solid fa-book-open-reader"></i>
                 </div>
                 <span id="sidebar-brand-name">Smart Literacy</span>
@@ -59,7 +59,7 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
             <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
                 <div class="flex items-center gap-3">
-                    <div id="header-logo-container" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center overflow-hidden md:hidden">
+                    <div id="header-logo-container" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center overflow-hidden md:hidden shadow">
                         <i id="header-logo-icon" class="fa-solid fa-book-open-reader"></i>
                     </div>
                     <h1 id="page-title" class="text-lg font-semibold text-gray-800">Dashboard Literasi</h1>
@@ -68,12 +68,12 @@
                     <span class="text-sm bg-emerald-100 text-emerald-800 px-3.5 py-1.5 rounded-full font-medium">
                         <i class="fa-solid fa-star text-amber-500 mr-1"></i> <span id="user-points">120</span> Poin
                     </span>
-                    <div id="header-avatar" class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">M</div>
+                    <div id="header-avatar" class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold shadow">M</div>
                 </div>
             </header>
 
             <main class="p-6">
-                <!-- 1. DASHBOARD PROFESIONAL & INSPIRASI LITERASI -->
+                <!-- 1. DASHBOARD PROFESIONAL & GALERI -->
                 <div id="content-dashboard" class="page-content space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
@@ -170,6 +170,41 @@
                                     <span class="text-xs text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Live Data</span>
                                 </h3>
                                 <canvas id="visitorChart" height="110"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FITUR BARU: Galeri Kegiatan & Umpan Balik -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Galeri Dokumentasi -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                            <h3 class="font-bold text-gray-800 text-base flex items-center gap-2 border-b pb-2">
+                                <i class="fa-solid fa-images text-emerald-600"></i> Galeri Kegiatan Literasi
+                            </h3>
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                                    <i class="fa-solid fa-people-roof text-2xl text-emerald-600 mb-1"></i>
+                                    <h4 class="font-bold text-xs text-gray-800">Bedah Buku Kitab Kuning</h4>
+                                    <p class="text-[10px] text-gray-500 mt-0.5">Aula Madrasah</p>
+                                </div>
+                                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                                    <i class="fa-solid fa-laptop-code text-2xl text-emerald-600 mb-1"></i>
+                                    <h4 class="font-bold text-xs text-gray-800">Pelatihan Literasi Digital</h4>
+                                    <p class="text-[10px] text-gray-500 mt-0.5">Lab Komputer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Umpan Balik / Testimoni Siswa -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                            <h3 class="font-bold text-gray-800 text-base flex items-center gap-2 border-b pb-2">
+                                <i class="fa-solid fa-comments text-emerald-600"></i> Umpan Balik Pengguna
+                            </h3>
+                            <div class="space-y-2 text-xs text-gray-600">
+                                <div class="p-3 bg-gray-50 rounded-lg border">
+                                    <p class="italic font-medium text-gray-800">"Sangat membantu saya membaca e-book materi pelajaran kapanpun!"</p>
+                                    <span class="text-[10px] text-emerald-700 mt-1 block">- Rahmat (Siswa Kelas XII)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
