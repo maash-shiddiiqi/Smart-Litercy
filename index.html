@@ -105,13 +105,16 @@
 
                 <!-- 2. PERPUSTAKAAN -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog E-Book & Referensi Madrasah</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                            <h2 class="text-lg font-bold text-gray-800"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog E-Book & Referensi</h2>
+                            <input type="text" id="search-book" onkeyup="filterBooks()" placeholder="Cari judul buku..." class="text-sm border rounded-lg px-3 py-2 w-full md:w-64 focus:outline-emerald-600">
+                        </div>
+                        <div id="book-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="akhlakul karimah di era digital">
                                 <div>
                                     <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
-                                    <h3 id="book-name-1" class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Tim Literasi Madrasah</p>
                                 </div>
                                 <div class="mt-4 flex gap-2">
@@ -119,10 +122,10 @@
                                     <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                            <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="panduan karya ilmiah remaja">
                                 <div>
                                     <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-semibold">Sains & Riset</span>
-                                    <h3 id="book-name-2" class="font-bold text-gray-800 mt-3 text-base">Panduan Karya Ilmiah Remaja</h3>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Panduan Karya Ilmiah Remaja</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Guru Pembina KIR</p>
                                 </div>
                                 <div class="mt-4 flex gap-2">
@@ -130,10 +133,10 @@
                                     <button onclick="saveBookmark('Panduan Karya Ilmiah Remaja')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                            <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="antologi puisi dan cerpen siswa">
                                 <div>
                                     <span class="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-semibold">Bahasa & Sastra</span>
-                                    <h3 id="book-name-3" class="font-bold text-gray-800 mt-3 text-base">Antologi Puisi & Cerpen Siswa</h3>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Antologi Puisi & Cerpen Siswa</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Siswa Madrasah</p>
                                 </div>
                                 <div class="mt-4 flex gap-2">
@@ -357,6 +360,19 @@
             document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
         }
 
+        function filterBooks() {
+            const input = document.getElementById('search-book').value.toLowerCase();
+            const cards = document.querySelectorAll('.book-card');
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                if (title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
         function addJournal(event) {
             event.preventDefault();
             const title = document.getElementById('book-title').value;
@@ -428,4 +444,3 @@
     </script>
 </body>
 </html>
-
