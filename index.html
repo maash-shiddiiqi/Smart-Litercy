@@ -47,7 +47,7 @@
                 </a>
                 <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Akun</div>
                 <a href="#" onclick="switchTab('profil')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="profil">
-                    <i class="fa-solid fa-user w-5"></i> Profil Saya
+                    <i class="fa-solid fa-user w-5"></i> Profil & Bookmark
                 </a>
             </nav>
         </aside>
@@ -111,26 +111,35 @@
                             <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
                                 <div>
                                     <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
-                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
+                                    <h3 id="book-name-1" class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Tim Literasi Madrasah</p>
                                 </div>
-                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                                <div class="mt-4 flex gap-2">
+                                    <button onclick="alert('Membuka e-book reader...')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</button>
+                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
+                                </div>
                             </div>
                             <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
                                 <div>
                                     <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-semibold">Sains & Riset</span>
-                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Panduan Karya Ilmiah Remaja</h3>
+                                    <h3 id="book-name-2" class="font-bold text-gray-800 mt-3 text-base">Panduan Karya Ilmiah Remaja</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Guru Pembina KIR</p>
                                 </div>
-                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                                <div class="mt-4 flex gap-2">
+                                    <button onclick="alert('Membuka e-book reader...')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</button>
+                                    <button onclick="saveBookmark('Panduan Karya Ilmiah Remaja')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
+                                </div>
                             </div>
                             <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
                                 <div>
                                     <span class="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-semibold">Bahasa & Sastra</span>
-                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Antologi Puisi & Cerpen Siswa</h3>
+                                    <h3 id="book-name-3" class="font-bold text-gray-800 mt-3 text-base">Antologi Puisi & Cerpen Siswa</h3>
                                     <p class="text-xs text-gray-500 mt-1">Penulis: Siswa Madrasah</p>
                                 </div>
-                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                                <div class="mt-4 flex gap-2">
+                                    <button onclick="alert('Membuka e-book reader...')" class="flex-1 bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</button>
+                                    <button onclick="saveBookmark('Antologi Puisi & Cerpen Siswa')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,9 +149,12 @@
                 <div id="content-literasi" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-newspaper text-emerald-600 mr-2"></i> Publikasi Karya Warga Madrasah</h2>
-                        <div class="border-l-4 border-emerald-600 pl-4 py-2 bg-emerald-50/50 rounded-r-lg">
-                            <h4 class="font-bold text-gray-800 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
-                            <p class="text-xs text-gray-500 mt-0.5">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
+                        <div class="border-l-4 border-emerald-600 pl-4 py-2 bg-emerald-50/50 rounded-r-lg flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
+                            </div>
+                            <button onclick="saveBookmark('Artikel: Tradisi Kitab Kuning')" class="text-amber-600 hover:text-amber-700 text-sm p-2"><i class="fa-regular fa-bookmark"></i></button>
                         </div>
                     </div>
                 </div>
@@ -151,7 +163,6 @@
                 <div id="content-sumber" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-2"></i> Modul Ajar & Materi Pembelajaran</h2>
-                        <p class="text-sm text-gray-600 mb-4">Daftar perangkat ajar dan materi yang dibagikan oleh pendidik madrasah.</p>
                         <div id="materi-list" class="space-y-3">
                             <div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between">
                                 <div>
@@ -164,7 +175,7 @@
                     </div>
                 </div>
 
-                <!-- 5. AKTIVITAS LITERASI (READING JOURNAL) -->
+                <!-- 5. AKTIVITAS LITERASI -->
                 <div id="content-aktivitas" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-pen-clip text-emerald-600 mr-2"></i> Reading Journal Siswa</h2>
@@ -231,18 +242,45 @@
 
                 <!-- 7. GAMIFIKASI -->
                 <div id="content-gamifikasi" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-trophy text-emerald-600 mr-2"></i> Papan Peringkat Pembaca Teraktif</h2>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center justify-between p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-                                <span class="font-bold text-emerald-900">1. Ahmad Fauzan (Kelas XII Agama)</span>
-                                <span class="text-xs bg-emerald-600 text-white px-2.5 py-1 rounded-full font-bold">450 Poin</span>
-                            </li>
-                            <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
-                                <span class="font-semibold text-gray-800">2. Siti Aminah (Kelas XI IPA)</span>
-                                <span class="text-xs bg-gray-600 text-white px-2.5 py-1 rounded-full font-bold">380 Poin</span>
-                            </li>
-                        </ul>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-medal text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
+                                    <i class="fa-solid fa-award text-3xl text-amber-600 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-amber-900">Kutu Buku Pemula</h4>
+                                    <p class="text-[10px] text-amber-700 mt-1">Aktif membaca 10 buku</p>
+                                </div>
+                                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-center">
+                                    <i class="fa-solid fa-pen-nib text-3xl text-emerald-600 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-emerald-900">Penulis Esai</h4>
+                                    <p class="text-[10px] text-emerald-700 mt-1">Publikasi 3 karya</p>
+                                </div>
+                                <div class="bg-purple-50 border border-purple-200 p-4 rounded-xl text-center opacity-50">
+                                    <i class="fa-solid fa-brain text-3xl text-purple-600 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-purple-900">Master Kuis</h4>
+                                    <p class="text-[10px] text-purple-700 mt-1">Selesaikan 5 kuis</p>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl text-center opacity-50">
+                                    <i class="fa-solid fa-star text-3xl text-blue-600 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-blue-900">Literacy Star</h4>
+                                    <p class="text-[10px] text-blue-700 mt-1">Capai 500 Poin</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-trophy text-emerald-600 mr-2"></i> Papan Peringkat Pembaca Teraktif</h2>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-center justify-between p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                                    <span class="font-bold text-emerald-900">1. Ahmad Fauzan (Kelas XII Agama)</span>
+                                    <span class="text-xs bg-emerald-600 text-white px-2.5 py-1 rounded-full font-bold">450 Poin</span>
+                                </li>
+                                <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                                    <span class="font-semibold text-gray-800">2. Siti Aminah (Kelas XI IPA)</span>
+                                    <span class="text-xs bg-gray-600 text-white px-2.5 py-1 rounded-full font-bold">380 Poin</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -264,14 +302,23 @@
                     </div>
                 </div>
 
-                <!-- 9. PROFIL -->
+                <!-- 9. PROFIL & BOOKMARK -->
                 <div id="content-profil" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
-                        <div class="space-y-2 text-sm text-gray-700">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <h2 class="text-lg font-bold text-gray-800 mb-2"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
+                        <div class="space-y-1 text-sm text-gray-700 border-b pb-4">
                             <p><strong>Nama:</strong> Warga Madrasah</p>
                             <p><strong>Peran:</strong> Pendidik / Siswa</p>
                             <p><strong>Madrasah:</strong> Madrasah Aliyah / Tsanawiyah</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-bookmark text-amber-500 mr-1"></i> Daftar Bookmark Saya</h3>
+                            <ul id="bookmark-list" class="space-y-2 text-sm text-gray-600">
+                                <li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center">
+                                    <span>Akhlakul Karimah di Era Digital</span>
+                                    <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -279,7 +326,7 @@
         </div>
     </div>
 
-    <!-- Script Navigasi & Logika Interaktif -->
+    <!-- Script Navigasi & Logika -->
     <script>
         let userPoints = 120;
         let totalBooks = 12;
@@ -303,9 +350,9 @@
                 'sumber': 'Sumber Belajar & Modul Ajar',
                 'aktivitas': 'Reading Journal & Tantangan',
                 'kuis': 'Kuis Literasi Interaktif',
-                'gamifikasi': 'Gamifikasi & Ranking',
+                'gamifikasi': 'Gamifikasi & Badge',
                 'teacher': 'Teacher Corner (Ruang Guru)',
-                'profil': 'Profil Pengguna'
+                'profil': 'Profil & Bookmark'
             };
             document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
         }
@@ -365,6 +412,18 @@
             } else {
                 alert('Maaf, jawaban Anda kurang tepat. Coba pelajari lagi bukunya!');
             }
+        }
+
+        function saveBookmark(bookName) {
+            const bookmarkList = document.getElementById('bookmark-list');
+            const newItem = document.createElement('li');
+            newItem.className = 'p-3 bg-gray-50 border rounded-lg flex justify-between items-center';
+            newItem.innerHTML = `
+                <span>${bookName}</span>
+                <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+            `;
+            bookmarkList.prepend(newItem);
+            alert(`"${bookName}" berhasil ditambahkan ke Bookmark Profil Anda!`);
         }
     </script>
 </body>
