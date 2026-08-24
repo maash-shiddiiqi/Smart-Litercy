@@ -1,10 +1,180 @@
-]smart-literacy-corner/
-│
-├── index.html         # Halaman utama & router navigasi
-├── assets/
-│   ├── css/
-│   │   └── style.css  # Styling tambahan
-│   └── js/
-│       └── app.js     # Logika interaktif & state management
-└── README.md          # Dokumentasi proyek
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Literacy Corner - Madrasah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-emerald-800 text-white flex flex-col hidden md:flex">
+            <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center gap-2">
+                <i class="fa-solid fa-book-open-reader"></i>
+                <span>Smart Literacy</span>
+            </div>
+            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
+                <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg bg-emerald-700 text-white" data-target="dashboard">
+                    <i class="fa-solid fa-house w-5"></i> Dashboard
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Perpustakaan</div>
+                <a href="#" onclick="switchTab('perpustakaan')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="perpustakaan">
+                    <i class="fa-solid fa-books w-5"></i> Semua Buku & E-Book
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Literacy Corner</div>
+                <a href="#" onclick="switchTab('literasi')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="literasi">
+                    <i class="fa-solid fa-newspaper w-5"></i> Artikel, Esai & Karya
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Sumber Belajar</div>
+                <a href="#" onclick="switchTab('sumber')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="sumber">
+                    <i class="fa-solid fa-chalkboard-user w-5"></i> Modul & Materi Ajar
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Aktivitas & Game</div>
+                <a href="#" onclick="switchTab('aktivitas')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="aktivitas">
+                    <i class="fa-solid fa-pen-clip w-5"></i> Reading Journal & Quiz
+                </a>
+                <a href="#" onclick="switchTab('gamifikasi')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="gamifikasi">
+                    <i class="fa-solid fa-trophy w-5"></i> Ranking & Badge
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Khusus Guru</div>
+                <a href="#" onclick="switchTab('teacher')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="teacher">
+                    <i class="fa-solid fa-user-tie w-5"></i> Teacher Corner
+                </a>
+                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Akun</div>
+                <a href="#" onclick="switchTab('profil')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="profil">
+                    <i class="fa-solid fa-user w-5"></i> Profil Saya
+                </a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
+                <h1 id="page-title" class="text-lg font-semibold text-gray-800">Dashboard Literasi</h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-medium">
+                        <i class="fa-solid fa-star text-amber-500 mr-1"></i> <span id="user-points">120</span> Poin
+                    </span>
+                    <div class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">M</div>
+                </div>
+            </header>
+
+            <main class="p-6">
+                <div id="content-dashboard" class="page-content">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-book"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Buku Dibaca</p>
+                                <h3 class="text-xl font-bold text-gray-800">12 Buku</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-pen"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Karya/Artikel</p>
+                                <h3 class="text-xl font-bold text-gray-800">4 Karya</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-medal"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Badge Diraih</p>
+                                <h3 class="text-xl font-bold text-gray-800">5 Badge</h3>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-ranking-star"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Peringkat Madrasah</p>
+                                <h3 class="text-xl font-bold text-gray-800">Top 5</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-base font-bold text-gray-800 mb-2">Selamat Datang di Smart Literacy Corner Madrasah</h2>
+                        <p class="text-sm text-gray-600">Pusat literasi digital terpadu untuk mendukung budaya membaca, menulis, serta manajemen sumber belajar guru dan siswa.</p>
+                    </div>
+                </div>
+
+                <div id="content-perpustakaan" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog Perpustakaan & E-Book</h2>
+                        <p class="text-sm text-gray-600">Temukan berbagai koleksi buku digital dan referensi kurikulum madrasah di sini.</p>
+                    </div>
+                </div>
+
+                <div id="content-literasi" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-newspaper text-emerald-600 mr-2"></i> Artikel, Esai & Karya Siswa</h2>
+                        <p class="text-sm text-gray-600">Wadah publikasi karya tulis ilmiah, cerpen, puisi, dan esai kreatif warga madrasah.</p>
+                    </div>
+                </div>
+
+                <div id="content-sumber" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-2"></i> Sumber Belajar & Modul Ajar</h2>
+                        <p class="text-sm text-gray-600">Kumpulan modul ajar, materi pembelajaran, video, dan bank soal.</p>
+                    </div>
+                </div>
+
+                <div id="content-aktivitas" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-pen-clip text-emerald-600 mr-2"></i> Reading Journal & Tantangan</h2>
+                        <p class="text-sm text-gray-600">Catat buku yang telah dibaca dan selesaikan tantangan literasi.</p>
+                    </div>
+                </div>
+
+                <div id="content-gamifikasi" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-trophy text-emerald-600 mr-2"></i> Papan Peringkat & Badge</h2>
+                        <p class="text-sm text-gray-600">Lihat peringkat pembaca teraktif dan koleksi badge penghargaan.</p>
+                    </div>
+                </div>
+
+                <div id="content-teacher" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Teacher Corner</h2>
+                        <p class="text-sm text-gray-600">Kelola modul ajar saya, materi, video, bank soal, dan aktivitas siswa.</p>
+                    </div>
+                </div>
+
+                <div id="content-profil" class="page-content hidden">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
+                        <p class="text-sm text-gray-600">Informasi akun, riwayat aktivitas baca, dan bookmark tersimpan.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            const targetContent = document.getElementById('content-' + tabId);
+            if (targetContent) targetContent.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-emerald-700', 'text-white');
+                if (link.getAttribute('data-target') === tabId) {
+                    link.classList.add('bg-emerald-700', 'text-white');
+                }
+            });
+
+            const titles = {
+                'dashboard': 'Dashboard Literasi',
+                'perpustakaan': 'Perpustakaan & E-Book',
+                'literasi': 'Literacy Corner (Karya & Artikel)',
+                'sumber': 'Sumber Belajar & Modul Ajar',
+                'aktivitas': 'Aktivitas Literasi & Journal',
+                'gamifikasi': 'Gamifikasi & Ranking',
+                'teacher': 'Teacher Corner',
+                'profil': 'Profil Pengguna'
+            };
+            document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
+        }
+    </script>
+</body>
+</html>
 
