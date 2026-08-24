@@ -307,102 +307,115 @@
                     </div>
                 </div>
 
-                <!-- 9. PROFIL & PANEL ADMIN LENGKAP -->
+                <!-- 9. PROFIL & PANEL ADMIN (DENGAN KEAMANAN PASSWORD) -->
                 <div id="content-profil" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
-                        <div>
-                            <h2 class="text-lg font-bold text-gray-800 mb-2"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
-                            <div class="space-y-1 text-sm text-gray-700 border-b pb-4">
-                                <p><strong>Nama:</strong> <span id="profile-name">Warga Madrasah</span></p>
-                                <p><strong>Peran:</strong> <span id="profile-role">Pendidik / Siswa</span></p>
-                                <p><strong>Madrasah:</strong> <span id="profile-school">Madrasah Aliyah / Tsanawiyah</span></p>
+                    <!-- TAMPILAN LOGIN ADMIN -->
+                    <div id="admin-login-box" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 max-w-md mx-auto text-center space-y-4">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-gray-800">Area Terbatas Admin</h2>
+                        <p class="text-xs text-gray-500">Masukkan kata sandi khusus pengelola/wakakur untuk mengakses panel pengaturan dan kontrol web.</p>
+                        <form onsubmit="verifyAdmin(event)" class="space-y-3 pt-2">
+                            <input type="password" id="admin-password-input" required class="w-full text-sm border rounded-lg px-4 py-2.5 focus:outline-emerald-600 text-center tracking-widest" placeholder="Masukkan Password Admin">
+                            <button type="submit" class="w-full bg-emerald-600 text-white text-xs font-semibold py-2.5 rounded-lg hover:bg-emerald-700 transition">Masuk Panel Admin</button>
+                        </form>
+                    </div>
+
+                    <!-- TAMPILAN PANEL ADMIN UTAMA (TERKUNCI SECARA DEFAULT) -->
+                    <div id="admin-panel-content" class="hidden space-y-6">
+                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border">
+                            <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+                                <i class="fa-solid fa-shield-halved"></i> Mode Admin Aktif
                             </div>
+                            <button onclick="logoutAdmin()" class="bg-red-50 text-red-600 hover:bg-red-100 text-xs px-3 py-1.5 rounded-lg font-semibold transition">Keluar Admin</button>
                         </div>
 
-                        <!-- PANEL ADMIN: KONTROL PENUH -->
-                        <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl space-y-6">
-                            <h3 class="font-bold text-emerald-900 text-base flex items-center gap-2 border-b border-emerald-200 pb-2">
-                                <i class="fa-solid fa-lock text-emerald-600"></i> Panel Kontrol Admin / Wakakur
-                            </h3>
-
-                            <!-- Form Unggah Foto / Logo Langsung dari Perangkat -->
-                            <form id="admin-logo-form" onsubmit="uploadLogoFile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider"><i class="fa-solid fa-image mr-1"></i> Unggah Foto / Logo Profil Web (Dari Perangkat)</h4>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Pilih File Gambar (JPG / PNG)</label>
-                                    <input type="file" id="input-logo-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
+                            <div>
+                                <h2 class="text-lg font-bold text-gray-800 mb-2"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
+                                <div class="space-y-1 text-sm text-gray-700 border-b pb-4">
+                                    <p><strong>Nama:</strong> <span id="profile-name">Warga Madrasah</span></p>
+                                    <p><strong>Peran:</strong> <span id="profile-role">Pendidik / Siswa</span></p>
+                                    <p><strong>Madrasah:</strong> <span id="profile-school">Madrasah Aliyah / Tsanawiyah</span></p>
                                 </div>
-                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Unggah & Pasang Logo</button>
-                            </form>
+                            </div>
 
-                            <!-- Form Ubah Identitas Profil Admin -->
-                            <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Pengaturan Identitas Profil Web</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <!-- PANEL KONTROL PENUH -->
+                            <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl space-y-6">
+                                <h3 class="font-bold text-emerald-900 text-base flex items-center gap-2 border-b border-emerald-200 pb-2">
+                                    <i class="fa-solid fa-lock text-emerald-600"></i> Panel Kontrol Admin / Wakakur
+                                </h3>
+
+                                <!-- Form Unggah Foto / Logo -->
+                                <form id="admin-logo-form" onsubmit="uploadLogoFile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                    <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider"><i class="fa-solid fa-image mr-1"></i> Unggah Foto / Logo Profil Web (Dari Perangkat)</h4>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Admin</label>
-                                        <input type="text" id="new-name" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Anda">
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Pilih File Gambar (JPG / PNG)</label>
+                                        <input type="file" id="input-logo-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+                                    </div>
+                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Unggah & Pasang Logo</button>
+                                </form>
+
+                                <!-- Form Ubah Identitas Profil Admin -->
+                                <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                    <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Pengaturan Identitas Profil Web</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Admin</label>
+                                            <input type="text" id="new-name" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Anda">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-700 mb-1">Peran / Jabatan</label>
+                                            <input type="text" id="new-role" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Contoh: Wakil Kepala Kurikulum">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Madrasah</label>
+                                            <input type="text" id="new-school" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Madrasah">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Identitas Profil</button>
+                                </form>
+
+                                <!-- Form Unggah Buku -->
+                                <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                    <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Tambah Katalog E-Book</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <input type="text" id="admin-book-title" required class="text-sm border rounded-lg px-3 py-2" placeholder="Judul Buku">
+                                        <input type="text" id="admin-book-author" required class="text-sm border rounded-lg px-3 py-2" placeholder="Penulis">
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <select id="admin-book-category" class="text-sm border rounded-lg px-3 py-2">
+                                            <option value="Agama & Akhlak">Agama & Akhlak</option>
+                                            <option value="Sains & Riset">Sains & Riset</option>
+                                            <option value="Bahasa & Sastra">Bahasa & Sastra</option>
+                                        </select>
+                                        <input type="url" id="admin-book-url" required class="text-sm border rounded-lg px-3 py-2" placeholder="Link Google Drive / PDF">
+                                    </div>
+                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Publikasikan Buku</button>
+                                </form>
+
+                                <!-- Form Kelola Visi & Misi Madrasah -->
+                                <form id="admin-visimisi-form" onsubmit="updateVisiMisi(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                    <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Kelola Visi & Misi Madrasah</h4>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Visi Madrasah</label>
+                                        <textarea id="input-visi" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2"></textarea>
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Peran / Jabatan</label>
-                                        <input type="text" id="new-role" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Contoh: Wakil Kepala Kurikulum">
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Misi Madrasah</label>
+                                        <textarea id="input-misi" rows="3" required class="w-full text-sm border rounded-lg px-3 py-2"></textarea>
                                     </div>
-                                    <div>
-                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Madrasah</label>
-                                        <input type="text" id="new-school" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Madrasah">
-                                    </div>
-                                </div>
-                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Identitas Profil</button>
-                            </form>
+                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Visi & Misi</button>
+                                </form>
 
-                            <!-- Form Unggah Buku -->
-                            <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Tambah Katalog E-Book</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    <input type="text" id="admin-book-title" required class="text-sm border rounded-lg px-3 py-2" placeholder="Judul Buku">
-                                    <input type="text" id="admin-book-author" required class="text-sm border rounded-lg px-3 py-2" placeholder="Penulis">
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    <select id="admin-book-category" class="text-sm border rounded-lg px-3 py-2">
-                                        <option value="Agama & Akhlak">Agama & Akhlak</option>
-                                        <option value="Sains & Riset">Sains & Riset</option>
-                                        <option value="Bahasa & Sastra">Bahasa & Sastra</option>
-                                    </select>
-                                    <input type="url" id="admin-book-url" required class="text-sm border rounded-lg px-3 py-2" placeholder="Link Google Drive / PDF">
-                                </div>
-                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Publikasikan Buku</button>
-                            </form>
-
-                            <!-- Form Kelola Visi & Misi Madrasah -->
-                            <form id="admin-visimisi-form" onsubmit="updateVisiMisi(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Kelola Visi & Misi Madrasah</h4>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Visi Madrasah</label>
-                                    <textarea id="input-visi" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2"></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Misi Madrasah</label>
-                                    <textarea id="input-misi" rows="3" required class="w-full text-sm border rounded-lg px-3 py-2"></textarea>
-                                </div>
-                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Visi & Misi</button>
-                            </form>
-
-                            <!-- Form Siarkan Pengumuman -->
-                            <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Siarkan Pengumuman</h4>
-                                <textarea id="announcement-text" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Tulis pengumuman..."></textarea>
-                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Kirim Pengumuman</button>
-                            </form>
-                        </div>
-
-                        <div>
-                            <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-bookmark text-amber-500 mr-1"></i> Daftar Bookmark Saya</h3>
-                            <ul id="bookmark-list" class="space-y-2 text-sm text-gray-600">
-                                <li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center">
-                                    <span>Akhlakul Karimah di Era Digital</span>
-                                    <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
-                                </li>
-                            </ul>
+                                <!-- Form Siarkan Pengumuman -->
+                                <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                    <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Siarkan Pengumuman</h4>
+                                    <textarea id="announcement-text" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Tulis pengumuman..."></textarea>
+                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Kirim Pengumuman</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -414,6 +427,7 @@
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
+        const ADMIN_PASSWORD = "admin123"; // Ganti password admin di sini jika diinginkan
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('user-points').innerText = userPoints;
@@ -426,8 +440,39 @@
             loadCustomBooks();
             loadVisiMisi();
             loadLogo();
+            checkAdminSession();
             initChart();
         });
+
+        function verifyAdmin(event) {
+            event.preventDefault();
+            const pass = document.getElementById('admin-password-input').value;
+            if (pass === ADMIN_PASSWORD) {
+                localStorage.setItem('isAdminLoggedIn', 'true');
+                checkAdminSession();
+            } else {
+                alert('Kata sandi salah! Akses ditolak.');
+            }
+        }
+
+        function checkAdminSession() {
+            const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+            const loginBox = document.getElementById('admin-login-box');
+            const panelContent = document.getElementById('admin-panel-content');
+            if (isLoggedIn === 'true') {
+                loginBox.classList.add('hidden');
+                panelContent.classList.remove('hidden');
+            } else {
+                loginBox.classList.remove('hidden');
+                panelContent.classList.add('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('isAdminLoggedIn');
+            document.getElementById('admin-password-input').value = '';
+            checkAdminSession();
+        }
 
         function switchTab(tabId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
@@ -676,8 +721,8 @@
         }
 
         function submitQuiz() {
-            const correctRadio = document.getElementById('quiz-correct');
-            if (correctRadio.checked) {
+            const correctRoot = document.getElementById('quiz-correct');
+            if (correctRoot && correctRoot.checked) {
                 userPoints += 15; localStorage.setItem('userPoints', userPoints);
                 document.getElementById('user-points').innerText = userPoints;
                 alert('Jawaban BENAR (+15 Poin)!');
@@ -696,6 +741,7 @@
 
         function loadBookmarks() {
             const bookmarkList = document.getElementById('bookmark-list');
+            if (!bookmarkList) return;
             let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
             let html = `<li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center"><span>Akhlakul Karimah</span><span class="text-xs text-emerald-600">Tersimpan</span></li>`;
             bookmarks.forEach(b => {
