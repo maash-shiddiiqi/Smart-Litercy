@@ -6,16 +6,17 @@
     <title>Smart Literacy Corner - Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js untuk Grafik Statistik -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
         <aside class="w-64 bg-emerald-800 text-white flex flex-col hidden md:flex shadow-lg">
-            <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center gap-2">
-                <i class="fa-solid fa-book-open-reader"></i>
-                <span>Smart Literacy</span>
+            <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center gap-3">
+                <div id="sidebar-logo-container" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center overflow-hidden">
+                    <i id="sidebar-logo-icon" class="fa-solid fa-book-open-reader"></i>
+                </div>
+                <span id="sidebar-brand-name">Smart Literacy</span>
             </div>
             <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
                 <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg bg-emerald-700 text-white shadow-sm transition" data-target="dashboard">
@@ -57,19 +58,23 @@
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
-                <h1 id="page-title" class="text-lg font-semibold text-gray-800">Dashboard Literasi</h1>
+                <div class="flex items-center gap-3">
+                    <div id="header-logo-container" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center overflow-hidden md:hidden">
+                        <i id="header-logo-icon" class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h1 id="page-title" class="text-lg font-semibold text-gray-800">Dashboard Literasi</h1>
+                </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm bg-emerald-100 text-emerald-800 px-3.5 py-1.5 rounded-full font-medium">
                         <i class="fa-solid fa-star text-amber-500 mr-1"></i> <span id="user-points">120</span> Poin
                     </span>
-                    <div class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">M</div>
+                    <div id="header-avatar" class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">M</div>
                 </div>
             </header>
 
             <main class="p-6">
-                <!-- 1. DASHBOARD PROFESIONAL -->
+                <!-- 1. DASHBOARD PROFESIONAL & INSPIRASI LITERASI -->
                 <div id="content-dashboard" class="page-content space-y-6">
-                    <!-- Kartu Statistik Utama -->
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
                             <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-book"></i></div>
@@ -107,9 +112,33 @@
                         <p id="welcome-desc" class="text-emerald-100 text-sm max-w-3xl leading-relaxed">Platform literasi digital terpadu madrasah untuk membangun budaya baca, menulis kreatif, serta manajemen sumber belajar interaktif bagi guru dan siswa.</p>
                     </div>
 
+                    <!-- Inspirasi Literasi Nusantara -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-semibold"><i class="fa-solid fa-quote-left mr-1"></i> Kutipan Hari Ini</span>
+                                <p class="text-sm text-gray-700 italic mt-3">"Membaca adalah jendela dunia, dan menulis adalah cara kita merangkai masa depan."</p>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-4">- Inspirasi Pustaka Madrasah</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-semibold"><i class="fa-solid fa-lightbulb mr-1"></i> Target Literasi</span>
+                                <p class="text-sm text-gray-700 mt-3">Setiap siswa ditargetkan membaca minimal 2 buku setiap bulannya untuk mengasah wawasan keilmuan.</p>
+                            </div>
+                            <span class="text-xs text-blue-600 font-semibold mt-4">Program Unggulan Wakakur</span>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-semibold"><i class="fa-solid fa-award mr-1"></i> Apresiasi Karya</span>
+                                <p class="text-sm text-gray-700 mt-3">Karya tulis terbaik siswa akan diterbitkan dalam buletin bulanan digital madrasah.</p>
+                            </div>
+                            <span class="text-xs text-purple-600 font-semibold mt-4">Karya Siswa Berprestasi</span>
+                        </div>
+                    </div>
+
                     <!-- Visi, Misi & Pengumuman -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Visi & Misi Madrasah -->
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
                             <h3 class="font-bold text-gray-800 text-base flex items-center gap-2 border-b pb-2">
                                 <i class="fa-solid fa-bullseye text-emerald-600"></i> Visi & Misi Madrasah
@@ -124,7 +153,6 @@
                             </div>
                         </div>
 
-                        <!-- Pengumuman & Grafik Kunjungan -->
                         <div class="space-y-6">
                             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-3">
                                 <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
@@ -155,7 +183,6 @@
                             <input type="text" id="search-book" onkeyup="filterBooks()" placeholder="Cari judul buku..." class="text-sm border rounded-lg px-3 py-2 w-full md:w-64 focus:outline-emerald-600">
                         </div>
                         <div id="book-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Buku Default -->
                             <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="akhlakul karimah di era digital">
                                 <div>
                                     <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
@@ -164,7 +191,7 @@
                                 </div>
                                 <div class="mt-4 flex gap-2">
                                     <a href="#" onclick="alert('Membuka e-book reader...')" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</a>
-                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition" title="Simpan Bookmark"><i class="fa-solid fa-bookmark"></i></button>
+                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -317,11 +344,41 @@
                             </div>
                         </div>
 
-                        <!-- PANEL ADMIN: KONTROL PENUH -->
+                        <!-- PANEL ADMIN: KONTROL PENUH & LENGKAP -->
                         <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl space-y-6">
                             <h3 class="font-bold text-emerald-900 text-base flex items-center gap-2 border-b border-emerald-200 pb-2">
                                 <i class="fa-solid fa-lock text-emerald-600"></i> Panel Kontrol Admin / Wakakur
                             </h3>
+
+                            <!-- Form Ubah Logo Profil Web -->
+                            <form id="admin-logo-form" onsubmit="updateLogo(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Ubah Logo / Ikon Web (URL Gambar)</h4>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Link Gambar Logo (URL Gambar)</label>
+                                    <input type="url" id="input-logo-url" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="https://contoh.com/logo-madrasah.png">
+                                </div>
+                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan & Ubah Logo</button>
+                            </form>
+
+                            <!-- Form Ubah Identitas Profil Admin -->
+                            <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
+                                <h4 class="font-bold text-xs uppercase text-emerald-800 tracking-wider">Pengaturan Identitas Profil Web</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Admin</label>
+                                        <input type="text" id="new-name" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Anda">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Peran / Jabatan</label>
+                                        <input type="text" id="new-role" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Contoh: Wakil Kepala Kurikulum">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Madrasah</label>
+                                        <input type="text" id="new-school" class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Nama Madrasah">
+                                    </div>
+                                </div>
+                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Identitas Profil</button>
+                            </form>
 
                             <!-- Form Unggah Buku -->
                             <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-4 rounded-xl border">
@@ -362,13 +419,23 @@
                                 <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Kirim Pengumuman</button>
                             </form>
                         </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-bookmark text-amber-500 mr-1"></i> Daftar Bookmark Saya</h3>
+                            <ul id="bookmark-list" class="space-y-2 text-sm text-gray-600">
+                                <li class="p-3 bg-gray-50 border rounded-lg flex justify-between items-center">
+                                    <span>Akhlakul Karimah di Era Digital</span>
+                                    <span class="text-xs text-emerald-600 font-medium">Tersimpan</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Script Logika & Grafik Chart.js -->
+    <!-- Script Logika Lengkap -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
@@ -383,6 +450,7 @@
             loadProfile();
             loadCustomBooks();
             loadVisiMisi();
+            loadLogo();
             initChart();
         });
 
@@ -446,6 +514,24 @@
                     card.style.display = 'none';
                 }
             });
+        }
+
+        function updateLogo(event) {
+            event.preventDefault();
+            const url = document.getElementById('input-logo-url').value;
+            localStorage.setItem('logoUrl', url);
+            loadLogo();
+            alert('Logo profil web berhasil diperbarui!');
+        }
+
+        function loadLogo() {
+            const logoUrl = localStorage.getItem('logoUrl');
+            if(logoUrl) {
+                const sidebarContainer = document.getElementById('sidebar-logo-container');
+                sidebarContainer.innerHTML = `<img src="${logoUrl}" class="w-full h-full object-cover" alt="Logo">`;
+                const headerContainer = document.getElementById('header-logo-container');
+                headerContainer.innerHTML = `<img src="${logoUrl}" class="w-full h-full object-cover" alt="Logo">`;
+            }
         }
 
         function adminAddBook(event) {
@@ -546,7 +632,7 @@
             if(role) localStorage.setItem('profileRole', role);
             if(school) localStorage.setItem('profileSchool', school);
             loadProfile();
-            alert('Profil diperbarui!');
+            alert('Identitas profil diperbarui!');
         }
 
         function loadProfile() {
