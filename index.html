@@ -9,13 +9,14 @@
 </head>
 <body class="bg-gray-50 font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
-        <aside class="w-64 bg-emerald-800 text-white flex flex-col hidden md:flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-emerald-800 text-white flex flex-col hidden md:flex shadow-lg">
             <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center gap-2">
                 <i class="fa-solid fa-book-open-reader"></i>
                 <span>Smart Literacy</span>
             </div>
             <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg bg-emerald-700 text-white" data-target="dashboard">
+                <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg bg-emerald-700 text-white shadow-sm transition" data-target="dashboard">
                     <i class="fa-solid fa-house w-5"></i> Dashboard
                 </a>
                 <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Perpustakaan</div>
@@ -32,7 +33,7 @@
                 </a>
                 <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Aktivitas & Game</div>
                 <a href="#" onclick="switchTab('aktivitas')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="aktivitas">
-                    <i class="fa-solid fa-pen-clip w-5"></i> Reading Journal & Quiz
+                    <i class="fa-solid fa-pen-clip w-5"></i> Reading Journal
                 </a>
                 <a href="#" onclick="switchTab('gamifikasi')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="gamifikasi">
                     <i class="fa-solid fa-trophy w-5"></i> Ranking & Badge
@@ -48,11 +49,12 @@
             </nav>
         </aside>
 
+        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
                 <h1 id="page-title" class="text-lg font-semibold text-gray-800">Dashboard Literasi</h1>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-medium">
+                    <span class="text-sm bg-emerald-100 text-emerald-800 px-3.5 py-1.5 rounded-full font-medium">
                         <i class="fa-solid fa-star text-amber-500 mr-1"></i> <span id="user-points">120</span> Poin
                     </span>
                     <div class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">M</div>
@@ -60,13 +62,14 @@
             </header>
 
             <main class="p-6">
-                <div id="content-dashboard" class="page-content">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <!-- 1. DASHBOARD -->
+                <div id="content-dashboard" class="page-content space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
                             <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-xl"><i class="fa-solid fa-book"></i></div>
                             <div>
                                 <p class="text-sm text-gray-500">Buku Dibaca</p>
-                                <h3 class="text-xl font-bold text-gray-800">12 Buku</h3>
+                                <h3 id="stat-buku" class="text-xl font-bold text-gray-800">12 Buku</h3>
                             </div>
                         </div>
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
@@ -91,74 +94,168 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-base font-bold text-gray-800 mb-2">Selamat Datang di Smart Literacy Corner Madrasah</h2>
-                        <p class="text-sm text-gray-600">Pusat literasi digital terpadu untuk mendukung budaya membaca, menulis, serta manajemen sumber belajar guru dan siswa.</p>
+                    <div class="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white p-8 rounded-2xl shadow-md">
+                        <h2 class="text-2xl font-bold mb-2">Selamat Datang di Smart Literacy Corner</h2>
+                        <p class="text-emerald-100 text-sm max-w-2xl leading-relaxed">Platform literasi digital terpadu madrasah untuk membangun budaya baca, menulis kreatif, serta manajemen sumber belajar interaktif bagi guru dan siswa.</p>
                     </div>
                 </div>
 
-                <div id="content-perpustakaan" class="page-content hidden">
+                <!-- 2. PERPUSTAKAAN -->
+                <div id="content-perpustakaan" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog Perpustakaan & E-Book</h2>
-                        <p class="text-sm text-gray-600">Temukan berbagai koleksi buku digital dan referensi kurikulum madrasah di sini.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog E-Book & Referensi Madrasah</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
+                                    <p class="text-xs text-gray-500 mt-1">Penulis: Tim Literasi Madrasah</p>
+                                </div>
+                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                            </div>
+                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-semibold">Sains & Riset</span>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Panduan Karya Ilmiah Remaja</h3>
+                                    <p class="text-xs text-gray-500 mt-1">Penulis: Guru Pembina KIR</p>
+                                </div>
+                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                            </div>
+                            <div class="bg-gray-50 border p-5 rounded-xl flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-semibold">Bahasa & Sastra</span>
+                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Antologi Puisi & Cerpen Siswa</h3>
+                                    <p class="text-xs text-gray-500 mt-1">Penulis: Siswa Madrasah</p>
+                                </div>
+                                <button onclick="alert('Membuka e-book reader...')" class="mt-4 w-full bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca E-Book</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="content-literasi" class="page-content hidden">
+                <!-- 3. LITERACY CORNER -->
+                <div id="content-literasi" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-newspaper text-emerald-600 mr-2"></i> Artikel, Esai & Karya Siswa</h2>
-                        <p class="text-sm text-gray-600">Wadah publikasi karya tulis ilmiah, cerpen, puisi, dan esai kreatif warga madrasah.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-newspaper text-emerald-600 mr-2"></i> Publikasi Karya Warga Madrasah</h2>
+                        <p class="text-sm text-gray-600 mb-4">Nikmati esai, artikel ilmiah, dan karya sastra pilihan dari siswa dan guru.</p>
+                        <div class="border-l-4 border-emerald-600 pl-4 py-2 bg-emerald-50/50 rounded-r-lg">
+                            <h4 class="font-bold text-gray-800 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
+                            <p class="text-xs text-gray-500 mt-0.5">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="content-sumber" class="page-content hidden">
+                <!-- 4. SUMBER BELAJAR -->
+                <div id="content-sumber" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-2"></i> Sumber Belajar & Modul Ajar</h2>
-                        <p class="text-sm text-gray-600">Kumpulan modul ajar, materi pembelajaran, video, dan bank soal.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-2"></i> Modul Ajar & Bank Soal Kurikulum</h2>
+                        <p class="text-sm text-gray-600">Unduh perangkat pembelajaran lengkap untuk kebutuhan kelas.</p>
                     </div>
                 </div>
 
-                <div id="content-aktivitas" class="page-content hidden">
+                <!-- 5. AKTIVITAS LITERASI (READING JOURNAL INTERAKTIF) -->
+                <div id="content-aktivitas" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-pen-clip text-emerald-600 mr-2"></i> Reading Journal & Tantangan</h2>
-                        <p class="text-sm text-gray-600">Catat buku yang telah dibaca dan selesaikan tantangan literasi.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-pen-clip text-emerald-600 mr-2"></i> Reading Journal Siswa</h2>
+                        <p class="text-sm text-gray-600 mb-6">Catat buku yang telah Anda baca agar terekam dalam sistem literasi madrasah.</p>
+                        
+                        <!-- Form Input Journal -->
+                        <form id="journal-form" onsubmit="addJournal(event)" class="bg-gray-50 p-5 rounded-xl border mb-6 space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Buku</label>
+                                    <input type="text" id="book-title" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Sang Pemimpi">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Penulis Buku</label>
+                                    <input type="text" id="book-author" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Andrea Hirata">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Catatan / Ulasan Singkat</label>
+                                <textarea id="book-review" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Tuliskan pelajaran atau ringkasan buku..."></textarea>
+                            </div>
+                            <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Simpan Journal (+10 Poin)</button>
+                        </form>
+
+                        <!-- Tabel Riwayat Journal -->
+                        <h3 class="font-bold text-gray-800 text-sm mb-3">Riwayat Bacaan Saya</h3>
+                        <div class="overflow-x-auto border rounded-xl">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-100 text-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-3">Judul Buku</th>
+                                        <th class="p-3">Penulis</th>
+                                        <th class="p-3">Ulasan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="journal-table-body" class="divide-y text-gray-600 text-xs">
+                                    <tr>
+                                        <td class="p-3 font-semibold text-gray-800">Sejarah Peradaban Islam</td>
+                                        <td class="p-3">Dr. Badri Yatim</td>
+                                        <td class="p-3">Sangat menambah wawasan tentang kejayaan Islam masa lampau.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div id="content-gamifikasi" class="page-content hidden">
+                <!-- 6. GAMIFIKASI -->
+                <div id="content-gamifikasi" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-trophy text-emerald-600 mr-2"></i> Papan Peringkat & Badge</h2>
-                        <p class="text-sm text-gray-600">Lihat peringkat pembaca teraktif dan koleksi badge penghargaan.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-trophy text-emerald-600 mr-2"></i> Papan Peringkat Pembaca Teraktif</h2>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center justify-between p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                                <span class="font-bold text-emerald-900">1. Ahmad Fauzan (Kelas XII Agama)</span>
+                                <span class="text-xs bg-emerald-600 text-white px-2.5 py-1 rounded-full font-bold">450 Poin</span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                                <span class="font-semibold text-gray-800">2. Siti Aminah (Kelas XI IPA)</span>
+                                <span class="text-xs bg-gray-600 text-white px-2.5 py-1 rounded-full font-bold">380 Poin</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div id="content-teacher" class="page-content hidden">
+                <!-- 7. TEACHER CORNER -->
+                <div id="content-teacher" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Teacher Corner</h2>
-                        <p class="text-sm text-gray-600">Kelola modul ajar saya, materi, video, bank soal, dan aktivitas siswa.</p>
+                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Ruang Guru & Manajemen Pembelajaran</h2>
+                        <p class="text-sm text-gray-600 mb-4">Fitur khusus bagi pendidik untuk mengunggah modul ajar dan memantau progres literasi siswa.</p>
+                        <button onclick="alert('Membuka panel unggah modul guru...')" class="bg-emerald-600 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-emerald-700 transition">Unggah Modul Ajar Baru</button>
                     </div>
                 </div>
 
-                <div id="content-profil" class="page-content hidden">
+                <!-- 8. PROFIL -->
+                <div id="content-profil" class="page-content hidden space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
-                        <p class="text-sm text-gray-600">Informasi akun, riwayat aktivitas baca, dan bookmark tersimpan.</p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Nama:</strong> Warga Madrasah</p>
+                            <p><strong>Peran:</strong> Pendidik / Siswa</p>
+                            <p><strong>Madrasah:</strong> Madrasah Aliyah / Tsanawiyah</p>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
+    <!-- Script Navigasi & Logika Journal -->
     <script>
+        let userPoints = 120;
+        let totalBooks = 12;
+
         function switchTab(tabId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
             const targetContent = document.getElementById('content-' + tabId);
             if (targetContent) targetContent.classList.remove('hidden');
 
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('bg-emerald-700', 'text-white');
+                link.classList.remove('bg-emerald-700', 'text-white', 'shadow-sm');
                 if (link.getAttribute('data-target') === tabId) {
-                    link.classList.add('bg-emerald-700', 'text-white');
+                    link.classList.add('bg-emerald-700', 'text-white', 'shadow-sm');
                 }
             });
 
@@ -167,12 +264,38 @@
                 'perpustakaan': 'Perpustakaan & E-Book',
                 'literasi': 'Literacy Corner (Karya & Artikel)',
                 'sumber': 'Sumber Belajar & Modul Ajar',
-                'aktivitas': 'Aktivitas Literasi & Journal',
+                'aktivitas': 'Reading Journal & Tantangan',
                 'gamifikasi': 'Gamifikasi & Ranking',
                 'teacher': 'Teacher Corner',
                 'profil': 'Profil Pengguna'
             };
             document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
+        }
+
+        function addJournal(event) {
+            event.preventDefault();
+            const title = document.getElementById('book-title').value;
+            const author = document.getElementById('book-author').value;
+            const review = document.getElementById('book-review').value;
+
+            const tableBody = document.getElementById('journal-table-body');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="p-3 font-semibold text-gray-800">${title}</td>
+                <td class="p-3">${author}</td>
+                <td class="p-3">${review}</td>
+            `;
+            tableBody.prepend(newRow);
+
+            // Tambah poin dan total buku
+            userPoints += 10;
+            totalBooks += 1;
+            document.getElementById('user-points').innerText = userPoints;
+            document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
+
+            // Reset Form
+            document.getElementById('journal-form').reset();
+            alert('Berhasil menyimpan Reading Journal! Anda mendapatkan +10 Poin.');
         }
     </script>
 </body>
