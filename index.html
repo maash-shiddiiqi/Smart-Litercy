@@ -97,9 +97,21 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white p-8 rounded-2xl shadow-md">
                         <h2 class="text-2xl font-bold mb-2">Selamat Datang di Smart Literacy Corner</h2>
                         <p class="text-emerald-100 text-sm max-w-2xl leading-relaxed">Platform literasi digital terpadu madrasah untuk membangun budaya baca, menulis kreatif, serta manajemen sumber belajar interaktif bagi guru dan siswa.</p>
+                    </div>
+
+                    <!-- Pengumuman Terbaru dari Guru -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-3">
+                        <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-emerald-600"></i> Pengumuman & Agenda Literasi Madrasah
+                        </h3>
+                        <div id="announcement-board" class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-sm text-emerald-900">
+                            <p class="font-semibold">✨ Tantangan Membaca Bulan Ini Telah Dibuka!</p>
+                            <p class="text-xs mt-1 text-emerald-700">Ayo selesaikan minimal 3 buku dan kumpulkan poin sebanyak-banyaknya untuk meraih predikat pembaca terbaik madrasah.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -289,19 +301,31 @@
 
                 <!-- 8. TEACHER CORNER -->
                 <div id="content-teacher" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Teacher Corner (Unggah Modul Ajar)</h2>
-                        <form id="teacher-form" onsubmit="addMateri(event)" class="bg-gray-50 p-5 rounded-xl border space-y-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Modul / Materi Ajar</label>
-                                <input type="text" id="materi-title" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Modul Fiqih Muamalah Kelas XII">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Pendidik / Pengunggah</label>
-                                <input type="text" id="materi-author" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Ustadz Ahmad, S.Pd.I">
-                            </div>
-                            <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Publikasikan ke Sumber Belajar</button>
-                        </form>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Teacher Corner (Unggah Modul Ajar)</h2>
+                            <form id="teacher-form" onsubmit="addMateri(event)" class="bg-gray-50 p-5 rounded-xl border space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Modul / Materi Ajar</label>
+                                    <input type="text" id="materi-title" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Modul Fiqih Muamalah Kelas XII">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Pendidik / Pengunggah</label>
+                                    <input type="text" id="materi-author" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Ustadz Ahmad, S.Pd.I">
+                                </div>
+                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Publikasikan ke Sumber Belajar</button>
+                            </form>
+                        </div>
+                        <div class="pt-4 border-t">
+                            <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-bullhorn text-emerald-600 mr-2"></i> Buat Pengumuman Literasi</h2>
+                            <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="bg-gray-50 p-5 rounded-xl border space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul / Isi Pengumuman</label>
+                                    <textarea id="announcement-text" rows="3" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Tulis pengumuman baru untuk siswa..."></textarea>
+                                </div>
+                                <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Siarkan Pengumuman</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -340,6 +364,7 @@
             loadJournals();
             loadMateri();
             loadBookmarks();
+            loadAnnouncement();
         });
 
         function switchTab(tabId) {
@@ -465,6 +490,27 @@
                 `;
             });
             materiList.innerHTML = html;
+        }
+
+        function updateAnnouncement(event) {
+            event.preventDefault();
+            const text = document.getElementById('announcement-text').value;
+            localStorage.setItem('announcement', text);
+            loadAnnouncement();
+            document.getElementById('announcement-form').reset();
+            alert('Pengumuman berhasil disiarkan ke beranda siswa!');
+            switchTab('dashboard');
+        }
+
+        function loadAnnouncement() {
+            const board = document.getElementById('announcement-board');
+            const savedText = localStorage.getItem('announcement');
+            if(savedText) {
+                board.innerHTML = `
+                    <p class="font-semibold">✨ Informasi Terbaru:</p>
+                    <p class="text-xs mt-1 text-emerald-700">${savedText}</p>
+                `;
+            }
         }
 
         function submitQuiz() {
