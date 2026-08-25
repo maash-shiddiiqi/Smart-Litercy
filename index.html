@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Literacy Corner - iPusnas Style</title>
+    <title>Smart Literacy Corner - Full iPusnas Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,15 +13,12 @@
         .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
         .emerald-gradient { background: linear-gradient(135deg, #065f46 0%, #047857 50%, #022c22 100%); }
         .gold-glow { box-shadow: 0 4px 20px -2px rgba(217, 119, 6, 0.15); }
-        /* Sembunyikan scrollbar tapi tetap bisa di-scroll */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white pb-16 md:pb-0">
+<body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white pb-20 md:pb-0">
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar Desktop (Elegan & Klasik) -->
+        <!-- Sidebar Desktop (Lengkap) -->
         <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#022c22] text-slate-100 hidden md:flex flex-col shadow-2xl border-r border-emerald-900/50">
             <div class="p-6 text-xl font-extrabold tracking-wide border-b border-emerald-900/60 flex items-center justify-between bg-[#032019]">
                 <div class="flex items-center gap-3.5">
@@ -80,11 +77,9 @@
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto w-full">
             <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between px-6 md:px-10 sticky top-0 z-30 shadow-xs">
-                <div class="flex items-center gap-4">
-                    <div>
-                        <h1 id="page-title" class="text-lg md:text-xl font-black text-slate-900 tracking-tight">Beranda Utama</h1>
-                        <p class="text-xs text-slate-500 font-medium hidden sm:block">Perpustakaan Digital & Portal Literasi Madrasah</p>
-                    </div>
+                <div>
+                    <h1 id="page-title" class="text-lg md:text-xl font-black text-slate-900 tracking-tight">Beranda Utama</h1>
+                    <p class="text-xs text-slate-500 font-medium hidden sm:block">Perpustakaan Digital & Portal Literasi Madrasah</p>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2 bg-amber-50 border border-amber-200/80 px-4 py-2 rounded-full gold-glow">
@@ -96,7 +91,8 @@
             </header>
 
             <main class="p-6 md:p-10 max-w-7xl mx-auto w-full space-y-8 mb-12">
-                <!-- 1. DASHBOARD -->
+                
+                <!-- 1. DASHBOARD LENGKAP -->
                 <div id="content-dashboard" class="page-content space-y-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                         <div class="glass-card p-5 rounded-2xl shadow-sm border-l-4 border-blue-500 flex items-center gap-4">
@@ -117,7 +113,7 @@
                             <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-award"></i></div>
                             <div>
                                 <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Badge Diraih</p>
-                                <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">5 Badge</h3>
+                                <h3 id="stat-badge" class="text-xl font-extrabold text-slate-900 mt-0.5">5 Badge</h3>
                             </div>
                         </div>
                         <div class="glass-card p-5 rounded-2xl shadow-sm border-l-4 border-purple-500 flex items-center gap-4">
@@ -129,7 +125,7 @@
                         </div>
                     </div>
 
-                    <!-- Banner Hero Ala iPusnas -->
+                    <!-- Banner Hero -->
                     <div class="emerald-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between">
                         <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div class="relative z-10 space-y-3 max-w-3xl">
@@ -179,9 +175,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Galeri & Umpan Balik -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="glass-card p-7 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b pb-3">
+                                <i class="fa-solid fa-images text-emerald-700"></i> Galeri Kegiatan Literasi
+                            </h3>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100">
+                                    <i class="fa-solid fa-people-roof text-3xl text-emerald-700 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-slate-800">Bedah Kitab Kuning</h4>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Aula Utama Madrasah</p>
+                                </div>
+                                <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100">
+                                    <i class="fa-solid fa-laptop-code text-3xl text-emerald-700 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-slate-800">Literasi Digital</h4>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Laboratorium Komputer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-7 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b pb-3">
+                                <i class="fa-solid fa-comments text-emerald-700"></i> Umpan Balik Pengguna
+                            </h3>
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/60 space-y-2">
+                                <p class="italic text-xs font-medium text-slate-700">"Sangat membantu saya membaca e-book materi pelajaran kapanpun dan dimanapun dengan mudah!"</p>
+                                <span class="text-[10px] font-bold text-emerald-800 block">- Rahmat (Siswa Kelas XII)</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 2. PERPUSTAKAAN (KATALOG GAYA IPUSNAS) -->
+                <!-- 2. PERPUSTAKAAN -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
@@ -192,7 +219,6 @@
                             <input type="text" id="search-book" onkeyup="filterBooks()" placeholder="Cari judul atau penulis..." class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 w-full md:w-72 focus:outline-emerald-600 bg-white shadow-xs">
                         </div>
                         <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            <!-- Buku Default -->
                             <div class="book-card glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition" data-title="akhlakul karimah di era digital">
                                 <div>
                                     <div class="flex justify-between items-center mb-3">
@@ -204,14 +230,14 @@
                                 </div>
                                 <div class="mt-6 flex gap-3">
                                     <a href="#" onclick="alert('Meminjam dan membuka e-book...')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition"><i class="fa-solid fa-book-open-reader mr-1"></i> Baca</a>
-                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition" title="Simpan ke Rak Saya"><i class="fa-solid fa-bookmark"></i></button>
+                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital', 'Tim Literasi Madrasah', 'Agama & Akhlak')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition" title="Simpan ke Rak Saya"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3. RAK SAYA (MY SHELF / BOOKMARKS) -->
+                <!-- 3. RAK SAYA (BOOKMARKS) -->
                 <div id="content-raksaya" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <div>
@@ -256,7 +282,7 @@
                     </div>
                 </div>
 
-                <!-- 6. AKTIVITAS LITERASI -->
+                <!-- 6. AKTIVITAS: READING JOURNAL -->
                 <div id="content-aktivitas" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-clipboard-user text-emerald-700 mr-2"></i> Reading Journal Siswa</h2>
@@ -321,7 +347,7 @@
                     </div>
                 </div>
 
-                <!-- 8. GAMIFIKASI -->
+                <!-- 8. GAMIFIKASI: BADGE & RANKING -->
                 <div id="content-gamifikasi" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-award text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
@@ -358,7 +384,7 @@
                     </div>
                 </div>
 
-                <!-- 10. PROFIL & PANEL ADMIN -->
+                <!-- 10. PROFIL & PANEL ADMIN LENGKAP -->
                 <div id="content-profil" class="page-content hidden space-y-6">
                     <div id="admin-login-box" class="glass-card p-8 rounded-3xl shadow-sm border max-w-md mx-auto text-center space-y-4">
                         <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner"><i class="fa-solid fa-lock"></i></div>
@@ -444,7 +470,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAVIGATION BAR (KHUSUS GAYA APLIKASI IPUSNAS DI HP) -->
+    <!-- BOTTOM NAVIGATION BAR (IPUSNAS STYLE) -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#022c22] border-t border-emerald-900/80 text-white flex justify-around items-center h-16 z-50 px-2 shadow-2xl">
         <button onclick="switchTab('dashboard')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-emerald-300 hover:text-white" data-tab="dashboard">
             <i class="fa-solid fa-house text-base"></i>
@@ -468,7 +494,7 @@
         </button>
     </div>
 
-    <!-- Script Logika & Fitur Rak Buku -->
+    <!-- Script Logika Lengkap -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
@@ -503,7 +529,6 @@
                 }
             });
 
-            // Highlight Bottom Bar di HP
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('text-white', 'font-bold');
                 btn.classList.add('text-slate-300');
@@ -590,7 +615,7 @@
 
             loadCustomBooks();
             document.getElementById('admin-book-form').reset();
-            alert('Buku / E-Book berhasil diunggah ke Rak iPusnas!');
+            alert('Buku / E-Book berhasil diunggah!');
             switchTab('perpustakaan');
         }
 
@@ -636,7 +661,6 @@
             grid.innerHTML = customHTML + defaultHTML;
         }
 
-        // --- SISTEM RAK SAYA (BOOKMARKS) ---
         function saveBookmark(title, author = 'Madrasah', category = 'Umum', url = '#') {
             let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
             if (!bookmarks.some(b => b.title === title)) {
