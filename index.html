@@ -1,187 +1,218 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Literacy Corner - Madrasah</title>
+    <title>Smart Literacy Corner - Madrasah Berkelas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .emerald-gradient { background: linear-gradient(135deg, #065f46 0%, #047857 50%, #022c22 100%); }
+        .gold-glow { box-shadow: 0 4px 20px -2px rgba(217, 119, 6, 0.15); }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
-    <div class="flex h-screen overflow-hidden relative">
-        <!-- Sidebar Responsif -->
-        <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-64 bg-emerald-800 text-white flex flex-col shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300">
-            <div class="p-5 text-xl font-bold tracking-wider border-b border-emerald-700 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div id="sidebar-logo-container" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center overflow-hidden shadow">
-                        <i class="fa-solid fa-book-open-reader"></i>
+<body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Elegan & Eksklusif -->
+        <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#022c22] text-slate-100 flex flex-col shadow-2xl transform -translate-x-full md:translate-x-0 transition-transform duration-300 border-r border-emerald-900/50">
+            <div class="p-6 text-xl font-extrabold tracking-wide border-b border-emerald-900/60 flex items-center justify-between bg-[#032019]">
+                <div class="flex items-center gap-3.5">
+                    <div id="sidebar-logo-container" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-emerald-950 flex items-center justify-center overflow-hidden shadow-lg font-black text-lg">
+                        <i class="fa-solid fa-book-quran"></i>
                     </div>
-                    <span>Smart Literacy</span>
+                    <div>
+                        <span class="block text-base tracking-tight font-bold text-white">Smart Literacy</span>
+                        <span class="block text-[10px] text-emerald-400 font-medium uppercase tracking-widest">Digital Corner</span>
+                    </div>
                 </div>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg bg-emerald-700 text-white shadow-sm transition" data-target="dashboard">
-                    <i class="fa-solid fa-house w-5"></i> Dashboard
+            
+            <nav class="flex-1 overflow-y-auto p-4 space-y-1.5 text-xs font-medium custom-scroll">
+                <a href="#" onclick="switchTab('dashboard')" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-xl emerald-gradient text-white shadow-md transition-all font-semibold" data-target="dashboard">
+                    <i class="fa-solid fa-house-chimney w-4 text-emerald-300 text-sm"></i> Dashboard Utama
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Perpustakaan</div>
-                <a href="#" onclick="switchTab('perpustakaan')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="perpustakaan">
-                    <i class="fa-solid fa-books w-5"></i> Semua Buku & E-Book
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Perpustakaan Digital</div>
+                <a href="#" onclick="switchTab('perpustakaan')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="perpustakaan">
+                    <i class="fa-solid fa-book-bookmark w-4 text-slate-400"></i> Katalog & E-Book
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Literacy Corner</div>
-                <a href="#" onclick="switchTab('literasi')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="literasi">
-                    <i class="fa-solid fa-newspaper w-5"></i> Artikel, Esai & Karya
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Literacy Corner</div>
+                <a href="#" onclick="switchTab('literasi')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="literasi">
+                    <i class="fa-solid fa-feather-pointed w-4 text-slate-400"></i> Esai & Karya Tulis
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Sumber Belajar</div>
-                <a href="#" onclick="switchTab('sumber')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="sumber">
-                    <i class="fa-solid fa-chalkboard-user w-5"></i> Modul & Materi Ajar
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Sumber Akademik</div>
+                <a href="#" onclick="switchTab('sumber')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="sumber">
+                    <i class="fa-solid fa-file-shield w-4 text-slate-400"></i> Modul & Materi Ajar
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Aktivitas & Game</div>
-                <a href="#" onclick="switchTab('aktivitas')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="aktivitas">
-                    <i class="fa-solid fa-pen-clip w-5"></i> Reading Journal
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Aktivitas & Interaktif</div>
+                <a href="#" onclick="switchTab('aktivitas')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="aktivitas">
+                    <i class="fa-solid fa-clipboard-user w-4 text-slate-400"></i> Reading Journal
                 </a>
-                <a href="#" onclick="switchTab('kuis')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="kuis">
-                    <i class="fa-solid fa-brain w-5"></i> Kuis Literasi
+                <a href="#" onclick="switchTab('kuis')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="kuis">
+                    <i class="fa-solid fa-brain w-4 text-slate-400"></i> Kuis Literasi
                 </a>
-                <a href="#" onclick="switchTab('gamifikasi')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="gamifikasi">
-                    <i class="fa-solid fa-trophy w-5"></i> Ranking & Badge
+                <a href="#" onclick="switchTab('gamifikasi')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="gamifikasi">
+                    <i class="fa-solid fa-award w-4 text-slate-400"></i> Ranking & Badge
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Khusus Guru</div>
-                <a href="#" onclick="switchTab('teacher')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="teacher">
-                    <i class="fa-solid fa-user-tie w-5"></i> Teacher Corner
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Manajemen Guru</div>
+                <a href="#" onclick="switchTab('teacher')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="teacher">
+                    <i class="fa-solid fa-chalkboard-user w-4 text-slate-400"></i> Teacher Corner
                 </a>
-                <div class="pt-3 pb-1 text-xs font-semibold text-emerald-300 uppercase tracking-wider">Akun</div>
-                <a href="#" onclick="switchTab('profil')" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-700 transition" data-target="profil">
-                    <i class="fa-solid fa-user w-5"></i> Profil & Admin
+                
+                <div class="pt-4 pb-1.5 px-4 text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider">Sistem</div>
+                <a href="#" onclick="switchTab('profil')" class="nav-link flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-900/40 hover:text-white transition-all" data-target="profil">
+                    <i class="fa-solid fa-user-gear w-4 text-slate-400"></i> Profil & Panel Admin
                 </a>
             </nav>
         </aside>
 
-        <!-- Backdrop untuk Mobile -->
-        <div id="sidebar-backdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+        <!-- Backdrop Mobile -->
+        <div id="sidebar-backdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden md:hidden"></div>
 
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto w-full">
-            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-4 md:px-6 z-10">
-                <div class="flex items-center gap-3">
-                    <button onclick="toggleMobileMenu()" class="md:hidden text-emerald-800 text-xl focus:outline-none p-1">
-                        <i class="fa-solid fa-bars"></i>
+            <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between px-6 md:px-10 sticky top-0 z-30 shadow-xs">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-emerald-800 text-xl focus:outline-none p-2 rounded-xl hover:bg-slate-100 transition">
+                        <i class="fa-solid fa-bars-staggered"></i>
                     </button>
-                    <h1 id="page-title" class="text-sm md:text-lg font-semibold text-gray-800 truncate">Dashboard Literasi</h1>
+                    <div>
+                        <h1 id="page-title" class="text-lg md:text-xl font-black text-slate-900 tracking-tight">Dashboard Utama</h1>
+                        <p class="text-xs text-slate-500 font-medium hidden sm:block">Pusat Integrasi Literasi & Kurikulum Madrasah</p>
+                    </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span class="text-xs md:text-sm bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-full font-medium">
-                        <i class="fa-solid fa-star text-amber-500 mr-1"></i> <span id="user-points">120</span> Poin
-                    </span>
-                    <div class="w-8 h-8 md:w-9 md:h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold shadow text-xs md:text-sm">M</div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2 bg-amber-50 border border-amber-200/80 px-4 py-2 rounded-full gold-glow">
+                        <i class="fa-solid fa-star text-amber-500 animate-pulse text-sm"></i> 
+                        <span class="text-xs md:text-sm font-bold text-amber-900"><span id="user-points">120</span> Poin</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-xl emerald-gradient text-white flex items-center justify-center font-bold shadow-md border border-emerald-400/30">M</div>
                 </div>
             </header>
 
-            <main class="p-4 md:p-6">
-                <!-- 1. DASHBOARD PROFESIONAL LENGKAP -->
-                <div id="content-dashboard" class="page-content space-y-6">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-book"></i></div>
+            <main class="p-6 md:p-10 max-w-7xl mx-auto w-full space-y-8">
+                <!-- 1. DASHBOARD ELEGAN -->
+                <div id="content-dashboard" class="page-content space-y-8">
+                    <!-- Kartu Statistik Premium -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                        <div class="glass-card p-5 rounded-2xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-500 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-book-open"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500">Buku Dibaca</p>
-                                <h3 id="stat-buku" class="text-sm md:text-xl font-bold text-gray-800">12 Buku</h3>
+                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Buku Dibaca</p>
+                                <h3 id="stat-buku" class="text-xl font-extrabold text-slate-900 mt-0.5">12 Buku</h3>
                             </div>
                         </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-pen"></i></div>
+                        <div class="glass-card p-5 rounded-2xl shadow-sm hover:shadow-md transition-all border-l-4 border-emerald-500 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-pen-nib"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500">Karya/Artikel</p>
-                                <h3 class="text-sm md:text-xl font-bold text-gray-800">4 Karya</h3>
+                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Karya/Artikel</p>
+                                <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">4 Karya</h3>
                             </div>
                         </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-medal"></i></div>
+                        <div class="glass-card p-5 rounded-2xl shadow-sm hover:shadow-md transition-all border-l-4 border-amber-500 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-award"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500">Badge Diraih</p>
-                                <h3 class="text-sm md:text-xl font-bold text-gray-800">5 Badge</h3>
+                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Badge Diraih</p>
+                                <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">5 Badge</h3>
                             </div>
                         </div>
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
-                            <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-users"></i></div>
+                        <div class="glass-card p-5 rounded-2xl shadow-sm hover:shadow-md transition-all border-l-4 border-purple-500 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-user-group"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500">Pengunjung</p>
-                                <h3 class="text-sm md:text-xl font-bold text-emerald-600">48 Siswa</h3>
+                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pengunjung Online</p>
+                                <h3 class="text-xl font-extrabold text-emerald-700 mt-0.5">48 Siswa</h3>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Banner Sambutan -->
-                    <div class="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white p-6 md:p-8 rounded-2xl shadow-md space-y-2">
-                        <h2 class="text-xl md:text-2xl font-bold">Selamat Datang di Smart Literacy Corner</h2>
-                        <p class="text-emerald-100 text-xs md:text-sm leading-relaxed">Platform literasi digital terpadu madrasah untuk membangun budaya baca, menulis kreatif, serta manajemen sumber belajar interaktif bagi guru dan siswa.</p>
+                    <!-- Banner Hero Eksklusif -->
+                    <div class="emerald-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="relative z-10 space-y-3 max-w-3xl">
+                            <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-medium tracking-wide text-emerald-200 border border-white/10">
+                                <i class="fa-solid fa-circle-check text-amber-400 text-[10px]"></i> Platform Resmi Madrasah
+                            </span>
+                            <h2 class="text-2xl md:text-3xl font-black tracking-tight text-white">Selamat Datang di Smart Literacy Corner</h2>
+                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Membangun peradaban unggul melalui tradisi literasi mendalam, kecintaan membaca, serta pengelolaan sumber belajar digital yang mutakhir.</p>
+                        </div>
                     </div>
 
-                    <!-- Visi, Misi & Pengumuman -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border space-y-4">
-                            <h3 class="font-bold text-gray-800 text-base border-b pb-2"><i class="fa-solid fa-bullseye text-emerald-600 mr-2"></i> Visi & Misi Madrasah</h3>
-                            <div>
-                                <h4 class="text-xs font-bold uppercase text-emerald-800">Visi:</h4>
-                                <p id="madrasah-visi" class="text-xs md:text-sm text-gray-600 mt-1">Terwujudnya generasi madrasah yang cerdas, berkarakter Qurani, berintegritas, dan berprestasi global.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold uppercase text-emerald-800">Misi:</h4>
-                                <p id="madrasah-misi" class="text-xs md:text-sm text-gray-600 mt-1">1. Mengembangkan budaya literasi dan kecintaan membaca sejak dini.<br>2. Mengintegrasikan nilai-nilai Islam dalam setiap aspek pembelajaran digital.<br>3. Menyediakan akses sumber belajar yang mudah dijangkau oleh seluruh warga madrasah.</p>
+                    <!-- Grid Informasi & Visi Misi -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="glass-card p-8 rounded-3xl shadow-sm space-y-5 border border-slate-200/60">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b border-slate-100 pb-4">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-sm"><i class="fa-solid fa-compass"></i></span> Visi & Misi Madrasah
+                            </h3>
+                            <div class="space-y-4 text-sm text-slate-600">
+                                <div>
+                                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 mb-1">Visi Utama:</h4>
+                                    <p id="madrasah-visi" class="font-medium text-slate-700">"Melahirkan Santri Alim yang Rahmatan Lil Alamin dan Berjiwa Pemimpin yang Berintegritas, Beradab Islami, serta Mahir Teknologi"</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 mb-1">Misi Strategis:</h4>
+                                    <p id="madrasah-misi" class="leading-relaxed text-xs">1. Mengembangkan budaya literasi dan kecintaan membaca sejak dini.<br>2. Mengintegrasikan nilai-nilai Islam dalam setiap aspek pembelajaran digital.<br>3. Menyediakan akses sumber belajar yang mudah dijangkau oleh seluruh warga madrasah.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="space-y-6">
-                            <div class="bg-white p-6 rounded-xl shadow-sm border space-y-3">
-                                <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
-                                    <i class="fa-solid fa-bullhorn text-emerald-600"></i> Pengumuman & Agenda Literasi
+                        <div class="space-y-8">
+                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60 space-y-3">
+                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5">
+                                    <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-xs"><i class="fa-solid fa-bullhorn"></i></span> Agenda & Pengumuman
                                 </h3>
-                                <div id="announcement-board" class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-xs md:text-sm text-emerald-900">
-                                    <p class="font-semibold">✨ Tantangan Membaca Bulan Ini Telah Dibuka!</p>
-                                    <p class="text-xs mt-1 text-emerald-700">Ayo selesaikan minimal 3 buku dan kumpulkan poin sebanyak-banyaknya untuk meraih predikat pembaca terbaik madrasah.</p>
+                                <div id="announcement-board" class="p-4 bg-amber-50/70 border border-amber-200/60 rounded-2xl text-xs md:text-sm text-amber-950">
+                                    <p class="font-bold mb-1 flex items-center gap-1.5"><i class="fa-solid fa-sparkles text-amber-600"></i> Tantangan Membaca Bulan Ini Telah Dibuka!</p>
+                                    <p class="text-amber-900/80 leading-relaxed font-light">Ayo selesaikan minimal 3 buku dan kumpulkan poin sebanyak-banyaknya untuk meraih predikat pembaca terbaik madrasah.</p>
                                 </div>
                             </div>
 
-                            <div class="bg-white p-6 rounded-xl shadow-sm border">
-                                <h3 class="font-bold text-gray-800 text-sm mb-3 flex items-center justify-between">
-                                    <span><i class="fa-solid fa-chart-line text-emerald-600 mr-2"></i> Grafik Kunjungan Web</span>
-                                    <span class="text-xs text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Live</span>
+                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60">
+                                <h3 class="font-black text-slate-900 text-sm mb-4 flex items-center justify-between">
+                                    <span class="flex items-center gap-2.5"><span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs"><i class="fa-solid fa-chart-line"></i></span> Grafik Kunjungan Mingguan</span>
+                                    <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Live Analytics</span>
                                 </h3>
                                 <canvas id="visitorChart" height="110"></canvas>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Galeri Kegiatan & Umpan Balik -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border space-y-4">
-                            <h3 class="font-bold text-gray-800 text-base flex items-center gap-2 border-b pb-2">
-                                <i class="fa-solid fa-images text-emerald-600"></i> Galeri Kegiatan Literasi
+                    <!-- Galeri & Umpan Balik Estetik -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="glass-card p-7 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b pb-3">
+                                <i class="fa-solid fa-images text-emerald-700"></i> Galeri Kegiatan Literasi
                             </h3>
-                            <div class="grid grid-cols-2 gap-3 text-center">
-                                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                                    <i class="fa-solid fa-people-roof text-2xl text-emerald-600 mb-1"></i>
-                                    <h4 class="font-bold text-xs text-gray-800">Bedah Buku Kitab Kuning</h4>
-                                    <p class="text-[10px] text-gray-500 mt-0.5">Aula Madrasah</p>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100 hover:shadow-sm transition">
+                                    <i class="fa-solid fa-people-roof text-3xl text-emerald-700 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-slate-800">Bedah Kitab Kuning</h4>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Aula Utama Madrasah</p>
                                 </div>
-                                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                                    <i class="fa-solid fa-laptop-code text-2xl text-emerald-600 mb-1"></i>
-                                    <h4 class="font-bold text-xs text-gray-800">Pelatihan Literasi Digital</h4>
-                                    <p class="text-[10px] text-gray-500 mt-0.5">Lab Komputer</p>
+                                <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100 hover:shadow-sm transition">
+                                    <i class="fa-solid fa-laptop-code text-3xl text-emerald-700 mb-2"></i>
+                                    <h4 class="font-bold text-xs text-slate-800">Literasi Digital</h4>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Laboratorium Komputer</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl shadow-sm border space-y-4">
-                            <h3 class="font-bold text-gray-800 text-base flex items-center gap-2 border-b pb-2">
-                                <i class="fa-solid fa-comments text-emerald-600"></i> Umpan Balik Pengguna
+                        <div class="glass-card p-7 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b pb-3">
+                                <i class="fa-solid fa-comments text-emerald-700"></i> Umpan Balik Pengguna
                             </h3>
-                            <div class="space-y-2 text-xs text-gray-600">
-                                <div class="p-3 bg-gray-50 rounded-lg border">
-                                    <p class="italic font-medium text-gray-800">"Sangat membantu saya membaca e-book materi pelajaran kapanpun!"</p>
-                                    <span class="text-[10px] text-emerald-700 mt-1 block">- Rahmat (Siswa Kelas XII)</span>
-                                </div>
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/60 space-y-2">
+                                <p class="italic text-xs font-medium text-slate-700">"Sangat membantu saya membaca e-book materi pelajaran kapanpun dan dimanapun dengan mudah!"</p>
+                                <span class="text-[10px] font-bold text-emerald-800 block">- Rahmat (Siswa Kelas XII)</span>
                             </div>
                         </div>
                     </div>
@@ -189,21 +220,21 @@
 
                 <!-- 2. PERPUSTAKAAN -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border space-y-4">
-                        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                            <h2 class="text-lg font-bold text-gray-800"><i class="fa-solid fa-books text-emerald-600 mr-2"></i> Katalog E-Book & Referensi</h2>
-                            <input type="text" id="search-book" onkeyup="filterBooks()" placeholder="Cari judul buku..." class="text-sm border rounded-lg px-3 py-2 w-full md:w-64 focus:outline-emerald-600">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
+                            <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-book-bookmark text-emerald-700 mr-2"></i> Katalog E-Book & Referensi</h2>
+                            <input type="text" id="search-book" onkeyup="filterBooks()" placeholder="Cari judul buku..." class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 w-full md:w-72 focus:outline-emerald-600 bg-white shadow-xs">
                         </div>
                         <div id="book-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="akhlakul karimah di era digital">
+                            <div class="book-card glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition" data-title="akhlakul karimah di era digital">
                                 <div>
-                                    <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
-                                    <h3 class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
-                                    <p class="text-xs text-gray-500 mt-1">Penulis: Tim Literasi Madrasah</p>
+                                    <span class="text-[11px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-bold border border-blue-100">Agama & Akhlak</span>
+                                    <h3 class="font-extrabold text-slate-900 mt-4 text-base">Akhlakul Karimah di Era Digital</h3>
+                                    <p class="text-xs text-slate-500 mt-1 font-medium">Penulis: Tim Literasi Madrasah</p>
                                 </div>
-                                <div class="mt-4 flex gap-2">
-                                    <a href="#" onclick="alert('Membuka e-book reader...')" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</a>
-                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition"><i class="fa-solid fa-bookmark"></i></button>
+                                <div class="mt-6 flex gap-3">
+                                    <a href="#" onclick="alert('Membuka e-book reader...')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition">Baca Buku</a>
+                                    <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -212,70 +243,70 @@
 
                 <!-- 3. LITERACY CORNER -->
                 <div id="content-literasi" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-newspaper text-emerald-600 mr-2"></i> Publikasi Karya Warga Madrasah</h2>
-                        <div class="border-l-4 border-emerald-600 pl-4 py-2 bg-emerald-50/50 rounded-r-lg flex justify-between items-center">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-feather-pointed text-emerald-700 mr-2"></i> Publikasi Karya Warga Madrasah</h2>
+                        <div class="border-l-4 border-emerald-700 pl-5 py-4 bg-emerald-50/40 rounded-r-2xl border border-y-slate-200 border-r-slate-200 flex justify-between items-center shadow-xs">
                             <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
+                                <h4 class="font-extrabold text-slate-900 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
+                                <p class="text-xs text-slate-500 mt-1 font-medium">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
                             </div>
-                            <button onclick="saveBookmark('Artikel: Tradisi Kitab Kuning')" class="text-amber-600 hover:text-amber-700 text-sm p-2"><i class="fa-regular fa-bookmark"></i></button>
+                            <button onclick="saveBookmark('Artikel: Tradisi Kitab Kuning')" class="text-amber-600 hover:text-amber-700 text-base p-2 bg-white rounded-xl shadow-xs"><i class="fa-regular fa-bookmark"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 4. SUMBER BELAJAR -->
                 <div id="content-sumber" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-chalkboard-user text-emerald-600 mr-2"></i> Modul Ajar & Materi Pembelajaran</h2>
-                        <div id="materi-list" class="space-y-3">
-                            <div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-file-shield text-emerald-700 mr-2"></i> Modul Ajar & Materi Pembelajaran</h2>
+                        <div id="materi-list" class="space-y-4">
+                            <div class="p-5 border border-slate-200 rounded-2xl bg-white flex items-center justify-between shadow-xs">
                                 <div>
-                                    <h4 class="font-bold text-gray-800 text-sm">Modul Ajar Bahasa Arab Fase E</h4>
-                                    <p class="text-xs text-gray-500 mt-0.5">Pengunggah: Tim Kurikulum</p>
+                                    <h4 class="font-extrabold text-slate-900 text-sm">Modul Ajar Bahasa Arab Fase E</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5 font-medium">Pengunggah: Tim Kurikulum</p>
                                 </div>
-                                <a href="#" onclick="alert('Mengunduh materi...')" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Unduh Materi</a>
+                                <a href="#" onclick="alert('Mengunduh materi...')" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-4 py-2.5 rounded-xl font-bold shadow-sm transition">Unduh Materi</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. AKTIVITAS: READING JOURNAL -->
+                <!-- 5. AKTIVITAS LITERASI -->
                 <div id="content-aktivitas" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border space-y-4">
-                        <h2 class="text-lg font-bold text-gray-800"><i class="fa-solid fa-pen-clip text-emerald-600 mr-2"></i> Reading Journal Siswa</h2>
-                        <form id="journal-form" onsubmit="addJournal(event)" class="bg-gray-50 p-5 rounded-xl border mb-6 space-y-4">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-clipboard-user text-emerald-700 mr-2"></i> Reading Journal Siswa</h2>
+                        <form id="journal-form" onsubmit="addJournal(event)" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Buku</label>
-                                    <input type="text" id="book-title" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Sang Pemimpi">
+                                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Judul Buku</label>
+                                    <input type="text" id="book-title" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Contoh: Sang Pemimpi">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-700 mb-1">Penulis Buku</label>
-                                    <input type="text" id="book-author" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Andrea Hirata">
+                                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Penulis Buku</label>
+                                    <input type="text" id="book-author" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Contoh: Andrea Hirata">
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-700 mb-1">Catatan / Ulasan Singkat</label>
-                                <textarea id="book-review" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Tuliskan ulasan atau ringkasan buku..."></textarea>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Catatan / Ulasan Singkat</label>
+                                <textarea id="book-review" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Tuliskan ulasan atau ringkasan buku..."></textarea>
                             </div>
-                            <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Simpan Journal (+10 Poin)</button>
+                            <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-sm transition">Simpan Journal (+10 Poin)</button>
                         </form>
-                        <h3 class="font-bold text-gray-800 text-sm mb-3">Riwayat Bacaan Saya</h3>
-                        <div class="overflow-x-auto border rounded-xl">
+                        <h3 class="font-extrabold text-slate-900 text-sm pt-4">Riwayat Bacaan Saya</h3>
+                        <div class="overflow-x-auto border border-slate-200 rounded-2xl bg-white shadow-xs">
                             <table class="w-full text-left text-sm">
-                                <thead class="bg-gray-100 text-gray-700 text-xs uppercase">
+                                <thead class="bg-slate-50 text-slate-700 text-xs uppercase border-b border-slate-200">
                                     <tr>
-                                        <th class="p-3">Judul Buku</th>
-                                        <th class="p-3">Penulis</th>
-                                        <th class="p-3">Ulasan</th>
+                                        <th class="p-4">Judul Buku</th>
+                                        <th class="p-4">Penulis</th>
+                                        <th class="p-4">Ulasan</th>
                                     </tr>
                                 </thead>
-                                <tbody id="journal-table-body" class="divide-y text-gray-600 text-xs">
+                                <tbody id="journal-table-body" class="divide-y divide-slate-100 text-slate-600 text-xs">
                                     <tr>
-                                        <td class="p-3 font-semibold text-gray-800">Sejarah Peradaban Islam</td>
-                                        <td class="p-3">Dr. Badri Yatim</td>
-                                        <td class="p-3">Sangat menambah wawasan tentang kejayaan Islam masa lampau.</td>
+                                        <td class="p-4 font-bold text-slate-900">Sejarah Peradaban Islam</td>
+                                        <td class="p-4">Dr. Badri Yatim</td>
+                                        <td class="p-4">Sangat menambah wawasan tentang kejayaan Islam masa lampau.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -285,42 +316,40 @@
 
                 <!-- 6. KUIS LITERASI -->
                 <div id="content-kuis" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border space-y-6">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-brain text-emerald-600 mr-2"></i> Kuis Literasi Mingguan</h2>
-                        <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-100 space-y-4">
-                            <h3 class="font-bold text-emerald-900 text-sm">Pertanyaan 1: Siapakah penulis novel "Laskar Pelangi"?</h3>
-                            <div class="space-y-2 text-sm">
-                                <label class="flex items-center gap-3 p-3 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-brain text-emerald-700 mr-2"></i> Kuis Literasi Mingguan</h2>
+                        <div class="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-100 space-y-4">
+                            <h3 class="font-extrabold text-emerald-950 text-sm">Pertanyaan 1: Siapakah penulis novel "Laskar Pelangi"?</h3>
+                            <div class="space-y-2.5 text-sm">
+                                <label class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-500 transition shadow-xs">
                                     <input type="radio" name="quiz1" value="wrong"> Habiburrahman El Shirazi
                                 </label>
-                                <label class="flex items-center gap-3 p-3 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+                                <label class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-500 transition shadow-xs">
                                     <input type="radio" name="quiz1" value="correct" id="quiz-correct"> Andrea Hirata
                                 </label>
-                                <label class="flex items-center gap-3 p-3 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+                                <label class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-500 transition shadow-xs">
                                     <input type="radio" name="quiz1" value="wrong"> Tere Liye
                                 </label>
                             </div>
-                            <button onclick="submitQuiz()" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Kirim Jawaban (+15 Poin)</button>
+                            <button onclick="submitQuiz()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-sm transition">Kirim Jawaban (+15 Poin)</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 7. GAMIFIKASI -->
                 <div id="content-gamifikasi" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border space-y-6">
-                        <div>
-                            <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-medal text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
-                                    <i class="fa-solid fa-award text-3xl text-amber-600 mb-2"></i>
-                                    <h4 class="font-bold text-xs text-amber-900">Kutu Buku Pemula</h4>
-                                    <p class="text-[10px] text-amber-700 mt-1">Aktif membaca 10 buku</p>
-                                </div>
-                                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-center">
-                                    <i class="fa-solid fa-pen-nib text-3xl text-emerald-600 mb-2"></i>
-                                    <h4 class="font-bold text-xs text-emerald-900">Penulis Esai</h4>
-                                    <p class="text-[10px] text-emerald-700 mt-1">Publikasi 3 karya</p>
-                                </div>
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-award text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                            <div class="bg-amber-50/80 border border-amber-200/80 p-5 rounded-2xl text-center shadow-xs">
+                                <i class="fa-solid fa-award text-3xl text-amber-600 mb-3"></i>
+                                <h4 class="font-extrabold text-xs text-amber-950">Kutu Buku Pemula</h4>
+                                <p class="text-[10px] text-amber-800 mt-1 font-medium">Aktif membaca 10 buku</p>
+                            </div>
+                            <div class="bg-emerald-50/80 border border-emerald-200/80 p-5 rounded-2xl text-center shadow-xs">
+                                <i class="fa-solid fa-pen-nib text-3xl text-emerald-700 mb-3"></i>
+                                <h4 class="font-extrabold text-xs text-emerald-950">Penulis Esai</h4>
+                                <p class="text-[10px] text-emerald-800 mt-1 font-medium">Publikasi 3 karya</p>
                             </div>
                         </div>
                     </div>
@@ -328,106 +357,99 @@
 
                 <!-- 8. TEACHER CORNER -->
                 <div id="content-teacher" class="page-content hidden space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-user-tie text-emerald-600 mr-2"></i> Teacher Corner (Unggah Modul Ajar)</h2>
-                        <form id="teacher-form" onsubmit="addMateri(event)" class="bg-gray-50 p-5 rounded-xl border space-y-4">
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                        <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-chalkboard-user text-emerald-700 mr-2"></i> Teacher Corner (Unggah Modul Ajar)</h2>
+                        <form id="teacher-form" onsubmit="addMateri(event)" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-700 mb-1">Judul Modul / Materi Ajar</label>
-                                <input type="text" id="materi-title" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Modul Fiqih Muamalah Kelas XII">
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Judul Modul / Materi Ajar</label>
+                                <input type="text" id="materi-title" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Contoh: Modul Fiqih Muamalah Kelas XII">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Pendidik / Pengunggah</label>
-                                <input type="text" id="materi-author" required class="w-full text-sm border rounded-lg px-3 py-2 focus:outline-emerald-600" placeholder="Contoh: Ustadz Ahmad, S.Pd.I">
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Pendidik / Pengunggah</label>
+                                <input type="text" id="materi-author" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Contoh: Ustadz Ahmad, S.Pd.I">
                             </div>
-                            <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Publikasikan ke Sumber Belajar</button>
+                            <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-sm transition">Publikasikan ke Sumber Belajar</button>
                         </form>
                     </div>
                 </div>
 
-                <!-- 9. PROFIL & PANEL ADMIN LENGKAP -->
+                <!-- 9. PROFIL & PANEL ADMIN -->
                 <div id="content-profil" class="page-content hidden space-y-6">
-                    <!-- Login Admin -->
-                    <div id="admin-login-box" class="bg-white p-6 rounded-xl shadow-sm border max-w-md mx-auto text-center space-y-3">
-                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xl mx-auto"><i class="fa-solid fa-lock"></i></div>
-                        <h2 class="text-base font-bold text-gray-800">Area Terbatas Admin</h2>
-                        <p class="text-xs text-gray-500">Masukkan password admin untuk mengelola website.</p>
+                    <div id="admin-login-box" class="glass-card p-8 rounded-3xl shadow-sm border max-w-md mx-auto text-center space-y-4">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner"><i class="fa-solid fa-lock"></i></div>
+                        <h2 class="text-lg font-black text-slate-900">Area Terbatas Admin</h2>
+                        <p class="text-xs text-slate-500 font-medium">Masukkan password admin untuk mengelola website.</p>
                         <form onsubmit="verifyAdmin(event)" class="space-y-3">
-                            <input type="password" id="admin-password-input" required class="w-full text-sm border rounded-lg px-3 py-2 text-center tracking-widest" placeholder="Password Admin">
-                            <button type="submit" class="w-full bg-emerald-600 text-white text-xs py-2 rounded-lg">Masuk Panel</button>
+                            <input type="password" id="admin-password-input" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 text-center tracking-widest focus:outline-emerald-600 bg-slate-50" placeholder="Password Admin">
+                            <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-xl shadow-sm transition">Masuk Panel Admin</button>
                         </form>
                     </div>
 
-                    <!-- Panel Admin Lengkap -->
                     <div id="admin-panel-content" class="hidden space-y-6">
-                        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border">
-                            <span class="text-emerald-800 font-bold text-xs md:text-sm"><i class="fa-solid fa-shield-halved"></i> Mode Admin Aktif</span>
-                            <button onclick="logoutAdmin()" class="bg-red-50 text-red-600 text-xs px-3 py-1.5 rounded-lg font-semibold">Keluar</button>
+                        <div class="flex justify-between items-center glass-card p-4 rounded-2xl shadow-sm border">
+                            <span class="text-emerald-900 font-extrabold text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-700"></i> Mode Admin Aktif</span>
+                            <button onclick="logoutAdmin()" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs px-4 py-2 rounded-xl font-bold transition">Keluar</button>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl shadow-sm border space-y-6">
+                        <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                             <div>
-                                <h2 class="text-lg font-bold text-gray-800 mb-2"><i class="fa-solid fa-user text-emerald-600 mr-2"></i> Profil Pengguna</h2>
-                                <div class="space-y-1 text-sm text-gray-700 border-b pb-4">
+                                <h2 class="text-lg font-black text-slate-900 mb-2"><i class="fa-solid fa-user-shield text-emerald-700 mr-2"></i> Profil Pengguna</h2>
+                                <div class="space-y-1.5 text-sm text-slate-700 border-b border-slate-200 pb-4 font-medium">
                                     <p><strong>Nama:</strong> <span id="profile-name">Warga Madrasah</span></p>
                                     <p><strong>Peran:</strong> <span id="profile-role">Pendidik / Siswa</span></p>
                                     <p><strong>Madrasah:</strong> <span id="profile-school">Madrasah Aliyah / Tsanawiyah</span></p>
                                 </div>
                             </div>
 
-                            <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl space-y-6">
-                                <h3 class="font-bold text-emerald-900 text-base flex items-center gap-2 border-b border-emerald-200 pb-2">
-                                    <i class="fa-solid fa-lock text-emerald-600"></i> Panel Kontrol Admin / Wakakur
+                            <div class="bg-emerald-50/60 border border-emerald-200/80 p-6 rounded-2xl space-y-6">
+                                <h3 class="font-black text-emerald-950 text-base flex items-center gap-2 border-b border-emerald-200 pb-3">
+                                    <i class="fa-solid fa-gears text-emerald-700"></i> Panel Kontrol Admin / Wakakur
                                 </h3>
 
-                                <!-- Form Logo -->
-                                <form id="admin-logo-form" onsubmit="uploadLogoFile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                    <h4 class="font-bold text-xs uppercase text-emerald-800">Unggah Foto / Logo Profil Web (Dari Perangkat)</h4>
-                                    <input type="file" id="input-logo-file" accept="image/*" required class="w-full text-xs text-gray-500">
-                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Unggah & Pasang Logo</button>
+                                <form id="admin-logo-form" onsubmit="uploadLogoFile(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Unggah Foto / Logo Profil Web</h4>
+                                    <input type="file" id="input-logo-file" accept="image/*" required class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Unggah & Pasang Logo</button>
                                 </form>
 
-                                <!-- Form Identitas -->
-                                <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                    <h4 class="font-bold text-xs uppercase text-emerald-800">Pengaturan Identitas Profil Web</h4>
+                                <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Pengaturan Identitas Profil Web</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                        <input type="text" id="new-name" class="text-sm border rounded-lg px-3 py-2" placeholder="Nama Anda">
-                                        <input type="text" id="new-role" class="text-sm border rounded-lg px-3 py-2" placeholder="Jabatan">
-                                        <input type="text" id="new-school" class="text-sm border rounded-lg px-3 py-2" placeholder="Nama Madrasah">
+                                        <input type="text" id="new-name" class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Nama Anda">
+                                        <input type="text" id="new-role" class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Jabatan">
+                                        <input type="text" id="new-school" class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Nama Madrasah">
                                     </div>
-                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Identitas</button>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Identitas</button>
                                 </form>
 
-                                <!-- Form Buku -->
-                                <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                    <h4 class="font-bold text-xs uppercase text-emerald-800">Tambah Katalog E-Book</h4>
+                                <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Tambah Katalog E-Book</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <input type="text" id="admin-book-title" required class="text-sm border rounded-lg px-3 py-2" placeholder="Judul Buku">
-                                        <input type="text" id="admin-book-author" required class="text-sm border rounded-lg px-3 py-2" placeholder="Penulis">
+                                        <input type="text" id="admin-book-title" required class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Judul Buku">
+                                        <input type="text" id="admin-book-author" required class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Penulis">
                                     </div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <select id="admin-book-category" class="text-sm border rounded-lg px-3 py-2">
+                                        <select id="admin-book-category" class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50">
                                             <option value="Agama & Akhlak">Agama & Akhlak</option>
                                             <option value="Sains & Riset">Sains & Riset</option>
                                             <option value="Bahasa & Sastra">Bahasa & Sastra</option>
                                         </select>
-                                        <input type="url" id="admin-book-url" required class="text-sm border rounded-lg px-3 py-2" placeholder="Link PDF / Drive">
+                                        <input type="url" id="admin-book-url" required class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Link PDF / Drive">
                                     </div>
-                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Publikasikan Buku</button>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Publikasikan Buku</button>
                                 </form>
 
-                                <!-- Form Visi Misi -->
-                                <form id="admin-visimisi-form" onsubmit="updateVisiMisi(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                    <h4 class="font-bold text-xs uppercase text-emerald-800">Kelola Visi & Misi Madrasah</h4>
-                                    <textarea id="input-visi" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Visi"></textarea>
-                                    <textarea id="input-misi" rows="3" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Misi"></textarea>
-                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Simpan Visi & Misi</button>
+                                <form id="admin-visimisi-form" onsubmit="updateVisiMisi(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Kelola Visi & Misi Madrasah</h4>
+                                    <textarea id="input-visi" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Visi"></textarea>
+                                    <textarea id="input-misi" rows="3" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Misi"></textarea>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Visi & Misi</button>
                                 </form>
 
-                                <!-- Form Pengumuman -->
-                                <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="space-y-3 bg-white p-4 rounded-xl border">
-                                    <h4 class="font-bold text-xs uppercase text-emerald-800">Siarkan Pengumuman</h4>
-                                    <textarea id="announcement-text" rows="2" required class="w-full text-sm border rounded-lg px-3 py-2" placeholder="Pengumuman..."></textarea>
-                                    <button type="submit" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">Kirim Pengumuman</button>
+                                <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Siarkan Pengumuman</h4>
+                                    <textarea id="announcement-text" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Pengumuman..."></textarea>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Kirim Pengumuman</button>
                                 </form>
                             </div>
                         </div>
@@ -437,7 +459,7 @@
         </div>
     </div>
 
-    <!-- Script Logika Lengkap -->
+    <!-- Script Logika -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
@@ -476,11 +498,26 @@
             if (targetContent) targetContent.classList.remove('hidden');
 
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('bg-emerald-700', 'text-white', 'shadow-sm');
+                link.classList.remove('emerald-gradient', 'text-white', 'shadow-md', 'font-semibold');
+                link.classList.add('text-slate-300', 'hover:bg-emerald-900/40', 'hover:text-white');
                 if (link.getAttribute('data-target') === tabId) {
-                    link.classList.add('bg-emerald-700', 'text-white', 'shadow-sm');
+                    link.classList.remove('text-slate-300', 'hover:bg-emerald-900/40', 'hover:text-white');
+                    link.classList.add('emerald-gradient', 'text-white', 'shadow-md', 'font-semibold');
                 }
             });
+
+            const titles = {
+                'dashboard': 'Dashboard Utama',
+                'perpustakaan': 'Perpustakaan Digital',
+                'literasi': 'Literacy Corner (Esai & Karya)',
+                'sumber': 'Modul & Sumber Belajar',
+                'aktivitas': 'Reading Journal Siswa',
+                'kuis': 'Kuis Literasi Interaktif',
+                'gamifikasi': 'Ranking & Badge',
+                'teacher': 'Teacher Corner (Ruang Guru)',
+                'profil': 'Profil & Panel Admin'
+            };
+            document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
 
             if (window.innerWidth < 768) {
                 const sidebar = document.getElementById('sidebar');
@@ -560,30 +597,30 @@
             if (!grid) return;
             let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
             let defaultHTML = `
-                <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between" data-title="akhlakul karimah di era digital">
+                <div class="book-card glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition" data-title="akhlakul karimah di era digital">
                     <div>
-                        <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold">Agama & Akhlak</span>
-                        <h3 class="font-bold text-gray-800 mt-3 text-base">Akhlakul Karimah di Era Digital</h3>
-                        <p class="text-xs text-gray-500 mt-1">Penulis: Tim Literasi Madrasah</p>
+                        <span class="text-[11px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-bold border border-blue-100">Agama & Akhlak</span>
+                        <h3 class="font-extrabold text-slate-900 mt-4 text-base">Akhlakul Karimah di Era Digital</h3>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">Penulis: Tim Literasi Madrasah</p>
                     </div>
-                    <div class="mt-4 flex gap-2">
-                        <a href="#" onclick="alert('Membuka e-book reader...')" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Baca</a>
-                        <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition"><i class="fa-solid fa-bookmark"></i></button>
+                    <div class="mt-6 flex gap-3">
+                        <a href="#" onclick="alert('Membuka e-book reader...')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition">Baca Buku</a>
+                        <button onclick="saveBookmark('Akhlakul Karimah di Era Digital')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition"><i class="fa-solid fa-bookmark"></i></button>
                     </div>
                 </div>
             `;
             let customHTML = '';
             customBooks.forEach(b => {
                 customHTML += `
-                    <div class="book-card bg-gray-50 border p-5 rounded-xl flex flex-col justify-between shadow-sm border-emerald-200" data-title="${b.title.toLowerCase()}">
+                    <div class="book-card glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition" data-title="${b.title.toLowerCase()}">
                         <div>
-                            <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-semibold">${b.category}</span>
-                            <h3 class="font-bold text-gray-800 mt-3 text-base">${b.title}</h3>
-                            <p class="text-xs text-gray-500 mt-1">Penulis: ${b.author}</p>
+                            <span class="text-[11px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold border border-emerald-100">${b.category}</span>
+                            <h3 class="font-extrabold text-slate-900 mt-4 text-base">${b.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1 font-medium">Penulis: ${b.author}</p>
                         </div>
-                        <div class="mt-4 flex gap-2">
-                            <a href="${b.url}" target="_blank" class="flex-1 text-center bg-emerald-600 text-white text-xs py-2 rounded-lg font-medium hover:bg-emerald-700 transition">Buka / Unduh</a>
-                            <button onclick="saveBookmark('${b.title}')" class="bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs hover:bg-amber-200 transition"><i class="fa-solid fa-bookmark"></i></button>
+                        <div class="mt-6 flex gap-3">
+                            <a href="${b.url}" target="_blank" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition">Buka / Unduh</a>
+                            <button onclick="saveBookmark('${b.title}')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition"><i class="fa-solid fa-bookmark"></i></button>
                         </div>
                     </div>
                 `;
@@ -624,7 +661,7 @@
             const board = document.getElementById('announcement-board');
             const savedText = localStorage.getItem('announcement');
             if(savedText && board) {
-                board.innerHTML = `<p class="font-semibold">✨ Informasi Terbaru:</p><p class="text-xs mt-1 text-emerald-700">${savedText}</p>`;
+                board.innerHTML = `<p class="font-bold mb-1 flex items-center gap-1.5"><i class="fa-solid fa-sparkles text-amber-600"></i> Informasi Terbaru:</p><p class="text-amber-900/80 leading-relaxed font-light">${savedText}</p>`;
             }
         }
 
@@ -667,9 +704,9 @@
             const tableBody = document.getElementById('journal-table-body');
             if (!tableBody) return;
             let journals = JSON.parse(localStorage.getItem('journals')) || [];
-            let html = `<tr><td class="p-3 font-semibold text-gray-800">Sejarah Peradaban Islam</td><td class="p-3">Dr. Badri Yatim</td><td class="p-3">Sangat menambah wawasan.</td></tr>`;
+            let html = `<tr><td class="p-4 font-bold text-slate-900">Sejarah Peradaban Islam</td><td class="p-4">Dr. Badri Yatim</td><td class="p-4">Sangat menambah wawasan.</td></tr>`;
             journals.forEach(j => {
-                html += `<tr><td class="p-3 font-semibold text-gray-800">${j.title}</td><td class="p-3">${j.author}</td><td class="p-3">${j.review}</td></tr>`;
+                html += `<tr><td class="p-4 font-bold text-slate-900">${j.title}</td><td class="p-4">${j.author}</td><td class="p-4">${j.review}</td></tr>`;
             });
             tableBody.innerHTML = html;
         }
@@ -691,9 +728,9 @@
             const materiList = document.getElementById('materi-list');
             if (!materiList) return;
             let materis = JSON.parse(localStorage.getItem('materis')) || [];
-            let html = `<div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between"><div><h4 class="font-bold text-gray-800 text-sm">Modul Ajar Bahasa Arab</h4><p class="text-xs text-gray-500">Tim Kurikulum</p></div><a href="#" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg">Unduh</a></div>`;
+            let html = `<div class="p-5 border border-slate-200 rounded-2xl bg-white flex items-center justify-between shadow-xs"><div><h4 class="font-extrabold text-slate-900 text-sm">Modul Ajar Bahasa Arab</h4><p class="text-xs text-slate-500 mt-0.5 font-medium">Tim Kurikulum</p></div><a href="#" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-4 py-2.5 rounded-xl font-bold shadow-sm transition">Unduh Materi</a></div>`;
             materis.forEach(m => {
-                html += `<div class="p-4 border rounded-xl bg-gray-50 flex items-center justify-between"><div><h4 class="font-bold text-gray-800 text-sm">${m.title}</h4><p class="text-xs text-gray-500">${m.author}</p></div><a href="#" class="bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg">Unduh</a></div>`;
+                html += `<div class="p-5 border border-slate-200 rounded-2xl bg-white flex items-center justify-between shadow-xs"><div><h4 class="font-extrabold text-slate-900 text-sm">${m.title}</h4><p class="text-xs text-slate-500 mt-0.5 font-medium">${m.author}</p></div><a href="#" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs px-4 py-2.5 rounded-xl font-bold shadow-sm transition">Unduh Materi</a></div>`;
             });
             materiList.innerHTML = html;
         }
@@ -707,9 +744,7 @@
             } else { alert('Jawaban kurang tepat.'); }
         }
 
-        function loadBookmarks() {
-            // Bookmark support
-        }
+        function loadBookmarks() {}
 
         function initChart() {
             const ctx = document.getElementById('visitorChart').getContext('2d');
@@ -717,7 +752,7 @@
                 type: 'line',
                 data: {
                     labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-                    datasets: [{ data: [45, 78, 62, 95, 110, 85, 130], borderColor: '#047857', backgroundColor: 'rgba(4, 120, 87, 0.1)', fill: true, tension: 0.3 }]
+                    datasets: [{ data: [45, 78, 62, 95, 110, 85, 130], borderColor: '#047857', backgroundColor: 'rgba(4, 120, 87, 0.08)', fill: true, tension: 0.4, borderWidth: 3 }]
                 },
                 options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
             });
