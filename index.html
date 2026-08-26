@@ -21,15 +21,18 @@
         <!-- Sidebar Desktop -->
         <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#022c22] text-slate-100 hidden md:flex flex-col shadow-2xl border-r border-emerald-900/50">
             <div class="p-6 text-xl font-extrabold tracking-wide border-b border-emerald-900/60 flex items-center justify-between bg-[#032019]">
-                <div class="flex items-center gap-3.5">
-                    <div id="sidebar-logo-container" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-emerald-950 flex items-center justify-center overflow-hidden shadow-lg font-black text-lg">
-                        <i class="fa-solid fa-book-quran"></i>
+                <div class="flex items-center gap-3.5 cursor-pointer group" onclick="triggerSidebarLogoUpload()" title="Klik untuk ganti logo/foto">
+                    <div id="sidebar-logo-container" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-emerald-950 flex items-center justify-center overflow-hidden shadow-lg font-black text-lg relative group-hover:ring-2 ring-amber-400 transition">
+                        <i id="sidebar-logo-icon" class="fa-solid fa-book-quran"></i>
+                        <img id="sidebar-logo-img" src="" alt="" class="w-full h-full object-cover hidden">
                     </div>
                     <div>
-                        <span class="block text-base tracking-tight font-bold text-white">Smart Literacy</span>
+                        <span class="block text-base tracking-tight font-bold text-white group-hover:text-amber-300 transition">Smart Literacy</span>
                         <span class="block text-[10px] text-emerald-400 font-medium uppercase tracking-widest">Madrasah Edition</span>
                     </div>
                 </div>
+                <!-- Input file tersembunyi untuk upload logo sidebar -->
+                <input type="file" id="sidebar-logo-file" accept="image/*" class="hidden" onchange="handleSidebarLogoUpload(event)">
             </div>
             
             <nav class="flex-1 overflow-y-auto p-4 space-y-1.5 text-xs font-medium">
@@ -674,6 +677,7 @@
             loadCustomBooks();
             loadVisiMisi();
             loadAvatar();
+            loadSidebarLogo();
             loadFavBook();
             loadQuote();
             loadWeeklyPlan();
@@ -784,6 +788,36 @@
             const url = localStorage.getItem('avatarUrl');
             if(url && container) {
                 container.innerHTML = `<img src="${url}" alt="Avatar" class="w-full h-full object-cover">`;
+            }
+        }
+
+        function triggerSidebarLogoUpload() {
+            document.getElementById('sidebar-logo-file').click();
+        }
+
+        function handleSidebarLogoUpload(event) {
+            const fileInput = event.target;
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    localStorage.setItem('sidebarLogoUrl', base64Image);
+                    loadSidebarLogo();
+                    alert('Logo / foto sidebar berhasil diperbarui!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function loadSidebarLogo() {
+            const savedLogo = localStorage.getItem('sidebarLogoUrl');
+            const imgEl = document.getElementById('sidebar-logo-img');
+            const iconEl = document.getElementById('sidebar-logo-icon');
+            
+            if (savedLogo && imgEl && iconEl) {
+                imgEl.src = savedLogo;
+                imgEl.classList.remove('hidden');
+                iconEl.classList.add('hidden');
             }
         }
 
