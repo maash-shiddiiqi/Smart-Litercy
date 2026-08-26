@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Literacy Corner - Full iPusnas Edition with Google Sheets</title>
+    <title>Smart Literacy Corner - Ultimate iPusnas Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,7 +18,7 @@
 <body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white pb-20 md:pb-0">
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar Desktop (Lengkap) -->
+        <!-- Sidebar Desktop -->
         <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#022c22] text-slate-100 hidden md:flex flex-col shadow-2xl border-r border-emerald-900/50">
             <div class="p-6 text-xl font-extrabold tracking-wide border-b border-emerald-900/60 flex items-center justify-between bg-[#032019]">
                 <div class="flex items-center gap-3.5">
@@ -92,7 +92,7 @@
 
             <main class="p-6 md:p-10 max-w-7xl mx-auto w-full space-y-8 mb-12">
                 
-                <!-- 1. DASHBOARD LENGKAP -->
+                <!-- 1. DASHBOARD UTAMA -->
                 <div id="content-dashboard" class="page-content space-y-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                         <div class="glass-card p-5 rounded-2xl shadow-sm border-l-4 border-blue-500 flex items-center gap-4">
@@ -130,10 +130,10 @@
                         <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div class="relative z-10 space-y-3 max-w-3xl">
                             <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-medium tracking-wide text-emerald-200 border border-white/10">
-                                <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Terhubung Spreadsheet
+                                <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Terhubung Database
                             </span>
                             <h2 class="text-2xl md:text-3xl font-black tracking-tight text-white">Jelajahi Ribuan Ilmu & Inspirasi</h2>
-                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, tulis jurnal bacaan yang langsung tersimpan otomatis ke database madrasah.</p>
+                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, tulis jurnal bacaan, dan tingkatkan literasi madrasah dengan mudah, cepat, dan terintegrasi.</p>
                         </div>
                     </div>
 
@@ -208,7 +208,7 @@
                     </div>
                 </div>
 
-                <!-- 2. PERPUSTAKAAN -->
+                <!-- 2. PERPUSTAKAAN (KATALOG) -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
@@ -229,7 +229,7 @@
                                     <p class="text-xs text-slate-500 mt-1 font-medium">Tim Literasi Madrasah</p>
                                 </div>
                                 <div class="mt-6 flex gap-3">
-                                    <a href="#" onclick="alert('Meminjam dan membuka e-book...')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition"><i class="fa-solid fa-book-open-reader mr-1"></i> Baca</a>
+                                    <a href="#" onclick="alert('Membuka e-book...')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition"><i class="fa-solid fa-book-open-reader mr-1"></i> Baca</a>
                                     <button onclick="saveBookmark('Akhlakul Karimah di Era Digital', 'Tim Literasi Madrasah', 'Agama & Akhlak')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition" title="Simpan ke Rak Saya"><i class="fa-solid fa-bookmark"></i></button>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
                                 <h4 class="font-extrabold text-slate-900 text-sm">Menghidupkan Tradisi Kitab Kuning dengan Pendekatan Kontekstual</h4>
                                 <p class="text-xs text-slate-500 mt-1 font-medium">Oleh: Guru Pendamping | Kategori: Artikel Ilmiah</p>
                             </div>
-                            <button onclick="saveBookmark('Artikel: Tradisi Kitab Kuning')" class="text-amber-600 hover:text-amber-700 text-base p-2 bg-white rounded-xl shadow-xs"><i class="fa-regular fa-bookmark"></i></button>
+                            <button onclick="saveBookmark('Artikel: Tradisi Kitab Kuning', 'Guru Pendamping', 'Esai')" class="text-amber-600 hover:text-amber-700 text-base p-2 bg-white rounded-xl shadow-xs"><i class="fa-regular fa-bookmark"></i></button>
                         </div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
                     </div>
                 </div>
 
-                <!-- 6. AKTIVITAS: READING JOURNAL (TERHUBUNG KE GOOGLE SHEETS) -->
+                <!-- 6. AKTIVITAS: READING JOURNAL -->
                 <div id="content-aktivitas" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-clipboard-user text-emerald-700 mr-2"></i> Reading Journal Siswa</h2>
@@ -476,7 +476,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAVIGATION BAR (IPUSNAS STYLE) -->
+    <!-- BOTTOM NAVIGATION BAR (IPUSNAS STYLE DI HP) -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#022c22] border-t border-emerald-900/80 text-white flex justify-around items-center h-16 z-50 px-2 shadow-2xl">
         <button onclick="switchTab('dashboard')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-emerald-300 hover:text-white" data-tab="dashboard">
             <i class="fa-solid fa-house text-base"></i>
@@ -500,7 +500,7 @@
         </button>
     </div>
 
-    <!-- Script Logika Terhubung ke Google Apps Script -->
+    <!-- SCRIPT UTAMA YANG DIOPTIMALKAN & BEBAS ERROR -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
@@ -668,6 +668,19 @@
             grid.innerHTML = customHTML + defaultHTML;
         }
 
+        function filterBooks() {
+            const query = document.getElementById('search-book').value.toLowerCase();
+            const cards = document.querySelectorAll('.book-card');
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title') || '';
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
         function saveBookmark(title, author = 'Madrasah', category = 'Umum', url = '#') {
             let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
             if (!bookmarks.some(b => b.title === title)) {
@@ -714,7 +727,7 @@
             loadBookmarks();
         }
 
-        // --- KIRIM READING JOURNAL OTOMATIS KE GOOGLE SHEETS ---
+        // --- KIRIM JOURNAL KE GOOGLE SHEETS & LOCAL ---
         function addJournal(event) {
             event.preventDefault();
             const studentName = document.getElementById('student-name').value;
