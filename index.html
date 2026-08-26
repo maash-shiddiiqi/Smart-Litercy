@@ -17,4 +17,35 @@
     </div>
     <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Unggah & Publikasikan Buku</button>
 </form>
+// Fungsi baru untuk menangani upload PDF offline dari perangkat
+function adminAddBookOffline(event) {
+    event.preventDefault();
+    const title = document.getElementById('admin-book-title').value;
+    const author = document.getElementById('admin-book-author').value;
+    const category = document.getElementById('admin-book-category').value;
+    const fileInput = document.getElementById('admin-book-file');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Silakan pilih file PDF terlebih dahulu!');
+        return;
+    }
+
+    // Membaca file PDF offline menjadi Data URL (Base64)
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const pdfDataUrl = e.target.result;
+
+        let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
+        customBooks.unshift({ title, author, category, url: pdfDataUrl });
+        localStorage.setItem('customBooks', JSON.stringify(customBooks));
+
+        loadCustomBooks();
+        document.getElementById('admin-book-form').reset();
+        alert('Buku PDF offline berhasil diunggah dan dipublikasikan!');
+        switchTab('perpustakaan');
+    };
+    reader.readAsDataURL(file);
+}
+
 
