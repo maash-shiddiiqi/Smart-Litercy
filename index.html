@@ -86,7 +86,9 @@
                         <i class="fa-solid fa-star text-amber-500 text-sm"></i> 
                         <span class="text-xs md:text-sm font-bold text-amber-900"><span id="user-points">120</span> Poin</span>
                     </div>
-                    <div class="w-10 h-10 rounded-xl emerald-gradient text-white flex items-center justify-center font-bold shadow-md border border-emerald-400/30">M</div>
+                    <div id="header-avatar-container" class="w-10 h-10 rounded-xl emerald-gradient text-white flex items-center justify-center font-bold shadow-md border border-emerald-400/30 overflow-hidden">
+                        <span id="header-avatar-initial">M</span>
+                    </div>
                 </div>
             </header>
 
@@ -94,7 +96,6 @@
                 
                 <!-- 1. DASHBOARD UTAMA -->
                 <div id="content-dashboard" class="page-content space-y-8">
-                    <!-- Kartu Statistik Atas -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                         <div class="glass-card p-5 rounded-2xl shadow-sm border-l-4 border-blue-500 flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-book-open"></i></div>
@@ -126,20 +127,29 @@
                         </div>
                     </div>
 
-                    <!-- Banner Hero -->
-                    <div class="emerald-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between">
-                        <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="relative z-10 space-y-3 max-w-3xl">
-                            <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-medium tracking-wide text-emerald-200 border border-white/10">
-                                <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Berfitur Lengkap
-                            </span>
-                            <h2 class="text-2xl md:text-3xl font-black tracking-tight text-white">Jelajahi Ribuan Ilmu & Inspirasi</h2>
-                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, baca langsung di e-reader, tulis jurnal, dan pantau rekap data secara instan.</p>
+                    <!-- Banner Hero & Quotes -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 emerald-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between">
+                            <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                            <div class="relative z-10 space-y-3">
+                                <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-medium tracking-wide text-emerald-200 border border-white/10">
+                                    <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Berfitur Lengkap
+                                </span>
+                                <h2 class="text-2xl md:text-3xl font-black tracking-tight text-white">Jelajahi Ribuan Ilmu & Inspirasi</h2>
+                                <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, baca langsung di e-reader, tulis jurnal, dan pantau rekap data secara instan.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase text-amber-600 tracking-wider bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Quotes Hari Ini</span>
+                                <p id="daily-quote" class="text-xs md:text-sm font-semibold text-slate-700 mt-4 italic leading-relaxed">"Membaca adalah jendela dunia, dan menulis adalah cara kita merangkai masa depan."</p>
+                            </div>
+                            <p class="text-[10px] text-slate-400 font-bold mt-4">— Tim Literasi Madrasah</p>
                         </div>
                     </div>
 
-                    <!-- Visi Misi & Pengumuman -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Visi Misi, Rencana & Pengumuman -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div class="glass-card p-8 rounded-3xl shadow-sm space-y-5 border border-slate-200/60">
                             <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b border-slate-100 pb-4">
                                 <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-sm"><i class="fa-solid fa-compass"></i></span> Visi & Misi Madrasah
@@ -147,16 +157,26 @@
                             <div class="space-y-4 text-sm text-slate-600">
                                 <div>
                                     <h4 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 mb-1">Visi Utama:</h4>
-                                    <p id="madrasah-visi" class="font-medium text-slate-700">"Melahirkan Santri Alim yang Rahmatan Lil Alamin dan Berjiwa Pemimpin yang Berintegritas, Beradab Islami, serta Mahir Teknologi"</p>
+                                    <p id="madrasah-visi" class="font-medium text-slate-700 text-xs">"Melahirkan Santri Alim yang Rahmatan Lil Alamin dan Berjiwa Pemimpin yang Berintegritas, Beradab Islami, serta Mahir Teknologi"</p>
                                 </div>
                                 <div>
                                     <h4 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 mb-1">Misi Strategis:</h4>
-                                    <p id="madrasah-misi" class="leading-relaxed text-xs">1. Mengembangkan budaya literasi dan kecintaan membaca.<br>2. Mengintegrasikan nilai-nilai Islam dalam pembelajaran digital.<br>3. Menyediakan akses sumber belajar mandiri.</p>
+                                    <p id="madrasah-misi" class="leading-relaxed text-xs">1. Mengembangkan budaya literasi membaca.<br>2. Mengintegrasikan nilai Islam dalam digital.<br>3. Menyediakan akses sumber belajar.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="space-y-8">
+                        <div class="space-y-6">
+                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60 space-y-3">
+                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5">
+                                    <span class="w-7 h-7 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center text-xs"><i class="fa-solid fa-calendar-days"></i></span> Rencana Kegiatan Mingguan
+                                </h3>
+                                <div id="weekly-plan-board" class="p-4 bg-purple-50/70 border border-purple-200/60 rounded-2xl text-xs text-purple-950 space-y-1.5">
+                                    <p class="font-bold">• Senin: Jam Wajib Baca Pagi (07.00 - 07.30)</p>
+                                    <p class="font-bold">• Rabu: Bedah Buku & Bedah Kitab Ringan</p>
+                                    <p class="font-bold">• Jumat: Pengumpulan Reading Journal Santri</p>
+                                </div>
+                            </div>
                             <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60 space-y-3">
                                 <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5">
                                     <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-xs"><i class="fa-solid fa-bullhorn"></i></span> Pengumuman & Agenda
@@ -166,13 +186,53 @@
                                     <p class="text-amber-900/80 leading-relaxed font-light">Ayo pinjam dan baca buku favoritmu bulan ini untuk mengumpulkan badge eksklusif.</p>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60">
-                                <h3 class="font-black text-slate-900 text-sm mb-4 flex items-center justify-between">
-                                    <span class="flex items-center gap-2.5"><span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs"><i class="fa-solid fa-chart-line"></i></span> Grafik Kunjungan Mingguan</span>
-                                    <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Live</span>
+                        <div class="space-y-6">
+                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60 space-y-4">
+                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5">
+                                    <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center text-xs"><i class="fa-solid fa-star"></i></span> Update Buku Favorit Bulan Ini
                                 </h3>
-                                <canvas id="visitorChart" height="110"></canvas>
+                                <div class="p-4 bg-blue-50/60 border border-blue-200 rounded-2xl flex items-center gap-4">
+                                    <div class="w-12 h-16 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold text-xs shadow-md"><i class="fa-solid fa-book"></i></div>
+                                    <div>
+                                        <h4 id="fav-book-title" class="font-extrabold text-xs text-slate-900">Akhlakul Karimah di Era Digital</h4>
+                                        <p id="fav-book-desc" class="text-[11px] text-slate-600 mt-0.5">Pilihan utama santri madrasah terfavorit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glass-card p-6 rounded-3xl shadow-sm border border-slate-200/60">
+                                <h3 class="font-black text-slate-900 text-sm mb-3 flex items-center justify-between">
+                                    <span class="flex items-center gap-2.5"><span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs"><i class="fa-solid fa-chart-line"></i></span> Grafik Kunjungan</span>
+                                    <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Live</span>
+                                </h3>
+                                <canvas id="visitorChart" height="90"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOMENTAR & ULASAN SISWA -->
+                    <div class="glass-card p-8 rounded-3xl shadow-sm border border-slate-200/60 space-y-6">
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-100 pb-4">
+                            <h3 class="font-black text-slate-900 text-base flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-sm"><i class="fa-solid fa-comments"></i></span> Komentar & Ulasan Siswa
+                            </h3>
+                            <button onclick="openCommentModal()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-xs">+ Tulis Komentar</button>
+                        </div>
+                        <div id="student-comments-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-bold text-xs text-slate-900">Ahmad Zaki <span class="text-[10px] font-normal text-slate-400">(XII IPA 1)</span></h4>
+                                    <span class="text-[10px] bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded-full font-bold">★★★★★</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed font-light">"Aplikasi perpustakaan digital ini sangat membantu saya mencari referensi kitabul ilmi tanpa harus antre di perpus fisik!"</p>
+                            </div>
+                            <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-bold text-xs text-slate-900">Fatimah Zahra <span class="text-[10px] font-normal text-slate-400">(XI IPS 2)</span></h4>
+                                    <span class="text-[10px] bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded-full font-bold">★★★★★</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed font-light">"Suka banget sama kuis literasi dan fitur reading journal otomatisnya. Bikin semangat membaca tiap minggu!"</p>
                             </div>
                         </div>
                     </div>
@@ -465,7 +525,33 @@
                                     <i class="fa-solid fa-gears text-emerald-700"></i> Panel Kontrol Admin / Wakakur
                                 </h3>
 
-                                <!-- Form Tambah Katalog E-Book (via Link Google Drive) -->
+                                <form id="admin-avatar-form" onsubmit="updateAvatarUrl(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Ganti Foto Profil / Avatar (URL Gambar)</h4>
+                                    <input type="url" id="admin-avatar-input" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Tempel URL Gambar Foto Profil">
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Foto Profil</button>
+                                </form>
+
+                                <form id="admin-favbook-form" onsubmit="updateFavBook(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Update Buku Favorit Bulan Ini</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <input type="text" id="admin-fav-title" required class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Judul Buku Favorit">
+                                        <input type="text" id="admin-fav-desc" required class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Deskripsi Singkat">
+                                    </div>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Perbarui Buku Favorit</button>
+                                </form>
+
+                                <form id="admin-quote-form" onsubmit="updateQuote(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Kelola Quotes / Kutipan</h4>
+                                    <textarea id="admin-quote-input" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Tulis Kutipan Inspiratif..."></textarea>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Quotes</button>
+                                </form>
+
+                                <form id="admin-weekly-form" onsubmit="updateWeeklyPlan(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Kelola Rencana Kegiatan Mingguan</h4>
+                                    <textarea id="admin-weekly-input" rows="3" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Tulis rencana kegiatan mingguan..."></textarea>
+                                    <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Rencana Mingguan</button>
+                                </form>
+
                                 <form id="admin-book-form" onsubmit="adminAddBook(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
                                     <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Tambah Katalog E-Book (via Link Google Drive)</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -483,7 +569,6 @@
                                     <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Publikasikan Buku</button>
                                 </form>
 
-                                <!-- Form Profil Web -->
                                 <form id="admin-profile-form" onsubmit="updateProfile(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
                                     <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Pengaturan Identitas Profil Web</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -494,7 +579,6 @@
                                     <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Identitas</button>
                                 </form>
 
-                                <!-- Form Visi Misi -->
                                 <form id="admin-visimisi-form" onsubmit="updateVisiMisi(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
                                     <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Kelola Visi & Misi Madrasah</h4>
                                     <textarea id="input-visi" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Visi"></textarea>
@@ -502,7 +586,6 @@
                                     <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Visi & Misi</button>
                                 </form>
 
-                                <!-- Form Pengumuman -->
                                 <form id="announcement-form" onsubmit="updateAnnouncement(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
                                     <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Siarkan Pengumuman</h4>
                                     <textarea id="announcement-text" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Pengumuman..."></textarea>
@@ -515,8 +598,7 @@
             </main>
         </div>
     </div>
-
-    <!-- MODAL E-READER PDF VIEWER -->
+   <!-- MODAL E-READER PDF VIEWER -->
     <div id="reader-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card w-full max-w-4xl h-[85vh] rounded-3xl flex flex-col overflow-hidden shadow-2xl border">
             <div class="p-4 bg-[#022c22] text-white flex justify-between items-center">
@@ -526,6 +608,27 @@
             <div class="flex-1 bg-slate-100 p-2">
                 <iframe id="reader-frame" src="" class="w-full h-full rounded-2xl border border-slate-200 bg-white"></iframe>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH KOMENTAR SISWA -->
+    <div id="comment-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-lg rounded-3xl p-6 shadow-2xl border space-y-4">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900 text-sm">Tulis Komentar & Ulasan Siswa</h3>
+                <button onclick="closeCommentModal()" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-xs"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="addNewComment(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama & Kelas</label>
+                    <input type="text" id="comment-author" required class="w-full text-sm border rounded-xl px-4 py-2 bg-slate-50" placeholder="Contoh: Muhammad Rizki (X Agama)">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Ulasan / Komentar</label>
+                    <textarea id="comment-text" rows="3" required class="w-full text-sm border rounded-xl px-4 py-2 bg-slate-50" placeholder="Tulis ulasan Anda tentang website ini..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-2.5 rounded-xl transition">Kirim Komentar</button>
+            </form>
         </div>
     </div>
 
@@ -569,6 +672,11 @@
             loadProfile();
             loadCustomBooks();
             loadVisiMisi();
+            loadAvatar();
+            loadFavBook();
+            loadQuote();
+            loadWeeklyPlan();
+            loadComments();
             checkAdminSession();
             initChart();
             switchTab('dashboard');
@@ -624,6 +732,9 @@
             document.getElementById('reader-frame').src = '';
         }
 
+        function openCommentModal() { document.getElementById('comment-modal').classList.remove('hidden'); }
+        function closeCommentModal() { document.getElementById('comment-modal').classList.add('hidden'); }
+
         function verifyAdmin(event) {
             event.preventDefault();
             const pass = document.getElementById('admin-password-input').value;
@@ -649,6 +760,126 @@
         function logoutAdmin() {
             localStorage.removeItem('isAdminLoggedIn');
             checkAdminSession();
+        }
+
+        function updateAvatarUrl(event) {
+            event.preventDefault();
+            const url = document.getElementById('admin-avatar-input').value;
+            localStorage.setItem('avatarUrl', url);
+            loadAvatar();
+            document.getElementById('admin-avatar-form').reset();
+            alert('Foto profil berhasil diperbarui!');
+        }
+
+        function loadAvatar() {
+            const container = document.getElementById('header-avatar-container');
+            const url = localStorage.getItem('avatarUrl');
+            if(url && container) {
+                container.innerHTML = `<img src="${url}" alt="Avatar" class="w-full h-full object-cover">`;
+            }
+        }
+
+        function updateFavBook(event) {
+            event.preventDefault();
+            const title = document.getElementById('admin-fav-title').value;
+            const desc = document.getElementById('admin-fav-desc').value;
+            localStorage.setItem('favTitle', title);
+            localStorage.setItem('favDesc', desc);
+            loadFavBook();
+            document.getElementById('admin-favbook-form').reset();
+            alert('Buku favorit berhasil diperbarui!');
+        }
+
+        function loadFavBook() {
+            const t = localStorage.getItem('favTitle');
+            const d = localStorage.getItem('favDesc');
+            if(t) document.getElementById('fav-book-title').innerText = t;
+            if(d) document.getElementById('fav-book-desc').innerText = d;
+            if(t) document.getElementById('admin-fav-title').value = t;
+            if(d) document.getElementById('admin-fav-desc').value = d;
+        }
+
+        function updateQuote(event) {
+            event.preventDefault();
+            const text = document.getElementById('admin-quote-input').value;
+            localStorage.setItem('dailyQuote', text);
+            loadQuote();
+            document.getElementById('admin-quote-form').reset();
+            alert('Quotes berhasil diperbarui!');
+        }
+
+        function loadQuote() {
+            const q = localStorage.getItem('dailyQuote');
+            if(q) {
+                document.getElementById('daily-quote').innerText = `"${q}"`;
+                document.getElementById('admin-quote-input').value = q;
+            }
+        }
+
+        function updateWeeklyPlan(event) {
+            event.preventDefault();
+            const text = document.getElementById('admin-weekly-input').value;
+            localStorage.setItem('weeklyPlan', text);
+            loadWeeklyPlan();
+            document.getElementById('admin-weekly-form').reset();
+            alert('Rencana kegiatan mingguan diperbarui!');
+        }
+
+        function loadWeeklyPlan() {
+            const p = localStorage.getItem('weeklyPlan');
+            const board = document.getElementById('weekly-plan-board');
+            if(p && board) {
+                board.innerHTML = p.split('\n').map(item => `<p class="font-bold">• ${item}</p>`).join('');
+                document.getElementById('admin-weekly-input').value = p;
+            }
+        }
+
+        function addNewComment(event) {
+            event.preventDefault();
+            const author = document.getElementById('comment-author').value;
+            const text = document.getElementById('comment-text').value;
+            let comments = JSON.parse(localStorage.getItem('studentComments')) || [];
+            comments.unshift({ author, text });
+            localStorage.setItem('studentComments', JSON.stringify(comments));
+            loadComments();
+            closeCommentModal();
+            document.getElementById('comment-modal').querySelector('form').reset();
+            alert('Komentar berhasil dikirim!');
+        }
+
+        function loadComments() {
+            const list = document.getElementById('student-comments-list');
+            if (!list) return;
+            let comments = JSON.parse(localStorage.getItem('studentComments')) || [];
+            let defaultHTML = `
+                <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-xs text-slate-900">Ahmad Zaki <span class="text-[10px] font-normal text-slate-400">(XII IPA 1)</span></h4>
+                        <span class="text-[10px] bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded-full font-bold">★★★★★</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-light">"Aplikasi perpustakaan digital ini sangat membantu saya mencari referensi kitabul ilmi tanpa harus antre di perpus fisik!"</p>
+                </div>
+                <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-xs text-slate-900">Fatimah Zahra <span class="text-[10px] font-normal text-slate-400">(XI IPS 2)</span></h4>
+                        <span class="text-[10px] bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded-full font-bold">★★★★★</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-light">"Suka banget sama kuis literasi dan fitur reading journal otomatisnya. Bikin semangat membaca tiap minggu!"</p>
+                </div>
+            `;
+            let customHTML = '';
+            comments.forEach(c => {
+                customHTML += `
+                    <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-xs text-slate-900">${c.author}</h4>
+                            <span class="text-[10px] bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded-full font-bold">★★★★★</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed font-light">"${c.text}"</p>
+                    </div>
+                `;
+            });
+            list.innerHTML = customHTML + defaultHTML;
         }
 
         function adminAddBook(event) {
@@ -779,7 +1010,6 @@
 
         function addJournal(event) {
             event.preventDefault();
-            const studentName = document.getElementById('student-name').value;
             const title = document.getElementById('book-title').value;
             const author = document.getElementById('book-author').value;
             const review = document.getElementById('book-review').value;
@@ -903,4 +1133,5 @@
     </script>
 </body>
 </html>
+
 
