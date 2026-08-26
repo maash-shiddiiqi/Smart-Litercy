@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Literacy Corner - Advanced iPusnas Edition</title>
+    <title>Smart Literacy Corner - Ultimate Madrasah Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,6 +18,7 @@
 <body class="bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white pb-20 md:pb-0">
     <div class="flex h-screen overflow-hidden">
         
+        <!-- Sidebar Desktop -->
         <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-[#022c22] text-slate-100 hidden md:flex flex-col shadow-2xl border-r border-emerald-900/50">
             <div class="p-6 text-xl font-extrabold tracking-wide border-b border-emerald-900/60 flex items-center justify-between bg-[#032019]">
                 <div class="flex items-center gap-3.5">
@@ -26,7 +27,7 @@
                     </div>
                     <div>
                         <span class="block text-base tracking-tight font-bold text-white">Smart Literacy</span>
-                        <span class="block text-[10px] text-emerald-400 font-medium uppercase tracking-widest">Advanced Edition</span>
+                        <span class="block text-[10px] text-emerald-400 font-medium uppercase tracking-widest">Madrasah Edition</span>
                     </div>
                 </div>
             </div>
@@ -73,6 +74,7 @@
             </nav>
         </aside>
 
+        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto w-full">
             <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between px-6 md:px-10 sticky top-0 z-30 shadow-xs">
                 <div>
@@ -90,6 +92,7 @@
 
             <main class="p-6 md:p-10 max-w-7xl mx-auto w-full space-y-8 mb-12">
                 
+                <!-- 1. DASHBOARD UTAMA -->
                 <div id="content-dashboard" class="page-content space-y-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                         <div class="glass-card p-5 rounded-2xl shadow-sm border-l-4 border-blue-500 flex items-center gap-4">
@@ -122,6 +125,7 @@
                         </div>
                     </div>
 
+                    <!-- Banner Hero -->
                     <div class="emerald-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between">
                         <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div class="relative z-10 space-y-3 max-w-3xl">
@@ -133,6 +137,7 @@
                         </div>
                     </div>
 
+                    <!-- Visi Misi & Pengumuman -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div class="glass-card p-8 rounded-3xl shadow-sm space-y-5 border border-slate-200/60">
                             <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b border-slate-100 pb-4">
@@ -171,6 +176,58 @@
                         </div>
                     </div>
 
+                    <!-- 3 WIDGET BARU DI DASBOR -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-6 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5 border-b pb-3">
+                                <i class="fa-solid fa-fire text-orange-500"></i> Buku Terpopuler Minggu Ini
+                            </h3>
+                            <div class="space-y-3 text-xs">
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div>
+                                        <p class="font-bold text-slate-900">Akhlakul Karimah di Era Digital</p>
+                                        <p class="text-[10px] text-slate-500">Tim Literasi</p>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded-lg text-[10px]">42 Dibaca</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div>
+                                        <p class="font-bold text-slate-900">Sejarah Peradaban Islam</p>
+                                        <p class="text-[10px] text-slate-500">Dr. Badri Yatim</p>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded-lg text-[10px]">35 Dibaca</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-3xl shadow-sm border space-y-4 bg-gradient-to-br from-emerald-900 to-[#022c22] text-white">
+                            <h3 class="font-black text-emerald-200 text-sm flex items-center gap-2.5 border-b border-emerald-800 pb-3">
+                                <i class="fa-solid fa-quote-left text-amber-400"></i> Quote Literasi Hari Ini
+                            </h3>
+                            <div class="space-y-3 py-1">
+                                <p class="italic text-xs font-light leading-relaxed text-emerald-100">"Membaca adalah jendela dunia, dan buku adalah jembatan emas menuju masa depan madrasah yang gemilang."</p>
+                                <span class="text-[10px] font-bold text-amber-300 block text-right">- Dewan Redaksi Literasi</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-3xl shadow-sm border space-y-4">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2.5 border-b pb-3">
+                                <i class="fa-solid fa-calendar-days text-emerald-700"></i> Agenda Mendatang
+                            </h3>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-2.5 bg-amber-50/60 rounded-1xl border border-amber-100">
+                                    <p class="font-bold text-amber-950">Bedah Buku Kitab Kuning</p>
+                                    <p class="text-[10px] text-amber-800 mt-0.5"><i class="fa-regular fa-clock mr-1"></i> Jum'at, 08:00 WIB</p>
+                                </div>
+                                <div class="p-2.5 bg-blue-50/60 rounded-xl border border-blue-100">
+                                    <p class="font-bold text-blue-950">Batas Pengumpulan Esai</p>
+                                    <p class="text-[10px] text-blue-800 mt-0.5"><i class="fa-regular fa-clock mr-1"></i> Senin Pekan Depan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Galeri & Komentar Siswa -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="glass-card p-7 rounded-3xl shadow-sm border space-y-4">
                             <h3 class="font-black text-slate-900 text-base flex items-center gap-3 border-b pb-3">
@@ -202,6 +259,7 @@
                     </div>
                 </div>
 
+                <!-- Bagian Menu Lainnya (Perpustakaan, Rak Saya, dll) -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
@@ -499,7 +557,8 @@
             </main>
         </div>
     </div>
-   <div id="reader-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+   <!-- MODAL E-READER PDF VIEWER -->
+    <div id="reader-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card w-full max-w-4xl h-[85vh] rounded-3xl flex flex-col overflow-hidden shadow-2xl border">
             <div class="p-4 bg-[#022c22] text-white flex justify-between items-center">
                 <h3 id="reader-book-title" class="font-bold text-sm">Sedang Membaca E-Book</h3>
@@ -511,6 +570,7 @@
         </div>
     </div>
 
+    <!-- BOTTOM NAVIGATION BAR -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#022c22] border-t border-emerald-900/80 text-white flex justify-around items-center h-16 z-50 px-2 shadow-2xl">
         <button onclick="switchTab('dashboard')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-emerald-300 hover:text-white" data-tab="dashboard">
             <i class="fa-solid fa-house text-base"></i>
@@ -534,6 +594,7 @@
         </button>
     </div>
 
+    <!-- SCRIPT UTAMA -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
@@ -948,4 +1009,5 @@
     </script>
 </body>
 </html>
+
 
