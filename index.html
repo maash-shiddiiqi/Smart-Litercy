@@ -525,9 +525,10 @@
                                     <i class="fa-solid fa-gears text-emerald-700"></i> Panel Kontrol Admin / Wakakur
                                 </h3>
 
-                                <form id="admin-avatar-form" onsubmit="updateAvatarUrl(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Ganti Foto Profil / Avatar (URL Gambar)</h4>
-                                    <input type="url" id="admin-avatar-input" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50" placeholder="Tempel URL Gambar Foto Profil">
+                                <!-- Form Upload Foto Profil (File Picker) -->
+                                <form id="admin-avatar-form" onsubmit="updateAvatarFile(event)" class="space-y-3 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                                    <h4 class="font-extrabold text-xs uppercase text-emerald-900 tracking-wider">Unggah Foto Profil / Avatar</h4>
+                                    <input type="file" id="admin-avatar-input" accept="image/*" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-slate-50 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
                                     <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Simpan Foto Profil</button>
                                 </form>
 
@@ -762,13 +763,20 @@
             checkAdminSession();
         }
 
-        function updateAvatarUrl(event) {
+        function updateAvatarFile(event) {
             event.preventDefault();
-            const url = document.getElementById('admin-avatar-input').value;
-            localStorage.setItem('avatarUrl', url);
-            loadAvatar();
-            document.getElementById('admin-avatar-form').reset();
-            alert('Foto profil berhasil diperbarui!');
+            const fileInput = document.getElementById('admin-avatar-input');
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    localStorage.setItem('avatarUrl', base64Image);
+                    loadAvatar();
+                    document.getElementById('admin-avatar-form').reset();
+                    alert('Foto profil berhasil diunggah dan diperbarui!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
         }
 
         function loadAvatar() {
