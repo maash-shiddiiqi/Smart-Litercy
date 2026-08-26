@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Literacy Corner - Full iPusnas Edition</title>
+    <title>Smart Literacy Corner - Full iPusnas Edition with Google Sheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -130,10 +130,10 @@
                         <div class="absolute right-0 top-0 translate-x-10 -translate-y-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div class="relative z-10 space-y-3 max-w-3xl">
                             <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-medium tracking-wide text-emerald-200 border border-white/10">
-                                <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Dalam Genggaman
+                                <i class="fa-solid fa-book-reader text-amber-400"></i> Perpustakaan Digital Terhubung Spreadsheet
                             </span>
                             <h2 class="text-2xl md:text-3xl font-black tracking-tight text-white">Jelajahi Ribuan Ilmu & Inspirasi</h2>
-                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, tulis jurnal bacaan, dan tingkatkan literasi madrasah dengan mudah, cepat, dan interaktif.</p>
+                            <p class="text-emerald-100/90 text-sm md:text-base leading-relaxed font-light">Pinjam buku digital, tulis jurnal bacaan yang langsung tersimpan otomatis ke database madrasah.</p>
                         </div>
                     </div>
 
@@ -282,11 +282,17 @@
                     </div>
                 </div>
 
-                <!-- 6. AKTIVITAS: READING JOURNAL -->
+                <!-- 6. AKTIVITAS: READING JOURNAL (TERHUBUNG KE GOOGLE SHEETS) -->
                 <div id="content-aktivitas" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-clipboard-user text-emerald-700 mr-2"></i> Reading Journal Siswa</h2>
+                        <p class="text-xs text-slate-500">Catat buku yang Anda baca. Data akan langsung terkirim secara otomatis ke database Google Sheets madrasah!</p>
+                        
                         <form id="journal-form" onsubmit="addJournal(event)" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Siswa / Pembaca</label>
+                                <input type="text" id="student-name" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Contoh: Ahmad Zaki">
+                            </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1.5">Judul Buku</label>
@@ -301,7 +307,7 @@
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5">Catatan / Ulasan Singkat</label>
                                 <textarea id="book-review" rows="2" required class="w-full text-sm border border-slate-200 rounded-xl px-4 py-2.5 focus:outline-emerald-600 bg-slate-50/50" placeholder="Tuliskan ulasan atau ringkasan buku..."></textarea>
                             </div>
-                            <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-sm transition">Simpan Journal (+10 Poin)</button>
+                            <button type="submit" id="submit-btn" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-sm transition">Kirim Journal ke Database (+10 Poin)</button>
                         </form>
                         <h3 class="font-extrabold text-slate-900 text-sm pt-4">Riwayat Bacaan Saya</h3>
                         <div class="overflow-x-auto border border-slate-200 rounded-2xl bg-white shadow-xs">
@@ -347,7 +353,7 @@
                     </div>
                 </div>
 
-                <!-- 8. GAMIFIKASI: BADGE & RANKING -->
+                <!-- 8. GAMIFIKASI -->
                 <div id="content-gamifikasi" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-award text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
@@ -384,7 +390,7 @@
                     </div>
                 </div>
 
-                <!-- 10. PROFIL & PANEL ADMIN LENGKAP -->
+                <!-- 10. PROFIL & PANEL ADMIN -->
                 <div id="content-profil" class="page-content hidden space-y-6">
                     <div id="admin-login-box" class="glass-card p-8 rounded-3xl shadow-sm border max-w-md mx-auto text-center space-y-4">
                         <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner"><i class="fa-solid fa-lock"></i></div>
@@ -494,11 +500,12 @@
         </button>
     </div>
 
-    <!-- Script Logika Lengkap -->
+    <!-- Script Logika Terhubung ke Google Apps Script -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
         const ADMIN_PASSWORD = "admin123";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzG7VlZjwMCvFAEcgniXqj5mhruk-w4RftWngB1BnEfMf1tWwC7tbesfY6ikUIwjgCd/exec";
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('user-points').innerText = userPoints;
@@ -707,6 +714,63 @@
             loadBookmarks();
         }
 
+        // --- KIRIM READING JOURNAL OTOMATIS KE GOOGLE SHEETS ---
+        function addJournal(event) {
+            event.preventDefault();
+            const studentName = document.getElementById('student-name').value;
+            const title = document.getElementById('book-title').value;
+            const author = document.getElementById('book-author').value;
+            const review = document.getElementById('book-review').value;
+            const submitBtn = document.getElementById('submit-btn');
+
+            submitBtn.innerText = "Mengirim ke Database...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                jenis: "Reading Journal",
+                nama: studentName,
+                keterangan: `Buku: ${title} oleh ${author} | Ulasan: ${review}`
+            };
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                let journals = JSON.parse(localStorage.getItem('journals')) || [];
+                journals.unshift({ title, author, review });
+                localStorage.setItem('journals', JSON.stringify(journals));
+                userPoints += 10; totalBooks += 1;
+                localStorage.setItem('userPoints', userPoints); localStorage.setItem('totalBooks', totalBooks);
+                document.getElementById('user-points').innerText = userPoints;
+                document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
+                loadJournals();
+                document.getElementById('journal-form').reset();
+                alert('Berhasil! Journal tersimpan dan masuk ke Google Sheets madrasah (+10 Poin).');
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Gagal mengirim data ke server. Periksa koneksi internet Anda.");
+            })
+            .finally(() => {
+                submitBtn.innerText = "Kirim Journal ke Database (+10 Poin)";
+                submitBtn.disabled = false;
+            });
+        }
+
+        function loadJournals() {
+            const tableBody = document.getElementById('journal-table-body');
+            if (!tableBody) return;
+            let journals = JSON.parse(localStorage.getItem('journals')) || [];
+            let html = `<tr><td class="p-4 font-bold text-slate-900">Sejarah Peradaban Islam</td><td class="p-4">Dr. Badri Yatim</td><td class="p-4">Sangat menambah wawasan.</td></tr>`;
+            journals.forEach(j => {
+                html += `<tr><td class="p-4 font-bold text-slate-900">${j.title}</td><td class="p-4">${j.author}</td><td class="p-4">${j.review}</td></tr>`;
+            });
+            tableBody.innerHTML = html;
+        }
+
         function updateVisiMisi(event) {
             event.preventDefault();
             const visi = document.getElementById('input-visi').value;
@@ -760,34 +824,6 @@
             if(localStorage.getItem('profileName')) document.getElementById('profile-name').innerText = localStorage.getItem('profileName');
             if(localStorage.getItem('profileRole')) document.getElementById('profile-role').innerText = localStorage.getItem('profileRole');
             if(localStorage.getItem('profileSchool')) document.getElementById('profile-school').innerText = localStorage.getItem('profileSchool');
-        }
-
-        function addJournal(event) {
-            event.preventDefault();
-            const title = document.getElementById('book-title').value;
-            const author = document.getElementById('book-author').value;
-            const review = document.getElementById('book-review').value;
-            let journals = JSON.parse(localStorage.getItem('journals')) || [];
-            journals.unshift({ title, author, review });
-            localStorage.setItem('journals', JSON.stringify(journals));
-            userPoints += 10; totalBooks += 1;
-            localStorage.setItem('userPoints', userPoints); localStorage.setItem('totalBooks', totalBooks);
-            document.getElementById('user-points').innerText = userPoints;
-            document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
-            loadJournals();
-            document.getElementById('journal-form').reset();
-            alert('Journal tersimpan (+10 Poin)!');
-        }
-
-        function loadJournals() {
-            const tableBody = document.getElementById('journal-table-body');
-            if (!tableBody) return;
-            let journals = JSON.parse(localStorage.getItem('journals')) || [];
-            let html = `<tr><td class="p-4 font-bold text-slate-900">Sejarah Peradaban Islam</td><td class="p-4">Dr. Badri Yatim</td><td class="p-4">Sangat menambah wawasan.</td></tr>`;
-            journals.forEach(j => {
-                html += `<tr><td class="p-4 font-bold text-slate-900">${j.title}</td><td class="p-4">${j.author}</td><td class="p-4">${j.review}</td></tr>`;
-            });
-            tableBody.innerHTML = html;
         }
 
         function addMateri(event) {
