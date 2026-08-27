@@ -1,7 +1,4 @@
-// ==========================================
 // DATA KATALOG 30 GENRE & KOLEKSI KHUSUS
-// ==========================================
-
 const DATA_GENRE = [
   { id: 'novel', name: 'Novel', icon: '📖' },
   { id: 'cerpen', name: 'Cerpen', icon: '✍️' },
@@ -35,24 +32,28 @@ const DATA_GENRE = [
   { id: 'referensi', name: 'Referensi & Ensiklopedia', icon: '📕' }
 ];
 
-const DATA_KOLEKSI_KHUSUS = [
-  { id: 'populer', name: 'Paling Banyak Dibaca', icon: '🔥', bgClass: 'from-orange-500 to-amber-500' },
-  { id: 'terbaru', name: 'Terbaru', icon: '🆕', bgClass: 'from-blue-500 to-indigo-500' },
-  { id: 'pilihan-guru', name: 'Pilihan Guru', icon: '⭐', bgClass: 'from-yellow-500 to-amber-600' },
-  { id: 'favorit-siswa', name: 'Favorit Siswa', icon: '❤️', bgClass: 'from-rose-500 to-pink-500' },
-  { id: 'rekomendasi', name: 'Rekomendasi Untukmu', icon: '🎯', bgClass: 'from-emerald-500 to-teal-600' },
-  { id: 'ma-ashshiddiiqi', name: 'Koleksi MA Ash-Shiddiiqi', icon: '🏫', bgClass: 'from-green-600 to-emerald-700' },
-  { id: 'karya-santri', name: 'Karya Santri', icon: '✍️', bgClass: 'from-purple-600 to-indigo-600' },
-  { id: 'karya-guru', name: 'Karya Guru', icon: '👨‍🏫', bgClass: 'from-cyan-600 to-blue-600' },
-  { id: 'kelas-10', name: 'Bacaan Kelas 10', icon: '📚', bgClass: 'from-sky-500 to-blue-600' },
-  { id: 'kelas-11', name: 'Bacaan Kelas 11', icon: '📚', bgClass: 'from-violet-500 to-purple-600' },
-  { id: 'kelas-12', name: 'Bacaan Kelas 12', icon: '📚', bgClass: 'from-fuchsia-500 to-pink-600' }
-];
-<!-- CONTAINER UTAMA KATALOG -->
-<section id="katalog-section" class="p-6 bg-slate-50 min-h-screen">
-  
-  <!-- KOLEKSI KHUSUS (SLIDER / GRID SPESIAL) -->
-  <div class="mb-10">
+document.addEventListener("DOMContentLoaded", () => {
+  const genreContainer = document.getElementById('genre-grid');
+  if(genreContainer) {
+    genreContainer.innerHTML = DATA_GENRE.map(item => `
+      <button onclick="filterGenre('${item.id}')" class="flex items-center gap-2 p-2.5 bg-white border border-slate-200 rounded-lg hover:border-emerald-500 hover:bg-emerald-50 transition-all text-slate-700 text-xs font-medium shadow-sm">
+        <span class="text-base">${item.icon}</span>
+        <span class="truncate">${item.name}</span>
+      </button>
+    `).join('');
+  }
+});
+
+function filterGenre(genreId) {
+  console.log("Filter Genre:", genreId);
+}
+
+function filterKoleksi(koleksiId) {
+  console.log("Filter Koleksi:", koleksiId);
+}
+<!-- KOLEKSI SPESIAL MADRASAH -->
+<section class="p-6 bg-slate-50">
+  <div class="mb-8">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
         <span class="text-emerald-600">🏫</span> Koleksi Spesial Madrasah
@@ -61,75 +62,45 @@ const DATA_KOLEKSI_KHUSUS = [
     </div>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-      <!-- Item Koleksi Khusus akan di-render di sini atau menggunakan HTML statis di bawah ini -->
-      <button onclick="filterKoleksi('ma-ashshiddiiqi')" class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🏫</div>
+      <button onclick="filterKoleksi('ma-ashshiddiiqi')" class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🏫</div>
         <div class="text-xs font-semibold">Koleksi MA Ash-Shiddiiqi</div>
       </button>
-
-      <button onclick="filterKoleksi('karya-santri')" class="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">✍️</div>
+      <button onclick="filterKoleksi('karya-santri')" class="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">✍️</div>
         <div class="text-xs font-semibold">Karya Santri</div>
       </button>
-
-      <button onclick="filterKoleksi('karya-guru')" class="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">👨‍🏫</div>
+      <button onclick="filterKoleksi('karya-guru')" class="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">👨‍🏫</div>
         <div class="text-xs font-semibold">Karya Guru</div>
       </button>
-
-      <button onclick="filterKoleksi('pilihan-guru')" class="p-3 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">⭐</div>
+      <button onclick="filterKoleksi('pilihan-guru')" class="p-3 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">⭐</div>
         <div class="text-xs font-semibold">Pilihan Guru</div>
       </button>
-
-      <button onclick="filterKoleksi('populer')" class="p-3 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🔥</div>
+      <button onclick="filterKoleksi('populer')" class="p-3 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🔥</div>
         <div class="text-xs font-semibold">Paling Banyak Dibaca</div>
       </button>
-
-      <button onclick="filterKoleksi('terbaru')" class="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left group">
-        <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🆕</div>
+      <button onclick="filterKoleksi('terbaru')" class="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🆕</div>
         <div class="text-xs font-semibold">Buku Terbaru</div>
       </button>
     </div>
   </div>
 
   <!-- KATALOG 30 GENRE -->
-  <div class="mb-8">
+  <div>
     <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
       <span class="text-emerald-600">📚</span> Kategori & Genre E-Book
     </h2>
-    
-    <!-- Filter Genre Grid -->
     <div id="genre-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2.5">
-      <!-- Data genre dari Bagian 1 di-loop ke dalam elemen ini -->
+      <!-- Di-render otomatis via script.js -->
     </div>
   </div>
-
 </section>
 
-<script>
-  // Script perender genre ke UI tanpa mengganggu sistem lain
-  document.addEventListener("DOMContentLoaded", () => {
-    const genreContainer = document.getElementById('genre-grid');
-    if(genreContainer && typeof DATA_GENRE !== 'undefined') {
-      genreContainer.innerHTML = DATA_GENRE.map(item => `
-        <button onclick="filterGenre('${item.id}')" class="flex items-center gap-2 p-2.5 bg-white border border-slate-200 rounded-lg hover:border-emerald-500 hover:bg-emerald-50/50 transition-all text-slate-700 text-xs font-medium shadow-sm">
-          <span class="text-base">${item.icon}</span>
-          <span class="truncate">${item.name}</span>
-        </button>
-      `).join('');
-    }
-  });
+<!-- PANGGIL SCRIPT DI AKHIR BODY -->
+<script src="script.js"></script>
 
-  function filterGenre(genreId) {
-    console.log("Filter Genre Selected:", genreId);
-    // Jalankan fungsi pencarian/filter buku berdasarkan genre
-  }
-
-  function filterKoleksi(koleksiId) {
-    console.log("Filter Koleksi Selected:", koleksiId);
-    // Jalankan fungsi pencarian/filter buku berdasarkan koleksi khusus
-  }
-</script>
 
