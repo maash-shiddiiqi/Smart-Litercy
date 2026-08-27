@@ -479,3 +479,503 @@
         </div>
     </div>
 
+   <!-- MODAL E-READER PDF VIEWER -->
+    <div id="reader-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-4xl h-[85vh] rounded-3xl flex flex-col overflow-hidden shadow-2xl border">
+            <div class="p-4 bg-[#022c22] text-white flex justify-between items-center">
+                <h3 id="reader-book-title" class="font-bold text-sm">Sedang Membaca E-Book</h3>
+                <button onclick="closeReader()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs transition"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="flex-1 bg-slate-100 p-2">
+                <iframe id="reader-frame" src="" class="w-full h-full rounded-2xl border border-slate-200 bg-white"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#022c22] border-t border-emerald-900/80 text-white flex justify-around items-center h-16 z-50 px-2 shadow-2xl">
+        <button onclick="switchTab('dashboard')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-emerald-300 hover:text-white" data-tab="dashboard">
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[10px] mt-1 font-medium">Beranda</span>
+        </button>
+        <button onclick="switchTab('perpustakaan')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-slate-300 hover:text-white" data-tab="perpustakaan">
+            <i class="fa-solid fa-book-bookmark text-base"></i>
+            <span class="text-[10px] mt-1 font-medium">Katalog</span>
+        </button>
+        <button onclick="switchTab('raksaya')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-slate-300 hover:text-white" data-tab="raksaya">
+            <i class="fa-solid fa-books text-base"></i>
+            <span class="text-[10px] mt-1 font-medium">Rak Saya</span>
+        </button>
+        <button onclick="switchTab('aktivitas')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-slate-300 hover:text-white" data-tab="aktivitas">
+            <i class="fa-solid fa-pen-clip text-base"></i>
+            <span class="text-[10px] mt-1 font-medium">Journal</span>
+        </button>
+        <button onclick="switchTab('profil')" class="nav-btn flex flex-col items-center justify-center flex-1 py-1 text-slate-300 hover:text-white" data-tab="profil">
+            <i class="fa-solid fa-user-gear text-base"></i>
+            <span class="text-[10px] mt-1 font-medium">Admin</span>
+        </button>
+    </div>
+
+    <!-- SCRIPT UTAMA -->
+    <script>
+        let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
+        let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
+        const ADMIN_PASSWORD = "admin123";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz.../exec"; 
+
+        // Master Buku Berdasarkan 15 Kategori Utama
+        const masterBooks = [
+            // 1. Fiksi
+            { title: "Bulan Terbelah di Langit Madinah", author: "Habiburrahman El Shirazi", category: "1. Fiksi", sub: "Novel" },
+            { title: "Kumpulan Cerpen Santri Pilihan", author: "Tim Literasi Santri", category: "1. Fiksi", sub: "Cerpen" },
+            { title: "Negeri Para Penjelajah Fantasi", author: "J.K. Rowling", category: "1. Fiksi", sub: "Fantasi" },
+            { title: "Petualangan Menjelajah Lembah Ilmu", author: "Hafiz Explorer", category: "1. Fiksi", sub: "Petualangan" },
+            { title: "Misteri Kitab Kuning yang Hilang", author: "Detektif Madrasah", category: "1. Fiksi", sub: "Misteri" },
+            { title: "Kisah Teladan Penuh Ketegangan", author: "Syekh Al-Ghazali", category: "1. Fiksi", sub: "Horor" },
+            { title: "Romansa Cinta dalam Restu Ilahi", author: "Asma Nadia", category: "1. Fiksi", sub: "Drama" },
+
+            // 2. Sastra
+            { title: "Antologi Puisi Cahaya Pesantren", author: "Warga Madrasah", category: "2. Sastra", sub: "Puisi" },
+            { title: "Prosa Nusantara & Kehidupan", author: "Pramoedya Ananta Toer", category: "2. Sastra", sub: "Prosa" },
+            { title: "Kumpulan Antologi Sastra Klasik", author: "Pujangga Lama", category: "2. Sastra", sub: "Antologi" },
+
+            // 3. Islami
+            { title: "Sirah Nabawiyah: Sejarah Hidup Rasulullah", author: "Ibnu Hisyam", category: "3. Islami", sub: "Sirah" },
+            { title: "Akhlakul Karimah di Era Digital", author: "Tim Literasi Madrasah", category: "3. Islami", sub: "Akhlak" },
+            { title: "Fiqh Kontemporer & Solusi Umat", author: "Prof. Dr. Quraish Shihab", category: "3. Islami", sub: "Fikih" },
+            { title: "Kitab Akidah Ahlus Sunnah Wal Jamaah", author: "Syaikh Utsaimin", category: "3. Islami", sub: "Akidah" },
+            { title: "Tasawuf & Pembersihan Hati", author: "Imam Al-Ghazali", category: "3. Islami", sub: "Tasawuf" },
+            { title: "Kisah Sahabat Nabi Pengukir Sejarah", author: "Khaled Muhammad Khalid", category: "3. Islami", sub: "Kisah Sahabat" },
+
+            // 4. Sejarah
+            { title: "Sejarah Nasional Indonesia Lengkap", author: "Sartono Kartodirdjo", category: "4. Sejarah", sub: "Sejarah Indonesia" },
+            { title: "Sejarah Peradaban Islam Klasik", author: "Dr. Badri Yatim", category: "4. Sejarah", sub: "Sejarah Islam" },
+            { title: "Sejarah Dunia untuk Pelajar", author: "H.G. Wells", category: "4. Sejarah", sub: "Sejarah Dunia" },
+
+            // 5. Biografi & Memoar
+            { title: "Biografi Buya Hamka: Ulama & Sastrawan", author: "Heri Jauhari", category: "5. Biografi & Memoar", sub: "Tokoh Islam" },
+            { title: "Biografi Soekarno: Penyambung Lidah Rakyat", author: "Cindy Adams", category: "5. Biografi & Memoar", sub: "Tokoh Nasional" },
+            { title: "Kisah Inspiratif Ilmuwan Muslim Dunia", author: "Prof. Al-Hassan", category: "5. Biografi & Memoar", sub: "Ilmuwan" },
+
+            // 6. Pendidikan
+            { title: "Metode Belajar Efektif Abad 21", author: "Tim Kurikulum Wakakur", category: "6. Pendidikan", sub: "Metode Belajar" },
+            { title: "Pendidikan Karakter Berbasis Pesantren", author: "Dewan Guru Madrasah", category: "6. Pendidikan", sub: "Pendidikan Karakter" },
+
+            // 7. Pengembangan Diri
+            { title: "Atomic Habits untuk Pelajar Berprestasi", author: "James Clear", category: "7. Pengembangan Diri", sub: "Motivasi" },
+            { title: "Kepemimpinan Efektif & Berintegritas", author: "John C. Maxwell", category: "7. Pengembangan Diri", sub: "Kepemimpinan" },
+            { title: "Manajemen Waktu Santri Produktif", author: "K.H. Abdullah Gymnastiar", category: "7. Pengembangan Diri", sub: "Manajemen Waktu" },
+
+            // 8. Psikologi
+            { title: "Psikologi Remaja & Kesehatan Mental", author: "Dr. Elly Risman", category: "8. Psikologi", sub: "Psikologi Remaja" },
+            { title: "Mengenal Tipe Kepribadian Manusia", author: "Carl Jung", category: "8. Psikologi", sub: "Kepribadian" },
+
+            // 9. Sains & Matematika
+            { title: "Biologi Modern untuk Tingkat Aliyah", author: "Campbell Reece", category: "9. Sains & Matematika", sub: "Biologi" },
+            { title: "Fisika Kuantum & Alam Semesta", author: "Stephen Hawking", category: "9. Sains & Matematika", sub: "Fisika" },
+            { title: "Matematika Asyik & Gampang", author: "Prof. Yohanes Surya", category: "9. Sains & Matematika", sub: "Matematika" },
+
+            // 10. Teknologi & Digital
+            { title: "Kecerdasan Buatan (AI) & Literasi Digital", author: "OpenAI Research", category: "10. Teknologi & Digital", sub: "AI" },
+            { title: "Dasar Pemrograman Web & Komputer", author: "Tim IT Madrasah", category: "10. Teknologi & Digital", sub: "Pemrograman" },
+
+            // 11. Sosial & Humaniora
+            { title: "Sosiologi Masyarakat Modern", author: "Koentjaraningrat", category: "11. Sosial & Humaniora", sub: "Sosiologi" },
+            { title: "Pengantar Filsafat Islam & Pemikiran", author: "Murtadha Muthahhari", category: "11. Sosial & Humaniora", sub: "Filsafat" },
+
+            // 12. Ekonomi & Bisnis
+            { title: "Ekonomi Syariah & Perbankan Islam", author: "Adiwarman Karim", category: "12. Ekonomi & Bisnis", sub: "Ekonomi" },
+            { title: "Kewirausahaan Santri Mandiri", author: "Mentoring Bisnis MA", category: "12. Ekonomi & Bisnis", sub: "Kewirausahaan" },
+
+            // 13. Seni & Kreativitas
+            { title: "Seni Kaligrafi & Desain Grafis Islami", author: "Master Kaligrafi", category: "13. Seni & Kreativitas", sub: "Desain" },
+            { title: "Panduan Menulis Kreatif untuk Pemula", author: "Asma Nadia", category: "13. Seni & Kreativitas", sub: "Menulis Kreatif" },
+
+            // 14. Lingkungan & Alam
+            { title: "Ekologi & Pelestarian Alam Sekitar", author: "Green Madrasah", category: "14. Lingkungan & Alam", sub: "Ekologi" },
+            { title: "Pertanian Modern & Perubahan Iklim", author: "WWF Indonesia", category: "14. Lingkungan & Alam", sub: "Pertanian" },
+
+            // 15. Referensi
+            { title: "Kamus Besar Bahasa Indonesia (KBBI)", author: "Tim Balai Pustaka", category: "15. Referensi", sub: "Kamus" },
+            { title: "Ensiklopedia Islam Indonesia", author: "Kemenag RI", category: "15. Referensi", sub: "Ensiklopedia" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('user-points').innerText = userPoints;
+            document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
+            loadJournals();
+            loadMateri();
+            loadBookmarks();
+            loadAnnouncement();
+            loadProfile();
+            loadGenreCards();
+            loadVisiMisi();
+            loadAvatar();
+            loadSidebarLogo();
+            loadFavBook();
+            loadQuote();
+            loadWeeklyPlan();
+            checkAdminSession();
+            initChart();
+            switchTab('dashboard');
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            const targetContent = document.getElementById('content-' + tabId);
+            if (targetContent) targetContent.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('emerald-gradient', 'text-white', 'shadow-md', 'font-semibold');
+                link.classList.add('text-slate-300', 'hover:bg-emerald-900/40', 'hover:text-white');
+                if (link.getAttribute('data-target') === tabId) {
+                    link.classList.remove('text-slate-300', 'hover:bg-emerald-900/40', 'hover:text-white');
+                    link.classList.add('emerald-gradient', 'text-white', 'shadow-md', 'font-semibold');
+                }
+            });
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-white', 'font-bold');
+                btn.classList.add('text-slate-300');
+                if(btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.remove('text-slate-300');
+                    btn.classList.add('text-white', 'font-bold');
+                }
+            });
+
+            const titles = {
+                'dashboard': 'Beranda Utama',
+                'perpustakaan': 'Katalog E-Book Kategori',
+                'raksaya': 'Rak Buku Saya (Peminjaman)',
+                'literasi': 'Literacy Corner (Esai & Karya)',
+                'sumber': 'Modul & Sumber Belajar',
+                'aktivitas': 'Reading Journal Siswa',
+                'kuis': 'Kuis Literasi Interaktif',
+                'gamifikasi': 'Ranking & Badge',
+                'teacher': 'Teacher Corner (Ruang Guru)',
+                'profil': 'Profil & Panel Admin'
+            };
+            document.getElementById('page-title').innerText = titles[tabId] || 'Smart Literacy';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Memuat 15 Kartu Kategori Utama di Halaman Katalog
+        function loadGenreCards() {
+            const grid = document.getElementById('genre-cards-grid');
+            if (!grid) return;
+
+            let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
+            let combined = [...customBooks, ...masterBooks];
+
+            let categories = [...new Set(combined.map(b => b.category))].sort();
+
+            let html = '';
+            categories.forEach(cat => {
+                let count = combined.filter(b => b.category === cat).length;
+                html += `
+                    <div onclick="openSubgenre('${cat.replace(/'/g, "\\'")}')" class="glass-card border border-slate-200 p-5 rounded-2xl cursor-pointer hover:shadow-lg hover:border-emerald-500 transition text-center flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg mx-auto mb-3 group-hover:bg-emerald-700 group-hover:text-white transition">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h3 class="font-bold text-xs text-slate-900 group-hover:text-emerald-800 transition">${cat}</h3>
+                        </div>
+                        <span class="text-[10px] text-slate-400 font-semibold mt-3 bg-slate-50 py-1 px-2 rounded-full border">${count} Koleksi Buku</span>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        // Membuka Daftar Buku Berdasarkan Kategori Utama yang Diklik
+        function openSubgenre(categoryName) {
+            document.getElementById('catalog-main-menu').classList.add('hidden');
+            document.getElementById('catalog-sub-view').classList.remove('hidden');
+            document.getElementById('current-genre-title').innerText = "Kategori: " + categoryName;
+
+            let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
+            let combined = [...customBooks, ...masterBooks];
+            let filtered = combined.filter(b => b.category === categoryName);
+
+            const subgrid = document.getElementById('subgenre-book-grid');
+            let html = '';
+            filtered.forEach(b => {
+                let dummyPdf = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                let pdfUrl = b.url || dummyPdf;
+                let subBadge = b.sub ? `<span class="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold">${b.sub}</span>` : '';
+                html += `
+                    <div class="glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-[11px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold border border-emerald-100">${b.category}</span>
+                                ${subBadge}
+                            </div>
+                            <h3 class="font-extrabold text-slate-900 text-base">${b.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1 font-medium">${b.author}</p>
+                        </div>
+                        <div class="mt-6 flex gap-3">
+                            <button onclick="openReader('${b.title.replace(/'/g, "\\'")}', '${pdfUrl}')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition"><i class="fa-solid fa-book-open-reader mr-1"></i> Baca</button>
+                            <button onclick="saveBookmark('${b.title.replace(/'/g, "\\'")}', '${b.author.replace(/'/g, "\\'")}', '${b.category}', '${pdfUrl}')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition" title="Pinjam & Masukkan Rak"><i class="fa-solid fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            subgrid.innerHTML = html;
+        }
+
+        function backToGenreMenu() {
+            document.getElementById('catalog-sub-view').classList.add('hidden');
+            document.getElementById('catalog-main-menu').classList.remove('hidden');
+        }
+
+        function globalSearchBooks() {
+            const query = document.getElementById('search-book').value.toLowerCase();
+            if(!query) {
+                backToGenreMenu();
+                return;
+            }
+            let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
+            let combined = [...customBooks, ...masterBooks];
+            let filtered = combined.filter(b => b.title.toLowerCase().includes(query) || b.author.toLowerCase().includes(query));
+
+            document.getElementById('catalog-main-menu').classList.add('hidden');
+            document.getElementById('catalog-sub-view').classList.remove('hidden');
+            document.getElementById('current-genre-title').innerText = "Hasil Pencarian: \"" + query + "\"";
+
+            const subgrid = document.getElementById('subgenre-book-grid');
+            if(filtered.length === 0) {
+                subgrid.innerHTML = `<div class="p-6 bg-slate-50 border rounded-2xl text-center text-slate-500 text-xs col-span-full">Buku tidak ditemukan.</div>`;
+                return;
+            }
+            let html = '';
+            filtered.forEach(b => {
+                let dummyPdf = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                let pdfUrl = b.url || dummyPdf;
+                html += `
+                    <div class="glass-card border border-slate-200/80 p-6 rounded-2xl flex flex-col justify-between shadow-xs">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-[11px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold border border-emerald-100">${b.category}</span>
+                            </div>
+                            <h3 class="font-extrabold text-slate-900 text-base">${b.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1 font-medium">${b.author}</p>
+                        </div>
+                        <div class="mt-6 flex gap-3">
+                            <button onclick="openReader('${b.title.replace(/'/g, "\\'")}', '${pdfUrl}')" class="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-xs py-2.5 rounded-xl font-bold shadow-sm transition"><i class="fa-solid fa-book-open-reader mr-1"></i> Baca</button>
+                            <button onclick="saveBookmark('${b.title.replace(/'/g, "\\'")}', '${b.author.replace(/'/g, "\\'")}', '${b.category}', '${pdfUrl}')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-2.5 rounded-xl text-xs transition" title="Pinjam & Masukkan Rak"><i class="fa-solid fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            subgrid.innerHTML = html;
+        }
+
+        function openReader(title, url) {
+            document.getElementById('reader-book-title').innerText = "Sedang Membaca: " + title;
+            document.getElementById('reader-frame').src = url;
+            document.getElementById('reader-modal').classList.remove('hidden');
+        }
+
+        function closeReader() {
+            document.getElementById('reader-modal').classList.add('hidden');
+            document.getElementById('reader-frame').src = '';
+        }
+
+        function verifyAdmin(event) {
+            event.preventDefault();
+            const pass = document.getElementById('admin-password-input').value;
+            if (pass === ADMIN_PASSWORD) {
+                localStorage.setItem('isAdminLoggedIn', 'true');
+                checkAdminSession();
+            } else { alert('Kata sandi salah!'); }
+        }
+
+        function checkAdminSession() {
+            const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+            const loginBox = document.getElementById('admin-login-box');
+            const panelContent = document.getElementById('admin-panel-content');
+            if (isLoggedIn === 'true') {
+                if(loginBox) loginBox.classList.add('hidden');
+                if(panelContent) panelContent.classList.remove('hidden');
+            } else {
+                if(loginBox) loginBox.classList.remove('hidden');
+                if(panelContent) panelContent.classList.add('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('isAdminLoggedIn');
+            checkAdminSession();
+        }
+
+        function triggerSidebarLogoUpload() { document.getElementById('sidebar-logo-file').click(); }
+        function handleSidebarLogoUpload(event) {
+            if (event.target.files && event.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('sidebarLogoUrl', e.target.result);
+                    loadSidebarLogo();
+                    alert('Logo sidebar berhasil diperbarui!');
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+
+        function loadSidebarLogo() {
+            const savedLogo = localStorage.getItem('sidebarLogoUrl');
+            const imgEl = document.getElementById('sidebar-logo-img');
+            const iconEl = document.getElementById('sidebar-logo-icon');
+            if (savedLogo && imgEl && iconEl) {
+                imgEl.src = savedLogo;
+                imgEl.classList.remove('hidden');
+                iconEl.classList.add('hidden');
+            }
+        }
+
+        function saveBookmark(title, author, category, url) {
+            let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            if (!bookmarks.some(b => b.title === title)) {
+                bookmarks.push({ title, author, category, url });
+                localStorage.setItem('myBookmarks', JSON.stringify(bookmarks));
+                alert(`"${title}" berhasil dipinjam ke Rak Saya!`);
+                loadBookmarks();
+            } else { alert('Buku sudah ada di Rak Saya.'); }
+        }
+
+        function loadBookmarks() {
+            const container = document.getElementById('my-shelf-container');
+            if (!container) return;
+            let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            if (bookmarks.length === 0) {
+                container.innerHTML = `<div class="p-6 bg-slate-50 border rounded-2xl text-center text-slate-500 text-xs col-span-full">Belum ada buku di dalam rak pinjaman Anda.</div>`;
+                return;
+            }
+            let html = '';
+            bookmarks.forEach((b, index) => {
+                html += `<div class="glass-card border p-6 rounded-2xl flex flex-col justify-between shadow-xs"><div><span class="text-[11px] bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-bold">${b.category}</span><h3 class="font-extrabold text-slate-900 text-base mt-2">${b.title}</h3><p class="text-xs text-slate-500 mt-1">${b.author}</p></div><div class="mt-6 flex gap-2"><button onclick="openReader('${b.title.replace(/'/g, "\\'")}', '${b.url}')" class="flex-1 bg-emerald-700 text-white text-xs py-2.5 rounded-xl font-bold">Baca</button><button onclick="removeBookmark(${index})" class="bg-red-50 text-red-600 px-3 py-2.5 rounded-xl text-xs"><i class="fa-solid fa-rotate-left"></i></button></div></div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function removeBookmark(index) {
+            let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
+            bookmarks.splice(index, 1);
+            localStorage.setItem('myBookmarks', JSON.stringify(bookmarks));
+            loadBookmarks();
+            alert('Buku dikembalikan.');
+        }
+
+        function exportDataExcel() {
+            let journals = JSON.parse(localStorage.getItem('journals')) || [];
+            let csvContent = "data:text/csv;charset=utf-8,Nama Siswa,Judul Buku,Penulis,Ulasan\n";
+            journals.forEach(row => { csvContent += `"${row.studentName}","${row.title}","${row.author}","${row.review}"\n`; });
+            let link = document.createElement("a");
+            link.setAttribute("href", encodeURI(csvContent));
+            link.setAttribute("download", "Rekap_Journal.csv");
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        }
+
+        function addJournal(event) {
+            event.preventDefault();
+            const studentName = document.getElementById('student-name').value;
+            const title = document.getElementById('book-title').value;
+            const author = document.getElementById('book-author').value;
+            const review = document.getElementById('book-review').value;
+            
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.innerText = "Mengirim...";
+            submitBtn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ studentName, title, author, review })
+            }).then(() => {
+                let journals = JSON.parse(localStorage.getItem('journals')) || [];
+                journals.unshift({ studentName, title, author, review });
+                localStorage.setItem('journals', JSON.stringify(journals));
+                
+                userPoints += 10; totalBooks += 1;
+                localStorage.setItem('userPoints', userPoints); localStorage.setItem('totalBooks', totalBooks);
+                document.getElementById('user-points').innerText = userPoints;
+                document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
+                loadJournals();
+                
+                document.getElementById('journal-form').reset();
+                submitBtn.innerText = "Kirim Journal ke Database (+10 Poin)";
+                submitBtn.disabled = false;
+                alert('Journal berhasil dikirim ke Google Sheets & Database (+10 Poin).');
+            }).catch(() => {
+                let journals = JSON.parse(localStorage.getItem('journals')) || [];
+                journals.unshift({ studentName, title, author, review });
+                localStorage.setItem('journals', JSON.stringify(journals));
+                loadJournals();
+                document.getElementById('journal-form').reset();
+                submitBtn.innerText = "Kirim Journal ke Database (+10 Poin)";
+                submitBtn.disabled = false;
+                alert('Journal tersimpan lokal!');
+            });
+        }
+
+        function loadJournals() {
+            const tableBody = document.getElementById('journal-table-body');
+            if (!tableBody) return;
+            let journals = JSON.parse(localStorage.getItem('journals')) || [];
+            let html = `<tr><td class="p-4 font-bold text-slate-900">Ahmad Zaki</td><td class="p-4">Sejarah Peradaban Islam</td><td class="p-4">Dr. Badri Yatim</td><td class="p-4">Sangat menambah wawasan.</td></tr>`;
+            journals.forEach(j => { 
+                html += `<tr><td class="p-4 font-bold text-slate-900">${j.studentName || 'Siswa'}</td><td class="p-4 font-bold">${j.title}</td><td class="p-4">${j.author}</td><td class="p-4">${j.review}</td></tr>`; 
+            });
+            tableBody.innerHTML = html;
+        }
+
+        function loadVisiMisi() {
+            if(localStorage.getItem('madrasahVisi')) document.getElementById('madrasah-visi').innerText = localStorage.getItem('madrasahVisi');
+            if(localStorage.getItem('madrasahMisi')) document.getElementById('madrasah-misi').innerHTML = localStorage.getItem('madrasahMisi').replace(/\n/g, '<br>');
+        }
+
+        function loadAnnouncement() {
+            const savedText = localStorage.getItem('announcement');
+            if(savedText && document.getElementById('announcement-board')) {
+                document.getElementById('announcement-board').innerHTML = `<p class="font-bold mb-1 flex items-center gap-1.5"><i class="fa-solid fa-sparkles text-amber-600"></i> Informasi Terbaru:</p><p class="text-amber-900/80 leading-relaxed font-light">${savedText}</p>`;
+            }
+        }
+
+        function loadProfile() {
+            if(localStorage.getItem('profileName')) document.getElementById('profile-name').innerText = localStorage.getItem('profileName');
+            if(localStorage.getItem('profileRole')) document.getElementById('profile-role').innerText = localStorage.getItem('profileRole');
+            if(localStorage.getItem('profileSchool')) document.getElementById('profile-school').innerText = localStorage.getItem('profileSchool');
+        }
+
+        function loadMateri() {
+            const materiList = document.getElementById('materi-list');
+            if (!materiList) return;
+            let materis = JSON.parse(localStorage.getItem('materis')) || [];
+            let html = `<div class="p-5 border rounded-2xl bg-white flex justify-between"><div><h4 class="font-bold text-sm">Modul Ajar Bahasa Arab</h4><p class="text-xs text-slate-500">Tim Kurikulum</p></div></div>`;
+            materis.forEach(m => { html += `<div class="p-5 border rounded-2xl bg-white flex justify-between"><div><h4 class="font-bold text-sm">${m.title}</h4><p class="text-xs text-slate-500">${m.author}</p></div></div>`; });
+            materiList.innerHTML = html;
+        }
+
+        function submitQuiz() {
+            if (document.getElementById('quiz-correct').checked) {
+                userPoints += 15; localStorage.setItem('userPoints', userPoints);
+                document.getElementById('user-points').innerText = userPoints;
+                alert('Jawaban BENAR (+15 Poin)!');
+            } else { alert('Jawaban kurang tepat.'); }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('visitorChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+                    datasets: [{ data: [45, 78, 62, 95, 110, 85, 130], borderColor: '#047857', backgroundColor: 'rgba(4, 120, 87, 0.08)', fill: true, tension: 0.4, borderWidth: 3 }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            });
+        }
+    </script>
+</body>
+</html>
+
