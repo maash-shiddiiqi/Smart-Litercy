@@ -1,4 +1,64 @@
-DATA KATALOG 30 GENRE & KOLEKSI KHUSUS
+<!-- KOLEKSI SPESIAL MADRASAH & KATALOG GENRE -->
+<section class="p-6 bg-slate-50 min-h-screen">
+  
+  <!-- KOLEKSI SPESIAL -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+        <span class="text-emerald-600">🏫</span> Koleksi Spesial Madrasah
+      </h2>
+      <span class="text-xs text-slate-500">Koleksi terkurasi & karya warga madrasah</span>
+    </div>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      <button onclick="filterKoleksi('ma-ashshiddiiqi')" class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🏫</div>
+        <div class="text-xs font-semibold">Koleksi MA Ash-Shiddiiqi</div>
+      </button>
+
+      <button onclick="filterKoleksi('karya-santri')" class="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">✍️</div>
+        <div class="text-xs font-semibold">Karya Santri</div>
+      </button>
+
+      <button onclick="filterKoleksi('karya-guru')" class="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">👨‍🏫</div>
+        <div class="text-xs font-semibold">Karya Guru</div>
+      </button>
+
+      <button onclick="filterKoleksi('pilihan-guru')" class="p-3 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">⭐</div>
+        <div class="text-xs font-semibold">Pilihan Guru</div>
+      </button>
+
+      <button onclick="filterKoleksi('populer')" class="p-3 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🔥</div>
+        <div class="text-xs font-semibold">Paling Banyak Dibaca</div>
+      </button>
+
+      <button onclick="filterKoleksi('terbaru')" class="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
+        <div class="text-2xl mb-1">🆕</div>
+        <div class="text-xs font-semibold">Buku Terbaru</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- KATALOG 30 GENRE -->
+  <div class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+      <span class="text-emerald-600">📚</span> Kategori & Genre E-Book
+    </h2>
+    <div id="genre-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2.5">
+      <!-- Di-render otomatis via JavaScript -->
+    </div>
+  </div>
+
+</section>
+
+<script>
+// ==========================================
+// DATA KATALOG 30 GENRE
+// ==========================================
 const DATA_GENRE = [
   { id: 'novel', name: 'Novel', icon: '📖' },
   { id: 'cerpen', name: 'Cerpen', icon: '✍️' },
@@ -45,62 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function filterGenre(genreId) {
-  console.log("Filter Genre:", genreId);
+  console.log("Genre dipilih:", genreId);
 }
 
 function filterKoleksi(koleksiId) {
-  console.log("Filter Koleksi:", koleksiId);
+  console.log("Koleksi dipilih:", koleksiId);
 }
-<!-- KOLEKSI SPESIAL MADRASAH -->
-<section class="p-6 bg-slate-50">
-  <div class="mb-8">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-        <span class="text-emerald-600">🏫</span> Koleksi Spesial Madrasah
-      </h2>
-      <span class="text-xs text-slate-500">Koleksi terkurasi & karya warga madrasah</span>
-    </div>
-    
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-      <button onclick="filterKoleksi('ma-ashshiddiiqi')" class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🏫</div>
-        <div class="text-xs font-semibold">Koleksi MA Ash-Shiddiiqi</div>
-      </button>
-      <button onclick="filterKoleksi('karya-santri')" class="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">✍️</div>
-        <div class="text-xs font-semibold">Karya Santri</div>
-      </button>
-      <button onclick="filterKoleksi('karya-guru')" class="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">👨‍🏫</div>
-        <div class="text-xs font-semibold">Karya Guru</div>
-      </button>
-      <button onclick="filterKoleksi('pilihan-guru')" class="p-3 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">⭐</div>
-        <div class="text-xs font-semibold">Pilihan Guru</div>
-      </button>
-      <button onclick="filterKoleksi('populer')" class="p-3 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🔥</div>
-        <div class="text-xs font-semibold">Paling Banyak Dibaca</div>
-      </button>
-      <button onclick="filterKoleksi('terbaru')" class="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🆕</div>
-        <div class="text-xs font-semibold">Buku Terbaru</div>
-      </button>
-    </div>
-  </div>
-
-  <!-- KATALOG 30 GENRE -->
-  <div>
-    <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-      <span class="text-emerald-600">📚</span> Kategori & Genre E-Book
-    </h2>
-    <div id="genre-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2.5">
-      <!-- Di-render otomatis via script.js -->
-    </div>
-  </div>
-</section>
-
-<!-- PANGGIL SCRIPT DI AKHIR BODY -->
-<script src="script.js"></script>
-
+</script>
 
