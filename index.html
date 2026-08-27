@@ -1,64 +1,62 @@
 <!-- KOLEKSI SPESIAL MADRASAH & KATALOG GENRE -->
-<section class="p-6 bg-slate-50 min-h-screen">
+<div style="padding: 24px; background-color: #f8fafc; min-height: 100vh; font-family: sans-serif;">
   
   <!-- KOLEKSI SPESIAL -->
-  <div class="mb-8">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-        <span class="text-emerald-600">🏫</span> Koleksi Spesial Madrasah
+  <div style="margin-bottom: 32px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <h2 style="font-size: 20px; font-weight: bold; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 8px;">
+        <span>🏫</span> Koleksi Spesial Madrasah
       </h2>
-      <span class="text-xs text-slate-500">Koleksi terkurasi & karya warga madrasah</span>
+      <span style="font-size: 12px; color: #64748b;">Koleksi terkurasi & karya warga madrasah</span>
     </div>
     
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-      <button onclick="filterKoleksi('ma-ashshiddiiqi')" class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🏫</div>
-        <div class="text-xs font-semibold">Koleksi MA Ash-Shiddiiqi</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;">
+      <button onclick="filterKoleksi('ma-ashshiddiiqi')" style="padding: 12px; background: linear-gradient(135deg, #059669, #0d9488); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">🏫</div>
+        <div style="font-size: 12px; font-weight: 600;">Koleksi MA Ash-Shiddiiqi</div>
       </button>
 
-      <button onclick="filterKoleksi('karya-santri')" class="p-3 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">✍️</div>
-        <div class="text-xs font-semibold">Karya Santri</div>
+      <button onclick="filterKoleksi('karya-santri')" style="padding: 12px; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">✍️</div>
+        <div style="font-size: 12px; font-weight: 600;">Karya Santri</div>
       </button>
 
-      <button onclick="filterKoleksi('karya-guru')" class="p-3 bg-gradient-to-br from-cyan-600 to-blue-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">👨‍🏫</div>
-        <div class="text-xs font-semibold">Karya Guru</div>
+      <button onclick="filterKoleksi('karya-guru')" style="padding: 12px; background: linear-gradient(135deg, #0891b2, #2563eb); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">👨‍🏫</div>
+        <div style="font-size: 12px; font-weight: 600;">Karya Guru</div>
       </button>
 
-      <button onclick="filterKoleksi('pilihan-guru')" class="p-3 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">⭐</div>
-        <div class="text-xs font-semibold">Pilihan Guru</div>
+      <button onclick="filterKoleksi('pilihan-guru')" style="padding: 12px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">⭐</div>
+        <div style="font-size: 12px; font-weight: 600;">Pilihan Guru</div>
       </button>
 
-      <button onclick="filterKoleksi('populer')" class="p-3 bg-gradient-to-br from-rose-500 to-red-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🔥</div>
-        <div class="text-xs font-semibold">Paling Banyak Dibaca</div>
+      <button onclick="filterKoleksi('populer')" style="padding: 12px; background: linear-gradient(135deg, #f43f5e, #dc2626); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">🔥</div>
+        <div style="font-size: 12px; font-weight: 600;">Paling Banyak Dibaca</div>
       </button>
 
-      <button onclick="filterKoleksi('terbaru')" class="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all text-left">
-        <div class="text-2xl mb-1">🆕</div>
-        <div class="text-xs font-semibold">Buku Terbaru</div>
+      <button onclick="filterKoleksi('terbaru')" style="padding: 12px; background: linear-gradient(135deg, #3b82f6, #4f46e5); color: white; border-radius: 12px; border: none; text-align: left; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="font-size: 24px; margin-bottom: 4px;">🆕</div>
+        <div style="font-size: 12px; font-weight: 600;">Buku Terbaru</div>
       </button>
     </div>
   </div>
 
   <!-- KATALOG 30 GENRE -->
-  <div class="mb-8">
-    <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-      <span class="text-emerald-600">📚</span> Kategori & Genre E-Book
+  <div>
+    <h2 style="font-size: 20px; font-weight: bold; color: #1e293b; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+      <span>📚</span> Kategori & Genre E-Book
     </h2>
-    <div id="genre-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2.5">
+    <div id="genre-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
       <!-- Di-render otomatis via JavaScript -->
     </div>
   </div>
 
-</section>
+</div>
 
 <script>
-// ==========================================
 // DATA KATALOG 30 GENRE
-// ==========================================
 const DATA_GENRE = [
   { id: 'novel', name: 'Novel', icon: '📖' },
   { id: 'cerpen', name: 'Cerpen', icon: '✍️' },
@@ -96,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const genreContainer = document.getElementById('genre-grid');
   if(genreContainer) {
     genreContainer.innerHTML = DATA_GENRE.map(item => `
-      <button onclick="filterGenre('${item.id}')" class="flex items-center gap-2 p-2.5 bg-white border border-slate-200 rounded-lg hover:border-emerald-500 hover:bg-emerald-50 transition-all text-slate-700 text-xs font-medium shadow-sm">
-        <span class="text-base">${item.icon}</span>
-        <span class="truncate">${item.name}</span>
+      <button onclick="filterGenre('${item.id}')" style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; background-color: white; border: 1px solid #e2e8f0; border-radius: 8px; color: #334155; font-size: 12px; font-weight: 500; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: left; width: 100%;">
+        <span style="font-size: 16px;">${item.icon}</span>
+        <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1;">${item.name}</span>
       </button>
     `).join('');
   }
