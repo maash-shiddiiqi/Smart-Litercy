@@ -214,11 +214,9 @@
                     </div>
                 </div>
 
-                <!-- Menu Katalog & Rak Buku Digital (Berdasarkan 15 Kategori Utama & Sub-nya) -->
+                <!-- Menu Katalog & Rak Buku Digital (15 Kategori Utama) -->
                 <div id="content-perpustakaan" class="page-content hidden space-y-6">
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
-                        
-                        <!-- Tampilan 1: Menu 15 Kategori Utama -->
                         <div id="catalog-main-menu" class="space-y-6">
                             <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b pb-6">
                                 <div>
@@ -227,14 +225,9 @@
                                 </div>
                                 <input type="text" id="search-book" onkeyup="globalSearchBooks()" placeholder="Cari judul buku atau penulis..." class="text-sm border border-slate-200 rounded-xl px-4 py-2.5 w-full md:w-72 focus:outline-emerald-600 bg-white shadow-xs">
                             </div>
-
-                            <!-- Grid 15 Kategori Utama -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="genre-cards-grid">
-                                <!-- Diisi otomatis oleh JavaScript -->
-                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="genre-cards-grid"></div>
                         </div>
 
-                        <!-- Tampilan 2: Daftar Buku dalam Kategori -->
                         <div id="catalog-sub-view" class="space-y-6 hidden">
                             <div class="flex justify-between items-center border-b pb-4">
                                 <button onclick="backToGenreMenu()" class="inline-flex items-center gap-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 text-xs font-bold px-4 py-2 rounded-xl transition">
@@ -242,12 +235,8 @@
                                 </button>
                                 <h3 id="current-genre-title" class="font-extrabold text-slate-900 text-base">Nama Kategori</h3>
                             </div>
-                            
-                            <div id="subgenre-book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                                <!-- Buku-buku dalam kategori tersebut -->
-                            </div>
+                            <div id="subgenre-book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
                         </div>
-
                     </div>
                 </div>
 
@@ -301,7 +290,6 @@
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900"><i class="fa-solid fa-clipboard-user text-emerald-700 mr-2"></i> Reading Journal Siswa</h2>
                         <p class="text-xs text-slate-500">Catat buku yang Anda baca. Data akan langsung terkirim secara otomatis ke database Google Sheets madrasah!</p>
-                        
                         <form id="journal-form" onsubmit="addJournal(event)" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Siswa / Pembaca</label>
@@ -374,51 +362,15 @@
                     <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
                         <h2 class="text-xl font-black text-slate-900 mb-2"><i class="fa-solid fa-award text-amber-500 mr-2"></i> Koleksi Badge Penghargaan</h2>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                            <div class="bg-amber-50/80 border border-amber-200/80 p-5 rounded-2xl text-center shadow-xs">
+                            <div class="bg-amber-50/85 border border-amber-200 p-5 rounded-2xl text-center shadow-xs">
                                 <i class="fa-solid fa-award text-3xl text-amber-600 mb-3"></i>
                                 <h4 class="font-extrabold text-xs text-amber-950">Kutu Buku Pemula</h4>
                                 <p class="text-[10px] text-amber-800 mt-1 font-medium">Aktif membaca 10 buku</p>
                             </div>
-                            <div class="bg-emerald-50/80 border border-emerald-200/80 p-5 rounded-2xl text-center shadow-xs">
+                            <div class="bg-emerald-50/85 border border-emerald-200 p-5 rounded-2xl text-center shadow-xs">
                                 <i class="fa-solid fa-pen-nib text-3xl text-emerald-700 mb-3"></i>
                                 <h4 class="font-extrabold text-xs text-emerald-950">Penulis Esai</h4>
                                 <p class="text-[10px] text-emerald-800 mt-1 font-medium">Publikasi 3 karya</p>
-                            </div>
-                        </div>
-
-                        <div class="pt-6 border-t border-slate-200">
-                            <h3 class="font-black text-slate-900 text-base mb-4 flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-500"></i> Papan Peringkat Pembaca Teraktif</h3>
-                            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
-                                <table class="w-full text-left text-xs">
-                                    <thead class="bg-slate-50 text-slate-700 uppercase border-b border-slate-200">
-                                        <tr>
-                                            <th class="p-3.5">Peringkat</th>
-                                            <th class="p-3.5">Nama Siswa</th>
-                                            <th class="p-3.5">Kelas</th>
-                                            <th class="p-3.5 text-right">Total Poin</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
-                                        <tr>
-                                            <td class="p-3.5 font-bold text-amber-600">🥇 #1</td>
-                                            <td class="p-3.5 font-bold">Ahmad Zaki</td>
-                                            <td class="p-3.5">XII IPA 1</td>
-                                            <td class="p-3.5 text-right font-extrabold text-emerald-700">240 Poin</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-3.5 font-bold text-slate-500">🥈 #2</td>
-                                            <td class="p-3.5">Fatimah Zahra</td>
-                                            <td class="p-3.5">XI IPS 2</td>
-                                            <td class="p-3.5 text-right font-extrabold text-emerald-700">195 Poin</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-3.5 font-bold text-amber-700">🥉 #3</td>
-                                            <td class="p-3.5">Muhammad Rizki</td>
-                                            <td class="p-3.5">X Agama</td>
-                                            <td class="p-3.5 text-right font-extrabold text-emerald-700">150 Poin</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -442,7 +394,7 @@
                     </div>
                 </div>
 
-                <!-- Menu Profil & Panel Admin -->
+                <!-- Menu Profil & Panel Admin (LENGKAP 100%) -->
                 <div id="content-profil" class="page-content hidden space-y-6">
                     <div id="admin-login-box" class="glass-card p-8 rounded-3xl shadow-sm border max-w-md mx-auto text-center space-y-4">
                         <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl mx-auto shadow-inner"><i class="fa-solid fa-lock"></i></div>
@@ -463,14 +415,61 @@
                             </div>
                         </div>
 
-                        <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
-                            <div>
-                                <h2 class="text-lg font-black text-slate-900 mb-2"><i class="fa-solid fa-user-shield text-emerald-700 mr-2"></i> Profil Pengguna</h2>
-                                <div class="space-y-1.5 text-sm text-slate-700 border-b border-slate-200 pb-4 font-medium">
-                                    <p><strong>Nama:</strong> <span id="profile-name">Warga Madrasah</span></p>
-                                    <p><strong>Peran:</strong> <span id="profile-role">Pendidik / Siswa</span></p>
-                                    <p><strong>Madrasah:</strong> <span id="profile-school">Madrasah Aliyah / Tsanawiyah</span></p>
-                                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 1. Pengaturan Visi Misi -->
+                            <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                                <h2 class="text-base font-black text-slate-900 border-b pb-3"><i class="fa-solid fa-compass text-emerald-700 mr-2"></i> Pengaturan Visi & Misi</h2>
+                                <form onsubmit="updateVisiMisi(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Visi Madrasah</label>
+                                        <textarea id="admin-visi" rows="2" class="w-full text-xs border rounded-xl p-3 bg-slate-50" placeholder="Masukkan visi..."></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Misi Strategis</label>
+                                        <textarea id="admin-misi" rows="3" class="w-full text-xs border rounded-xl p-3 bg-slate-50" placeholder="Masukkan misi..."></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl shadow-xs">Simpan Visi & Misi</button>
+                                </form>
+                            </div>
+
+                            <!-- 2. Pengaturan Quotes & Buku Favorit -->
+                            <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                                <h2 class="text-base font-black text-slate-900 border-b pb-3"><i class="fa-solid fa-star text-emerald-700 mr-2"></i> Quotes & Buku Favorit</h2>
+                                <form onsubmit="updateQuoteAndFav(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Quotes Hari Ini</label>
+                                        <input type="text" id="admin-quote" class="w-full text-xs border rounded-xl p-3 bg-slate-50" placeholder="Quotes harian...">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1">Judul Buku Favorit Bulan Ini</label>
+                                        <input type="text" id="admin-fav-title" class="w-full text-xs border rounded-xl p-3 bg-slate-50" placeholder="Judul buku...">
+                                    </div>
+                                    <button type="submit" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl shadow-xs">Perbarui Quotes & Favorit</button>
+                                </form>
+                            </div>
+
+                            <!-- 3. Pengaturan Foto Profil -->
+                            <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                                <h2 class="text-base font-black text-slate-900 border-b pb-3"><i class="fa-solid fa-user-pen text-emerald-700 mr-2"></i> Pengaturan Foto Profil</h2>
+                                <form onsubmit="updateAvatarFile(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1.5">Unggah Foto Profil Admin</label>
+                                        <input type="file" id="admin-avatar-input" accept="image/*" class="w-full text-xs border border-slate-200 rounded-xl p-2 bg-slate-50">
+                                    </div>
+                                    <button type="submit" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl shadow-xs">Perbarui Foto Profil</button>
+                                </form>
+                            </div>
+
+                            <!-- 4. Pengumuman Utama -->
+                            <div class="glass-card p-8 rounded-3xl shadow-sm border space-y-6">
+                                <h2 class="text-base font-black text-slate-900 border-b pb-3"><i class="fa-solid fa-bullhorn text-emerald-700 mr-2"></i> Pengumuman & Berita</h2>
+                                <form onsubmit="updateAnnouncement(event)" class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 mb-1.5">Teks Pengumuman Utama</label>
+                                        <textarea id="announcement-text" rows="3" class="w-full text-sm border rounded-xl p-3 bg-slate-50" placeholder="Tulis pengumuman..."></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl">Siarkan Pengumuman</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -516,16 +515,14 @@
         </button>
     </div>
 
-    <!-- SCRIPT UTAMA -->
+    <!-- SCRIPT LENGKAP -->
     <script>
         let userPoints = parseInt(localStorage.getItem('userPoints')) || 120;
         let totalBooks = parseInt(localStorage.getItem('totalBooks')) || 12;
         const ADMIN_PASSWORD = "admin123";
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz.../exec"; 
 
-        // Master Buku Berdasarkan 15 Kategori Utama
         const masterBooks = [
-            // 1. Fiksi
             { title: "Bulan Terbelah di Langit Madinah", author: "Habiburrahman El Shirazi", category: "1. Fiksi", sub: "Novel" },
             { title: "Kumpulan Cerpen Santri Pilihan", author: "Tim Literasi Santri", category: "1. Fiksi", sub: "Cerpen" },
             { title: "Negeri Para Penjelajah Fantasi", author: "J.K. Rowling", category: "1. Fiksi", sub: "Fantasi" },
@@ -533,69 +530,41 @@
             { title: "Misteri Kitab Kuning yang Hilang", author: "Detektif Madrasah", category: "1. Fiksi", sub: "Misteri" },
             { title: "Kisah Teladan Penuh Ketegangan", author: "Syekh Al-Ghazali", category: "1. Fiksi", sub: "Horor" },
             { title: "Romansa Cinta dalam Restu Ilahi", author: "Asma Nadia", category: "1. Fiksi", sub: "Drama" },
-
-            // 2. Sastra
             { title: "Antologi Puisi Cahaya Pesantren", author: "Warga Madrasah", category: "2. Sastra", sub: "Puisi" },
             { title: "Prosa Nusantara & Kehidupan", author: "Pramoedya Ananta Toer", category: "2. Sastra", sub: "Prosa" },
             { title: "Kumpulan Antologi Sastra Klasik", author: "Pujangga Lama", category: "2. Sastra", sub: "Antologi" },
-
-            // 3. Islami
             { title: "Sirah Nabawiyah: Sejarah Hidup Rasulullah", author: "Ibnu Hisyam", category: "3. Islami", sub: "Sirah" },
             { title: "Akhlakul Karimah di Era Digital", author: "Tim Literasi Madrasah", category: "3. Islami", sub: "Akhlak" },
             { title: "Fiqh Kontemporer & Solusi Umat", author: "Prof. Dr. Quraish Shihab", category: "3. Islami", sub: "Fikih" },
             { title: "Kitab Akidah Ahlus Sunnah Wal Jamaah", author: "Syaikh Utsaimin", category: "3. Islami", sub: "Akidah" },
             { title: "Tasawuf & Pembersihan Hati", author: "Imam Al-Ghazali", category: "3. Islami", sub: "Tasawuf" },
             { title: "Kisah Sahabat Nabi Pengukir Sejarah", author: "Khaled Muhammad Khalid", category: "3. Islami", sub: "Kisah Sahabat" },
-
-            // 4. Sejarah
             { title: "Sejarah Nasional Indonesia Lengkap", author: "Sartono Kartodirdjo", category: "4. Sejarah", sub: "Sejarah Indonesia" },
             { title: "Sejarah Peradaban Islam Klasik", author: "Dr. Badri Yatim", category: "4. Sejarah", sub: "Sejarah Islam" },
             { title: "Sejarah Dunia untuk Pelajar", author: "H.G. Wells", category: "4. Sejarah", sub: "Sejarah Dunia" },
-
-            // 5. Biografi & Memoar
             { title: "Biografi Buya Hamka: Ulama & Sastrawan", author: "Heri Jauhari", category: "5. Biografi & Memoar", sub: "Tokoh Islam" },
             { title: "Biografi Soekarno: Penyambung Lidah Rakyat", author: "Cindy Adams", category: "5. Biografi & Memoar", sub: "Tokoh Nasional" },
             { title: "Kisah Inspiratif Ilmuwan Muslim Dunia", author: "Prof. Al-Hassan", category: "5. Biografi & Memoar", sub: "Ilmuwan" },
-
-            // 6. Pendidikan
             { title: "Metode Belajar Efektif Abad 21", author: "Tim Kurikulum Wakakur", category: "6. Pendidikan", sub: "Metode Belajar" },
             { title: "Pendidikan Karakter Berbasis Pesantren", author: "Dewan Guru Madrasah", category: "6. Pendidikan", sub: "Pendidikan Karakter" },
-
-            // 7. Pengembangan Diri
             { title: "Atomic Habits untuk Pelajar Berprestasi", author: "James Clear", category: "7. Pengembangan Diri", sub: "Motivasi" },
             { title: "Kepemimpinan Efektif & Berintegritas", author: "John C. Maxwell", category: "7. Pengembangan Diri", sub: "Kepemimpinan" },
             { title: "Manajemen Waktu Santri Produktif", author: "K.H. Abdullah Gymnastiar", category: "7. Pengembangan Diri", sub: "Manajemen Waktu" },
-
-            // 8. Psikologi
             { title: "Psikologi Remaja & Kesehatan Mental", author: "Dr. Elly Risman", category: "8. Psikologi", sub: "Psikologi Remaja" },
             { title: "Mengenal Tipe Kepribadian Manusia", author: "Carl Jung", category: "8. Psikologi", sub: "Kepribadian" },
-
-            // 9. Sains & Matematika
             { title: "Biologi Modern untuk Tingkat Aliyah", author: "Campbell Reece", category: "9. Sains & Matematika", sub: "Biologi" },
             { title: "Fisika Kuantum & Alam Semesta", author: "Stephen Hawking", category: "9. Sains & Matematika", sub: "Fisika" },
             { title: "Matematika Asyik & Gampang", author: "Prof. Yohanes Surya", category: "9. Sains & Matematika", sub: "Matematika" },
-
-            // 10. Teknologi & Digital
             { title: "Kecerdasan Buatan (AI) & Literasi Digital", author: "OpenAI Research", category: "10. Teknologi & Digital", sub: "AI" },
             { title: "Dasar Pemrograman Web & Komputer", author: "Tim IT Madrasah", category: "10. Teknologi & Digital", sub: "Pemrograman" },
-
-            // 11. Sosial & Humaniora
             { title: "Sosiologi Masyarakat Modern", author: "Koentjaraningrat", category: "11. Sosial & Humaniora", sub: "Sosiologi" },
             { title: "Pengantar Filsafat Islam & Pemikiran", author: "Murtadha Muthahhari", category: "11. Sosial & Humaniora", sub: "Filsafat" },
-
-            // 12. Ekonomi & Bisnis
             { title: "Ekonomi Syariah & Perbankan Islam", author: "Adiwarman Karim", category: "12. Ekonomi & Bisnis", sub: "Ekonomi" },
             { title: "Kewirausahaan Santri Mandiri", author: "Mentoring Bisnis MA", category: "12. Ekonomi & Bisnis", sub: "Kewirausahaan" },
-
-            // 13. Seni & Kreativitas
             { title: "Seni Kaligrafi & Desain Grafis Islami", author: "Master Kaligrafi", category: "13. Seni & Kreativitas", sub: "Desain" },
             { title: "Panduan Menulis Kreatif untuk Pemula", author: "Asma Nadia", category: "13. Seni & Kreativitas", sub: "Menulis Kreatif" },
-
-            // 14. Lingkungan & Alam
             { title: "Ekologi & Pelestarian Alam Sekitar", author: "Green Madrasah", category: "14. Lingkungan & Alam", sub: "Ekologi" },
             { title: "Pertanian Modern & Perubahan Iklim", author: "WWF Indonesia", category: "14. Lingkungan & Alam", sub: "Pertanian" },
-
-            // 15. Referensi
             { title: "Kamus Besar Bahasa Indonesia (KBBI)", author: "Tim Balai Pustaka", category: "15. Referensi", sub: "Kamus" },
             { title: "Ensiklopedia Islam Indonesia", author: "Kemenag RI", category: "15. Referensi", sub: "Ensiklopedia" }
         ];
@@ -607,14 +576,12 @@
             loadMateri();
             loadBookmarks();
             loadAnnouncement();
-            loadProfile();
             loadGenreCards();
             loadVisiMisi();
             loadAvatar();
             loadSidebarLogo();
             loadFavBook();
             loadQuote();
-            loadWeeklyPlan();
             checkAdminSession();
             initChart();
             switchTab('dashboard');
@@ -659,14 +626,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Memuat 15 Kartu Kategori Utama di Halaman Katalog
         function loadGenreCards() {
             const grid = document.getElementById('genre-cards-grid');
             if (!grid) return;
-
             let customBooks = JSON.parse(localStorage.getItem('customBooks')) || [];
             let combined = [...customBooks, ...masterBooks];
-
             let categories = [...new Set(combined.map(b => b.category))].sort();
 
             let html = '';
@@ -687,7 +651,6 @@
             grid.innerHTML = html;
         }
 
-        // Membuka Daftar Buku Berdasarkan Kategori Utama yang Diklik
         function openSubgenre(categoryName) {
             document.getElementById('catalog-main-menu').classList.add('hidden');
             document.getElementById('catalog-sub-view').classList.remove('hidden');
@@ -832,6 +795,79 @@
             }
         }
 
+        function updateAvatarFile(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('admin-avatar-input');
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('avatarUrl', e.target.result);
+                    loadAvatar();
+                    alert('Foto profil berhasil diunggah!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function loadAvatar() {
+            const container = document.getElementById('header-avatar-container');
+            const url = localStorage.getItem('avatarUrl');
+            if(url && container) {
+                container.innerHTML = `<img src="${url}" alt="Avatar" class="w-full h-full object-cover">`;
+            }
+        }
+
+        function updateVisiMisi(event) {
+            event.preventDefault();
+            const visi = document.getElementById('admin-visi').value;
+            const misi = document.getElementById('admin-misi').value;
+            if(visi) localStorage.setItem('madrasahVisi', visi);
+            if(misi) localStorage.setItem('madrasahMisi', misi);
+            loadVisiMisi();
+            alert('Visi & Misi berhasil diperbarui!');
+        }
+
+        function loadVisiMisi() {
+            if(localStorage.getItem('madrasahVisi')) document.getElementById('madrasah-visi').innerText = localStorage.getItem('madrasahVisi');
+            if(localStorage.getItem('madrasahMisi')) document.getElementById('madrasah-misi').innerHTML = localStorage.getItem('madrasahMisi').replace(/\n/g, '<br>');
+        }
+
+        function updateQuoteAndFav(event) {
+            event.preventDefault();
+            const quote = document.getElementById('admin-quote').value;
+            const favTitle = document.getElementById('admin-fav-title').value;
+            if(quote) localStorage.setItem('dailyQuote', quote);
+            if(favTitle) localStorage.setItem('favBookTitle', favTitle);
+            loadQuote();
+            loadFavBook();
+            alert('Quotes & Buku Favorit diperbarui!');
+        }
+
+        function loadQuote() {
+            const q = localStorage.getItem('dailyQuote');
+            if(q && document.getElementById('daily-quote')) document.getElementById('daily-quote').innerText = `"${q}"`;
+        }
+
+        function loadFavBook() {
+            const t = localStorage.getItem('favBookTitle');
+            if(t && document.getElementById('fav-book-title')) document.getElementById('fav-book-title').innerText = t;
+        }
+
+        function updateAnnouncement(event) {
+            event.preventDefault();
+            localStorage.setItem('announcement', document.getElementById('announcement-text').value);
+            loadAnnouncement();
+            alert('Pengumuman disiarkan!');
+            switchTab('dashboard');
+        }
+
+        function loadAnnouncement() {
+            const savedText = localStorage.getItem('announcement');
+            if(savedText && document.getElementById('announcement-board')) {
+                document.getElementById('announcement-board').innerHTML = `<p class="font-bold mb-1 flex items-center gap-1.5"><i class="fa-solid fa-sparkles text-amber-600"></i> Informasi Terbaru:</p><p class="text-amber-900/80 leading-relaxed font-light">${savedText}</p>`;
+            }
+        }
+
         function saveBookmark(title, author, category, url) {
             let bookmarks = JSON.parse(localStorage.getItem('myBookmarks')) || [];
             if (!bookmarks.some(b => b.title === title)) {
@@ -895,13 +931,11 @@
                 let journals = JSON.parse(localStorage.getItem('journals')) || [];
                 journals.unshift({ studentName, title, author, review });
                 localStorage.setItem('journals', JSON.stringify(journals));
-                
                 userPoints += 10; totalBooks += 1;
                 localStorage.setItem('userPoints', userPoints); localStorage.setItem('totalBooks', totalBooks);
                 document.getElementById('user-points').innerText = userPoints;
                 document.getElementById('stat-buku').innerText = totalBooks + ' Buku';
                 loadJournals();
-                
                 document.getElementById('journal-form').reset();
                 submitBtn.innerText = "Kirim Journal ke Database (+10 Poin)";
                 submitBtn.disabled = false;
@@ -927,24 +961,6 @@
                 html += `<tr><td class="p-4 font-bold text-slate-900">${j.studentName || 'Siswa'}</td><td class="p-4 font-bold">${j.title}</td><td class="p-4">${j.author}</td><td class="p-4">${j.review}</td></tr>`; 
             });
             tableBody.innerHTML = html;
-        }
-
-        function loadVisiMisi() {
-            if(localStorage.getItem('madrasahVisi')) document.getElementById('madrasah-visi').innerText = localStorage.getItem('madrasahVisi');
-            if(localStorage.getItem('madrasahMisi')) document.getElementById('madrasah-misi').innerHTML = localStorage.getItem('madrasahMisi').replace(/\n/g, '<br>');
-        }
-
-        function loadAnnouncement() {
-            const savedText = localStorage.getItem('announcement');
-            if(savedText && document.getElementById('announcement-board')) {
-                document.getElementById('announcement-board').innerHTML = `<p class="font-bold mb-1 flex items-center gap-1.5"><i class="fa-solid fa-sparkles text-amber-600"></i> Informasi Terbaru:</p><p class="text-amber-900/80 leading-relaxed font-light">${savedText}</p>`;
-            }
-        }
-
-        function loadProfile() {
-            if(localStorage.getItem('profileName')) document.getElementById('profile-name').innerText = localStorage.getItem('profileName');
-            if(localStorage.getItem('profileRole')) document.getElementById('profile-role').innerText = localStorage.getItem('profileRole');
-            if(localStorage.getItem('profileSchool')) document.getElementById('profile-school').innerText = localStorage.getItem('profileSchool');
         }
 
         function loadMateri() {
